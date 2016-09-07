@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Beacon_v1.1.0:jar">
+    <output-path>$PROJECT_DIR$/Beacon/out/artifacts/Beacon_v1_1_0_jar</output-path>
+    <root id="archive" name="Beacon.jar">
+      <element id="module-output" name="Beacon" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/org.sbgn.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/AppleJavaExtensions.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/jsch-0.1.50.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

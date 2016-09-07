@@ -30,7 +30,7 @@ import edu.vt.beacon.editor.resources.icons.IconType;
 public class AboutDialog extends AbstractDialog {
 	
 	// Label Constants
-	private static final String LABEL_VERSION = "Beacon Pathway Editor v. 1.0";
+	private static final String LABEL_VERSION = "Beacon Pathway Editor v1.1.0";
 	private static final String LABEL_CONTRIBUTORS = "Beacon Contributors";
 	private static final String LABEL_ACKNOWLEDGEMENTS = "Acknowledgements";
 	private static final String LABEL_LICENSE = "Software License";

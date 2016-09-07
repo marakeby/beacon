@@ -137,6 +137,17 @@ public abstract class AbstractOperator extends AbstractNode
 
     @Override
     protected void setPortCoordinates() {
+
+        if (getOrientation().isHorizontal()){
+            ports_.get(1).setCenter(getAbsMaxX(), getCenterY());
+            ports_.get(0).setCenter(getAbsMinX(), getCenterY());
+        }
+
+        if (getOrientation().isVertical()){
+            ports_.get(1).setCenter(getCenterX(), getAbsMaxY());
+            ports_.get(0).setCenter(getCenterX(), getAbsMinY());
+        }
+
         switch (getOrientation()) {
 
             case DOWN:
@@ -159,6 +170,7 @@ public abstract class AbstractOperator extends AbstractNode
                 ports_.get(1).setCenter(getCenterX(), getAbsMinY());
                 break;
         }
+
 
         if (getOrientation() == OrientationType.DOWN || getOrientation() == OrientationType.UP)
             orientation_ = OrientationType.VERTICAL;

@@ -169,6 +169,28 @@ public class CanvasMouseListener extends MouseAdapter {
         return null;
     }
 
+    private AbstractGlyph getNodeAt(Point2D.Float point,
+                                     AbstractEntity ignoredGlyph) {
+        Layer layer;
+        Map map = document_.getBrowserMenu().getSelectedMap();
+
+        for (int i = map.getLayerCount() - 1; i >= 0; i--) {
+
+            layer = map.getLayerAt(i);
+
+            if (layer.isActive()) {
+
+                for (int j = layer.getGlyphCount() - 1; j >= 0; j--)
+                    if (layer.getGlyphAt(j).contains(point) &&
+                            !layer.getGlyphAt(j).equals(ignoredGlyph) && layer.getGlyphAt(j) instanceof AbstractNode )
+
+                        return layer.getGlyphAt(j);
+            }
+        }
+
+        return null;
+    }
+
     // TODO document method
     public Port getPortAt(AbstractGlyph glyph, Point2D.Float point) {
         if (glyph == null || !(glyph instanceof AbstractNode))
@@ -534,7 +556,8 @@ public class CanvasMouseListener extends MouseAdapter {
 
     // TODO document method
     private void processPortChange() {
-        AbstractGlyph glyph = getGlyphAt(currentPoint_, glyph_);
+//        AbstractGlyph glyph = getGlyphAt(currentPoint_, glyph_);
+        AbstractGlyph glyph = getNodeAt(currentPoint_, glyph_);
         Port port = getPortAt(glyph, currentPoint_);
 
         AbstractArc arc = (AbstractArc) glyph_;

@@ -71,7 +71,6 @@ public class OldVersionConverter {
         for (HashMap<String, Object> entity : parser.getAllEntities())
             if (isCompartment(entity)) {
                 AbstractNode node = convertGlyph(entity);
-                System.out.println("Adding compartment " + node.getId() +" "+ node);
                 beaconMapIdToObjects.put(node.getId(), node);
             }
 
@@ -275,9 +274,7 @@ public class OldVersionConverter {
         setAuxiliaryUnit((HashMap<String, Object>) glyph.get(OldVersionParser.UNIT_OF_INFO), node);
 
         String xx= (String) glyph.get(OldVersionParser.COMPARTMENT);
-        System.out.println("looking for compartment " + xx);
         Compartment container = getParentCompartment(xx);
-        System.out.println("found compartment " + container);
         node.setParentCompartment(container);
         setLabel((HashMap<String, Object>) glyph.get(OldVersionParser.LABEL), node);
 
@@ -577,7 +574,6 @@ public class OldVersionConverter {
     private Compartment getParentCompartment(String compartment) {
         if (compartment == null || compartment.trim().isEmpty() || compartment.trim().equalsIgnoreCase("null"))
             return null;
-        System.out.println("finding compartment with ID = " + compartment);
         return (Compartment) beaconMapIdToObjects.get(compartment);
     }
 

@@ -191,6 +191,28 @@ public class CanvasMouseListener extends MouseAdapter {
         return null;
     }
 
+    private Compartment getCompartmenteAt(Point2D.Float point,
+                                    AbstractEntity ignoredGlyph) {
+        Layer layer;
+        Map map = document_.getBrowserMenu().getSelectedMap();
+
+        for (int i = map.getLayerCount() - 1; i >= 0; i--) {
+
+            layer = map.getLayerAt(i);
+
+            if (layer.isActive()) {
+
+                for (int j = layer.getGlyphCount() - 1; j >= 0; j--)
+                    if (layer.getGlyphAt(j).contains(point) &&
+                            !layer.getGlyphAt(j).equals(ignoredGlyph) && layer.getGlyphAt(j) instanceof Compartment )
+
+                        return (Compartment) layer.getGlyphAt(j);
+            }
+        }
+
+        return null;
+    }
+
     // TODO document method
     public Port getPortAt(AbstractGlyph glyph, Point2D.Float point) {
         if (glyph == null || !(glyph instanceof AbstractNode))
@@ -479,12 +501,22 @@ public class CanvasMouseListener extends MouseAdapter {
 //                                if (!arc.getTarget().isSelected())
 //                                    arc.setTargetPort(null);
                         }
+                        // check if it is dragged to a compartment
+                        if (glyph instanceof AbstractNode){
+                            Compartment container = getCompartmenteAt(dragStopPoint_, glyph_);
+                            if (container !=null)
+                                if (container.addNode(glyph)) // try to add the node to the compartment, the compartment will check if it is already adde or not, if it is already inside it or not.
+                                    ((AbstractNode)glyph).setParentCompartment(container);
+                            //remove glyph from the compartment
+                            if (container ==null)
+                                if ( ((AbstractNode)glyph).getParentCompartment() !=null)
+                                    ((AbstractNode)glyph).getParentCompartment().removeNode(glyph);
 
+                        }
                         glyph.move(dragStopPoint_.x - currentPoint_.x,
                                 dragStopPoint_.y - currentPoint_.y);
 
                     } else if (glyph instanceof Compartment && ((Compartment) glyph).getLabel().isSelected()) {
-
                         ((Compartment) glyph).getLabel().move(dragStopPoint_.x - currentPoint_.x,
                                 dragStopPoint_.y - currentPoint_.y);
                         ((Compartment) glyph).setCenteredLabel(false);

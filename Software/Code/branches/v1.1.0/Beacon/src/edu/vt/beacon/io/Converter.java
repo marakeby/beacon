@@ -223,6 +223,7 @@ public class Converter {
 
         Glyph glyph = new Glyph();
 
+
         glyph.setId(node.getId());
 
         if (node.getType() != null)

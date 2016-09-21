@@ -154,6 +154,7 @@ public class Map {
 
     // TODO document method
     public void invalidate(AbstractGlyph glyph) {
+
         if (glyph.getAbsMinX() < 0) {
 
             hValidationShift_ =

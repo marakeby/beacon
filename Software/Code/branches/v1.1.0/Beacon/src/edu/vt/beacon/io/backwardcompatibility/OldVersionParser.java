@@ -383,6 +383,10 @@ public class OldVersionParser {
             return false;
 
         String attributeValue = str.trim().substring(attribute.length() + 1);
+
+        if (attributeValue != null && attributeValue.length() > 0 && attributeValue.charAt(attributeValue.length()-1)=='>') {
+            attributeValue = attributeValue.substring(0, attributeValue.length()-1);
+        }
         if (attribute != null && !attribute.isEmpty()) {
             container.put(attribute, attributeValue);
             return true;

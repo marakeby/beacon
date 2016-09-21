@@ -15,9 +15,13 @@ import java.util.ArrayList;
 /**
  * Created by ppws on 1/11/16.
  */
+
+
 public class Compartment extends AbstractNode {
 
     public final static int CORNER_ROUNDNESS = 30;
+
+    private  ArrayList<AbstractGlyph> nodes;
 
     private CompartmentUnit compartmentUnit;
 
@@ -25,55 +29,71 @@ public class Compartment extends AbstractNode {
 
     private boolean transparent;
 
+
     public Compartment() {
-
         super(GlyphType.COMPARTMENT);
-
+        nodes = new ArrayList<AbstractGlyph>();
         transparent = false;
         update();
     }
 
+
     @Override
     public void move(float deltaX, float deltaY) {
-
         moveInnerGlyphs(deltaX, deltaY);
+        super.move(deltaX, deltaY);
+    }
+
+    public void dontMoveInnerGlyphs(float deltaX, float deltaY) {
         super.move(deltaX, deltaY);
 
     }
 
-    public void dontMoveInnerGlyphs(float deltaX, float deltaY) {
+    public Boolean addNode(AbstractGlyph glyph){
+        if (hasNode(glyph))
+            return false;
+        if (!isInsideCompartment(glyph))
+            return false;
+        if (! (glyph instanceof AbstractNode))
+            return false;
 
-        super.move(deltaX, deltaY);
+        nodes.add(glyph);
+        return true;
+    }
 
+    public void removeNode(AbstractGlyph glyph) {
+        ((AbstractNode )glyph).setParentCompartment(null);
+        this.nodes.remove(glyph);
     }
 
 
     private void moveInnerGlyphs(float deltaX, float deltaY) {
 
-        ArrayList<Layer> layers = getLayer().getMap().getLayers();
-
-        for (Layer layer : layers)
-            for (AbstractGlyph glyph : layer.getGlyphs())
-                if (isInsideCompartment(glyph)) {
-
-                    if (glyph instanceof Compartment)
+        for  (AbstractGlyph glyph : nodes){
+            if (glyph instanceof Compartment) {
                         ((Compartment) glyph).dontMoveInnerGlyphs(deltaX, deltaY);
+                    }
                     else
                         glyph.move(deltaX, deltaY);
+        }
+    }
 
-                }
+    public Boolean hasNode(AbstractGlyph glyph){
+        for  (AbstractGlyph n : nodes)
+            if (n==glyph)
+                return true;
+        return false;
 
     }
 
-    private boolean isInsideCompartment(AbstractGlyph glyph) {
+    public boolean isInsideCompartment(AbstractGlyph glyph) {
 
-        return glyph != null && glyph != this &&
-                contains(new Point2D.Float(glyph.getMinX(), glyph.getMinY())) &&
+        return contains(new Point2D.Float(glyph.getMinX(), glyph.getMinY())) &&
                 contains(new Point2D.Float(glyph.getMinX(), glyph.getMaxY())) &&
                 contains(new Point2D.Float(glyph.getMaxX(), glyph.getMinY())) &&
                 contains(new Point2D.Float(glyph.getMaxX(), glyph.getMaxY()));
-
     }
+
 
     public boolean isTransparent() {
         return transparent;

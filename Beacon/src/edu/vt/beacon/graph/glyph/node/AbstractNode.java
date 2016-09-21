@@ -101,6 +101,9 @@ public abstract class AbstractNode extends AbstractGlyph implements Orientable {
 
     public void setParentCompartment(Compartment parentCompartment) {
         this.parentCompartment = parentCompartment;
+
+        if (parentCompartment != null)
+            parentCompartment.addNode(this);
     }
 
     // TODO document method
@@ -204,7 +207,6 @@ public abstract class AbstractNode extends AbstractGlyph implements Orientable {
     @Override
     public void move(float deltaX, float deltaY) {
         super.move(deltaX, deltaY);
-
         for (Bound bound : bounds_)
             bound.move(deltaX, deltaY);
 

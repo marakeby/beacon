@@ -40,14 +40,33 @@ public class Compartment extends AbstractNode {
 
     @Override
     public void move(float deltaX, float deltaY) {
-        moveInnerGlyphs(deltaX, deltaY);
-        super.move(deltaX, deltaY);
+        move_depndents(deltaX, deltaY);
+        move_self(deltaX, deltaY);
     }
 
-    public void dontMoveInnerGlyphs(float deltaX, float deltaY) {
+    private void move_self(float deltaX, float deltaY){
         super.move(deltaX, deltaY);
+    }
+    private void move_depndents(float deltaX, float deltaY){
+        for  (AbstractGlyph glyph : nodes){
+            if (glyph instanceof Compartment) {
+                ((Compartment) glyph).move_without_dependents(deltaX, deltaY);
+            }
+            else
+                glyph.move(deltaX, deltaY);
+        }
+
 
     }
+
+    public void move_without_dependents(float deltaX, float deltaY) {
+        move_self(deltaX, deltaY);
+    }
+
+//    public void dontMoveInnerGlyphs(float deltaX, float deltaY) {
+//        super.move(deltaX, deltaY);
+//
+//    }
 
     public Boolean addNode(AbstractGlyph glyph){
         if (hasNode(glyph))
@@ -67,16 +86,16 @@ public class Compartment extends AbstractNode {
     }
 
 
-    private void moveInnerGlyphs(float deltaX, float deltaY) {
-
-        for  (AbstractGlyph glyph : nodes){
-            if (glyph instanceof Compartment) {
-                        ((Compartment) glyph).dontMoveInnerGlyphs(deltaX, deltaY);
-                    }
-                    else
-                        glyph.move(deltaX, deltaY);
-        }
-    }
+//    private void moveInnerGlyphs(float deltaX, float deltaY) {
+//
+//        for  (AbstractGlyph glyph : nodes){
+//            if (glyph instanceof Compartment) {
+//                        ((Compartment) glyph).dontMoveInnerGlyphs(deltaX, deltaY);
+//                    }
+//                    else
+//                        glyph.move(deltaX, deltaY);
+//        }
+//    }
 
     public Boolean hasNode(AbstractGlyph glyph){
         for  (AbstractGlyph n : nodes)

@@ -8,6 +8,7 @@ import edu.vt.beacon.graph.glyph.node.AbstractNode;
 import edu.vt.beacon.graph.glyph.node.annotation.CalloutPoint;
 import edu.vt.beacon.graph.glyph.node.auxiliary.Port;
 
+import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
@@ -151,10 +152,14 @@ public abstract class AbstractArc extends AbstractGlyph {
     // FIXME complete method
     public abstract boolean isValidTarget(Port port);
 
-    // TODO document method
-    @Override
-    public void move(float deltaX, float deltaY) {
 
+    public void move_without_dependents(float deltaX, float deltaY){
+        move_self(deltaX, deltaY);
+    }
+
+
+    private void move_dependents(float deltaX, float deltaY){
+//        System.out.println("moving arc without dependents" + deltaX + " " +  deltaY);
         if (getSource() != null)
             getSource().move(deltaX, deltaY);
 
@@ -165,7 +170,6 @@ public abstract class AbstractArc extends AbstractGlyph {
 
         }
 
-
         if (getTarget() != null)
             getTarget().move(deltaX, deltaY);
 
@@ -175,9 +179,12 @@ public abstract class AbstractArc extends AbstractGlyph {
             points_.get(points_.size() - 1).y += deltaY;
 
         }
+    }
 
+
+    private void move_self(float deltaX, float deltaY){
         for (int i = 1; i < (points_.size() - 1); i++) {
-
+//            System.out.println("moving point on arc " + i + "  deltaX " + deltaX + "deltaY " +  deltaY);
             points_.get(i).x += deltaX;
             points_.get(i).y += deltaY;
         }
@@ -190,6 +197,15 @@ public abstract class AbstractArc extends AbstractGlyph {
             calloutPoint.move(deltaX, deltaY);
 
         }
+    }
+
+    // TODO document method
+    @Override
+    public void move(float deltaX, float deltaY) {
+//        System.out.println("moving arc " + deltaX + " " +  deltaY);
+        move_dependents(deltaX, deltaY);
+        move_self(deltaX, deltaY);
+
     }
 
     // TODO document method

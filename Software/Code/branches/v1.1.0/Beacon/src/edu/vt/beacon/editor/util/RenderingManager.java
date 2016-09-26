@@ -511,11 +511,16 @@ public class RenderingManager {
             if (!map_.isValid()){
                 // Do NOT move nodes inside compartments
                 // Do NOT move arcs that connects nodes inside compartments
-                if ( glyph instanceof  AbstractNode && ((AbstractNode) glyph).getParentCompartment() != null){}
-                else if(glyph instanceof  AbstractArc && ((AbstractArc) glyph).getSource().getParentCompartment() != null) {}
-                else if(glyph instanceof  AbstractArc && ((AbstractArc) glyph).getTarget().getParentCompartment() != null) {}
+                float x  = map_.getHorizontalValidationShift();
+                float y = map_.getVerticalValidationShift();
+//                if ( glyph instanceof  AbstractNode && ((AbstractNode) glyph).getParentCompartment() != null){}
+//                if(glyph instanceof  AbstractArc && ((AbstractArc) glyph).getSource()!=null && ((AbstractArc) glyph).getSource().getParentCompartment() != null) {}
+//                else if(glyph instanceof  AbstractArc && ((AbstractArc) glyph).getTarget()!=null && ((AbstractArc) glyph).getTarget().getParentCompartment() != null) {}
+
+                if(glyph instanceof AbstractArc ){((AbstractArc)glyph).move_without_dependents(x,y);}
+                else if(glyph instanceof Compartment ){((Compartment)glyph).move_without_dependents(x,y);}
                 else
-                    glyph.move(map_.getHorizontalValidationShift(), map_.getVerticalValidationShift());
+                    glyph.move(x,y);
             }
             if (layer.isActive())
                 renderGlyph(glyph);

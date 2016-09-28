@@ -49,6 +49,8 @@ public class Document extends HashMap<String, String> {
 
     private Pathway pathway_;
 
+    private static BrowserMenuPanel browser_;
+
 
     // FIXME complete constructor
     public Document(File file) {
@@ -78,8 +80,13 @@ public class Document extends HashMap<String, String> {
 
     // TODO document method
     public BrowserMenuPanel getBrowserMenu() {
-        if (componentMap_.get("browser") == null)
-            componentMap_.put("browser", new BrowserMenuPanel(this));
+        if (browser_ == null)
+            browser_ = new BrowserMenuPanel(this);
+        else
+            browser_.setDocument(this);
+
+        componentMap_.put("browser", browser_);
+
 
         return (BrowserMenuPanel) componentMap_.get("browser");
     }
@@ -318,6 +325,7 @@ public class Document extends HashMap<String, String> {
 
     // TODO document method
     public void setChanged(boolean isChanged) {
+//        System.out.println("setChanged " + isChanged);
         String title = file_.getName();
 
         if (isChanged)

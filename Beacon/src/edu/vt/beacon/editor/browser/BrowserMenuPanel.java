@@ -201,6 +201,7 @@ public class BrowserMenuPanel extends JPanel
         while (currentNode != null);
 
         //select the last added document
+        mapTree_.setRootVisible(false);
         mapTree_.setSelectionPath(new TreePath(docTree.getNextNode().getPath()));
         revalidate();
         repaint();

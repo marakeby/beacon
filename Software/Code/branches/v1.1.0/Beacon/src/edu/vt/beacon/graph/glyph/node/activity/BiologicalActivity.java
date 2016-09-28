@@ -46,7 +46,7 @@ public class BiologicalActivity extends AbstractActivity {
      */
     @Override
     protected void initializeLabel() {
-        label_ = new Label(this, "");
+        label_ = new Label(this, "Activity");
     }
 
     /*

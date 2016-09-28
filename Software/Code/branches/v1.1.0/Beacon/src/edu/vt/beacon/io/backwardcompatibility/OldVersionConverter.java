@@ -146,6 +146,8 @@ public class OldVersionConverter {
     private void createTerminal(Tag tag, Submap submap, OrientationType orientation, int total, int index) {
 
         Terminal terminal = new Terminal(submap);
+        //BugFIx: #20, problem with saving old version pathways, the layer is not set on submap terminals while importing old pathways
+        terminal.setLayer(submap.getLayer());
         Port port = new Port(submap, PortType.ARBITRARY);
         submap.getPorts().add(port);
         submap.getTerminalToPortMapping().put(terminal, port);

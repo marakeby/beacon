@@ -232,7 +232,7 @@ public class Converter {
         glyph.setBbox(getBoundingBox(node));
         glyph.setCallout(getAnnotation(node));
 
-        if (node instanceof AbstractTagTerminal && node.getOrientation() != null)
+        if (node instanceof AbstractNode && node.getOrientation() != null)
             glyph.setOrientation(node.getOrientation().toString());
 
         setAuxiliaryUnit(node, glyph);

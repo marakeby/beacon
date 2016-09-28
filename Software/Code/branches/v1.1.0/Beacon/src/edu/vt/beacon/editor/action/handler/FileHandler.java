@@ -42,6 +42,9 @@ public class FileHandler
             case FILE_OPEN:
                 processOpenFile(action);
                 break;
+            case FILE_NEW:
+                newFile(action.getDocument());
+                break;
             case FILE_SAVE:
                 processSaveFile(action);
                 break;
@@ -76,6 +79,9 @@ public class FileHandler
         if (fileDialog.getFile() != null && !fileDialog.getFile().isEmpty() && fileDialog.getDirectory() != null
                 && !fileDialog.getDirectory().isEmpty()) {
             FileManager.save(action.getDocument().getPathway(), fileDialog.getDirectory() + fileDialog.getFile());
+
+//            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
+//            action.getDocument().setChanged(false);
         }
     }
 
@@ -92,6 +98,8 @@ public class FileHandler
         if (fileDialog.getFile() != null && !fileDialog.getFile().isEmpty() && fileDialog.getDirectory() != null
                 && !fileDialog.getDirectory().isEmpty()) {
             Pathway pathway = FileManager.load(fileDialog.getDirectory() + fileDialog.getFile());
+
+            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
             action.getDocument().setPathway(pathway);
             action.getDocument().refresh();
         }
@@ -110,6 +118,7 @@ public class FileHandler
         if (fileDialog.getFile() != null && !fileDialog.getFile().isEmpty() && fileDialog.getDirectory() != null
                 && !fileDialog.getDirectory().isEmpty()) {
             Pathway pathway = FileManager.backwardCompatibilityImport(fileDialog.getDirectory() + fileDialog.getFile());
+            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
             action.getDocument().setPathway(pathway);
             action.getDocument().refresh();
         }
@@ -145,15 +154,30 @@ public class FileHandler
 
         fileNo_++;
 
-        Document newDocument = new Document(new File(fileName));
+        if (document ==null) {
+            Document newDocument = new Document(new File(fileName));
 
-        Map map = newDocument.getPathway().getMap();
-        map.add(new Layer("New Layer", map));
-        map.getLayerAt(0).setSelected(false);
-        map.setSelected(true);
+            Map map = newDocument.getPathway().getMap();
+            map.add(new Layer("New Layer", map));
+            map.getLayerAt(0).setSelected(false);
+            map.setSelected(true);
 
-        new DocumentState(newDocument);
-        newDocument.getFrame();
+            new DocumentState(newDocument);
+            newDocument.getFrame();
+        }
+        else
+        {
+
+            Pathway pathway = new Pathway("pathway");
+            document.setPathway(pathway);
+            Map map = document.getPathway().getMap();
+            map.add(new Layer("New Layer", map));
+            map.getLayerAt(0).setSelected(false);
+            map.setSelected(true);
+            document.setFile(new File(fileName));
+            document.getFrame();
+            document.refresh();
+        }
     }
 
     // CMK

@@ -118,7 +118,7 @@ public class Submap extends AbstractNode {
                  */
     @Override
     protected void initializeLabel() {
-        label_ = new Label(this, "");
+        label_ = new Label(this, "Submap");
     }
 
     /*

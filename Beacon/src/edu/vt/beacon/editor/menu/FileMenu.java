@@ -27,6 +27,11 @@ public class FileMenu extends AbstractMenu {
         preferencesItem.setAction(document_.getAction(
                 ActionType.FILE_PREFERENCES));
 
+        PlatformMenuItem newItem = new PlatformMenuItem();
+
+        newItem.setAction(document_.getAction(
+                ActionType.FILE_NEW));
+
         PlatformMenuItem saveItem = new PlatformMenuItem();
 
         saveItem.setAction(document_.getAction(
@@ -47,6 +52,7 @@ public class FileMenu extends AbstractMenu {
         compImportItem.setAction(document_.getAction(
                 ActionType.FILE_BACK_COMP_IMPORT));
 
+        add(newItem);
         add(openItem);
         add(saveItem);
         add(exportItem);

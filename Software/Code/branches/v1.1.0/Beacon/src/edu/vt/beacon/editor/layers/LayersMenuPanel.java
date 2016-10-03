@@ -23,6 +23,7 @@ public class LayersMenuPanel extends JPanel implements Skinnable {
 
     // FIXME complete constructor
     public LayersMenuPanel(Document document) {
+//        System.out.println("LayersMenuPanel" +document);
         setLayout(new BorderLayout());
 
         document_ = document;
@@ -31,11 +32,12 @@ public class LayersMenuPanel extends JPanel implements Skinnable {
         buildHeaderPanel();
         buildMenuPanel();
 
-        repaint();
+        refresh();
     }
 
     // TODO document method
     private void buildHeaderPanel() {
+//        System.out.println("buildHeaderPanel" );
         JLabel headerLabel = new JLabel("Map Layers");
         headerLabel.setFont(FONT_MEDIUM.deriveFont(Font.BOLD));
         headerLabel.setForeground(COLOR_FOREGROUND);
@@ -51,6 +53,7 @@ public class LayersMenuPanel extends JPanel implements Skinnable {
 
     // TODO document method
     private void buildLayersPanel(JPanel menuPanel) {
+//        System.out.println("buildLayersPanel" );
         layersTable_ = new JTable(new LayerTableModel(selectedMap_.getLayers()));
         layersTable_.setFillsViewportHeight(true);
         layersTable_.setTableHeader(null);
@@ -86,6 +89,7 @@ public class LayersMenuPanel extends JPanel implements Skinnable {
 
     // TODO document method
     private void buildMenuPanel() {
+//        System.out.println("buildMenuPanel" );
         JPanel menuPanel = new JPanel();
         menuPanel.setBackground(Color.white);
         menuPanel.setBorder(BorderFactory.createEtchedBorder());
@@ -98,6 +102,7 @@ public class LayersMenuPanel extends JPanel implements Skinnable {
 
     // TODO document method
     public Layer getSelectedLayer() {
+//        System.out.println("getSelectedLayer" );
         if (selectedMap_ != null)
         for (int i = selectedMap_.getLayerCount() - 1; i >= 0; i--)
             if (selectedMap_.getLayerAt(i).isSelected())
@@ -107,17 +112,36 @@ public class LayersMenuPanel extends JPanel implements Skinnable {
         return null;
     }
 
+    public int getSelectedLayerIndex() {
+//        System.out.println("getSelectedLayerIndex" );
+        if (selectedMap_ != null)
+            for (int i = selectedMap_.getLayerCount() - 1; i >= 0; i--)
+                if (selectedMap_.getLayerAt(i).isSelected())
+
+                    return i;
+
+        return 0;
+    }
+
+
+
     public void refresh() {
+//        System.out.println("refresh" );
         selectedMap_ = document_.getBrowserMenu().getSelectedMap();
         layersTable_.setModel(new LayerTableModel(selectedMap_.getLayers()));
+        int selected_index = getSelectedLayerIndex();
+//        System.out.println("selected layer # " +selected_index);
+        layersTable_.setRowSelectionInterval(selected_index,selected_index);
         repaint();
     }
 
     public JTable getTable() {
+//        System.out.println("getTable" );
         return layersTable_;
     }
 
     public void setDocument(Document document) {
+//        System.out.println("setDocument" );
         document_ = document;
         refresh();
     }

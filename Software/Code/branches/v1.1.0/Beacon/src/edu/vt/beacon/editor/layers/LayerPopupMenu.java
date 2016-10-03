@@ -44,7 +44,9 @@ public class LayerPopupMenu extends JPopupMenu {
                     document.getBrowserMenu().getSelectedMap().setLayers(new ArrayList<Layer>());
 
                 ArrayList<Layer> layers = document.getBrowserMenu().getSelectedMap().getLayers();
-                layers.add(new Layer("New Layer " + (layers.size() + 1), document.getBrowserMenu().getSelectedMap()));
+                Layer layer = new Layer("New Layer " + (layers.size() + 1), document.getBrowserMenu().getSelectedMap());
+                layer.setSelected(true);
+                layers.add(layer);
                 layersMenuPanel.refresh();
             }
         });

@@ -158,12 +158,14 @@ public class FileHandler
             Document newDocument = new Document(new File(fileName));
 
             Map map = newDocument.getPathway().getMap();
-            map.add(new Layer("New Layer", map));
-            map.getLayerAt(0).setSelected(false);
+            Layer layer = new Layer("New Layer", map);
+            layer.setSelected(true);
+            map.add(layer);
             map.setSelected(true);
 
             new DocumentState(newDocument);
             newDocument.getFrame();
+
         }
         else
         {
@@ -171,8 +173,9 @@ public class FileHandler
             Pathway pathway = new Pathway("pathway");
             document.setPathway(pathway);
             Map map = document.getPathway().getMap();
-            map.add(new Layer("New Layer", map));
-            map.getLayerAt(0).setSelected(false);
+            Layer layer = new Layer("New Layer", map);
+            layer.setSelected(true);
+            map.add(layer);
             map.setSelected(true);
             document.setFile(new File(fileName));
             document.getFrame();

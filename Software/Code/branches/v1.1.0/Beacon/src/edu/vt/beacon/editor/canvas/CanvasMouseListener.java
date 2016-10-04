@@ -193,6 +193,7 @@ public class CanvasMouseListener extends MouseAdapter {
 
     private Compartment getCompartmenteAt(Point2D.Float point,
                                     AbstractEntity ignoredGlyph) {
+
         Layer layer;
         Map map = document_.getBrowserMenu().getSelectedMap();
 
@@ -465,6 +466,44 @@ public class CanvasMouseListener extends MouseAdapter {
         new DocumentState(document_, glyph.getType().toString(), false);
     }
 
+    private void removeGlyphfromAllCompartments(AbstractGlyph glyph, AbstractEntity ignoredGlyph){
+        Layer layer;
+        Map map = document_.getBrowserMenu().getSelectedMap();
+
+        for (int i = map.getLayerCount() - 1; i >= 0; i--) {
+
+            layer = map.getLayerAt(i);
+
+            if (layer.isActive()) {
+
+                for (int j = layer.getGlyphCount() - 1; j >= 0; j--)
+                    if (!layer.getGlyphAt(j).equals(ignoredGlyph) && layer.getGlyphAt(j) instanceof Compartment )
+                        ((Compartment) layer.getGlyphAt(j)).removeNode(glyph);
+            }
+        }
+    }
+    private void processCompartmentMembership(AbstractGlyph glyph){
+        // check if it is dragged to a compartment
+        if (glyph instanceof AbstractNode){
+            Compartment container = getCompartmenteAt(dragStopPoint_, glyph);
+            if (container !=null) {
+                if (container.addNode(glyph)) // try to add the node to the compartment, the compartment will check if it is already adde or not, if it is already inside it or not.
+                {
+                    removeGlyphfromAllCompartments(glyph, container);
+                    ((AbstractNode) glyph).setParentCompartment(container);
+                }
+            }
+            //remove glyph from the compartment
+            if (container ==null) {
+                if (((AbstractNode) glyph).getParentCompartment() != null) {
+                    ((AbstractNode) glyph).getParentCompartment().removeNode(glyph);
+
+                }
+            }
+
+        }
+    }
+
     // TODO document method
     private void processMovement() {
         Layer layer;
@@ -489,30 +528,8 @@ public class CanvasMouseListener extends MouseAdapter {
 
                     if (glyph.isSelected()) {
 
-                        if (glyph instanceof AbstractArc) {
+                        if (glyph instanceof AbstractNode) processCompartmentMembership(glyph);
 
-                            AbstractArc arc = (AbstractArc) glyph;
-
-//                            if (arc.getSource() != null)
-//                                if (!arc.getSource().isSelected())
-//                                    arc.setSourcePort(null);
-//
-//                            if (arc.getTarget() != null)
-//                                if (!arc.getTarget().isSelected())
-//                                    arc.setTargetPort(null);
-                        }
-                        // check if it is dragged to a compartment
-                        if (glyph instanceof AbstractNode){
-                            Compartment container = getCompartmenteAt(dragStopPoint_, glyph_);
-                            if (container !=null)
-                                if (container.addNode(glyph)) // try to add the node to the compartment, the compartment will check if it is already adde or not, if it is already inside it or not.
-                                    ((AbstractNode)glyph).setParentCompartment(container);
-                            //remove glyph from the compartment
-                            if (container ==null)
-                                if ( ((AbstractNode)glyph).getParentCompartment() !=null)
-                                    ((AbstractNode)glyph).getParentCompartment().removeNode(glyph);
-
-                        }
                         glyph.move(dragStopPoint_.x - currentPoint_.x,
                                 dragStopPoint_.y - currentPoint_.y);
 

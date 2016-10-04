@@ -160,7 +160,7 @@ public abstract class AbstractArc extends AbstractGlyph {
 
     private void move_dependents(float deltaX, float deltaY){
 //        System.out.println("moving arc without dependents" + deltaX + " " +  deltaY);
-        if (getSource() != null)
+        if (getSource() != null && !getSource().isSelected())
             getSource().move(deltaX, deltaY);
 
         else {
@@ -170,7 +170,7 @@ public abstract class AbstractArc extends AbstractGlyph {
 
         }
 
-        if (getTarget() != null)
+        if (getTarget() != null && !getTarget().isSelected())
             getTarget().move(deltaX, deltaY);
 
         else {

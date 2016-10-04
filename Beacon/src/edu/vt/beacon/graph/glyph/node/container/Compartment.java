@@ -49,10 +49,11 @@ public class Compartment extends AbstractNode {
     }
     private void move_depndents(float deltaX, float deltaY){
         for  (AbstractGlyph glyph : nodes){
-            if (glyph instanceof Compartment) {
-                ((Compartment) glyph).move_without_dependents(deltaX, deltaY);
-            }
-            else
+//            if (glyph instanceof Compartment) {
+//                ((Compartment) glyph).move_without_dependents(deltaX, deltaY);
+//            }
+//            else
+            if (!glyph.isSelected())
                 glyph.move(deltaX, deltaY);
         }
 

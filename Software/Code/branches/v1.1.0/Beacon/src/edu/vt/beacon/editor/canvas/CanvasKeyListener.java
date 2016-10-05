@@ -39,7 +39,7 @@ public class CanvasKeyListener extends KeyAdapter {
         //Ctrl + C is a shortcut for copy
         if (e.getKeyCode() == KeyEvent.VK_C && e.isControlDown() && !e.isShiftDown()) {
 
-            ClipBoardManager.copy(document_.getBrowserMenu().getSelectedMap(), document_.getPathway());
+            ClipBoardManager.copy(document_.getBrowserMenu().getSelectedMap());
             return;
         }
 

@@ -38,7 +38,8 @@ public class CanvasKeyListener extends KeyAdapter {
 
         //Ctrl + C is a shortcut for copy
         if (e.getKeyCode() == KeyEvent.VK_C && e.isControlDown() && !e.isShiftDown()) {
-            ClipBoardManager.copy(document_.getBrowserMenu().getSelectedMap().getSelectedGlyphs());
+
+            ClipBoardManager.copy(document_.getBrowserMenu().getSelectedMap(), document_.getPathway());
             return;
         }
 
@@ -98,6 +99,8 @@ public class CanvasKeyListener extends KeyAdapter {
             selectedLayer = document_.getBrowserMenu().getSelectedMap().getLayerAt(0);
 
         ArrayList<AbstractGlyph> glyphs = ClipBoardManager.getGlyphs();
+        //deselect copied items
+        for (AbstractGlyph glyph : selectedLayer.getGlyphs()) glyph.setSelected(false);
         for (AbstractGlyph glyph : glyphs) {
 
             selectedLayer.add(glyph);

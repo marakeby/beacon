@@ -45,20 +45,26 @@ public class ClipBoardManager {
                     glyph.setSelected(true);
 
     }
-    public static void copy(Map map, Pathway pathway) {
+    public static void copy(Map map) {
 
-        if (map == null || pathway == null)
+
+        if (map == null)
             return;
 
+        Pathway pathway2 = new Pathway("");
+        pathway2.setMap(map);
+        numberOfPaste = 0;
+        selectedGlyphIds_.clear();
+        mapId_ = map.getId();
+        System.out.println("copy "+ mapId_);
         ArrayList<AbstractGlyph> selectedGlyphs = map.getSelectedGlyphs();
         if (selectedGlyphs == null || selectedGlyphs.isEmpty())
             return;
 
 
-        numberOfPaste = 0;
-        selectedGlyphIds_.clear();
-        serializedPathway_ = Converter.convert(pathway);
-        mapId_ = map.getId();
+
+        serializedPathway_ = Converter.convert(pathway2);
+
         selectedGlyphIds_ = new ArrayList<>();
         for (AbstractGlyph glyph : selectedGlyphs)
             selectedGlyphIds_.add(glyph.getId());
@@ -67,7 +73,7 @@ public class ClipBoardManager {
     }
 
     public static ArrayList<AbstractGlyph> getGlyphs() {
-
+        System.out.println("paste");
         numberOfPaste++;
         Pathway copiedPathway = Converter.convert(serializedPathway_);
         Map copiedMap = getCopyOfSelectedMap(copiedPathway);

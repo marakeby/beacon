@@ -1,12 +1,16 @@
 package edu.vt.beacon.editor.frame;
 
 import edu.vt.beacon.editor.document.Document;
+import edu.vt.beacon.editor.resources.icons.IconType;
 import edu.vt.beacon.editor.swing.ClearSplitPane;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 
 public class Frame extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -24,19 +28,22 @@ public class Frame extends JFrame {
         this(document, document.getFile().getName());
     }
 
+    public void setDocument(Document doc)
+    {
+        document_ = doc;
+        this.setTitle(doc.getFile().getAbsolutePath());
+    }
     // FIXME complete constructor
-    public Frame(Document document, String title) {
+    public Frame(Document document, String title)  {
+
         super(title);
 
-        //setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setJMenuBar(document.getMenuBar());
         setLocation(document.getInteger("frame.x"),
                 document.getInteger("frame.y"));
         setSize(document.getInteger("frame.width"),
                 document.getInteger("frame.height"));
-
-        document_ = document;
-
+        setDocument( document);
         buildContentPane();
 
         setVisible(true);
@@ -60,7 +67,7 @@ public class Frame extends JFrame {
         vSplitPane_.setTopComponent(document_.getLayersMenu());
 
         hSplitPane_ = new ClearSplitPane();
-        hSplitPane_.setLeftComponent(document_.getCanvas().getScrollPane());
+        hSplitPane_.setLeftComponent(document_.getViewer());
         hSplitPane_.setResizeWeight(1.0);
         hSplitPane_.setRightComponent(vSplitPane_);
 

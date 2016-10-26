@@ -130,64 +130,64 @@ public class Converter {
         sbgnMap.setId(map.getId());
         sbgnMap.setLanguage("activity flow");
 
-        createLayers(map.getLayers(), sbgnMap);
+        if (createLayers(map.getLayers(), sbgnMap)) {
 
-        try {
+            try {
 
-            Element mapNameElement = createElement(MAP_ELEMENT);
-            mapNameElement.setAttribute(MAP_NAME, map.getName());
-            sbgnMap.getExtension().getAny().add(mapNameElement);
+                Element mapNameElement = createElement(MAP_ELEMENT);
+                mapNameElement.setAttribute(MAP_NAME, map.getName());
+                sbgnMap.getExtension().getAny().add(mapNameElement);
 
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
+            } catch (ParserConfigurationException e) {
+                e.printStackTrace();
+            }
+
+            //First we process the compartments
+            for (Layer layer : map.getLayers())
+                for (AbstractGlyph glyph : layer.getGlyphs())
+                    if (glyph instanceof Compartment) {
+                        Glyph sbgnGlyph = convert((AbstractNode) glyph);
+                        libSbgnMapIdToObjects.put(sbgnGlyph.getId(), sbgnGlyph);
+                        sbgnMap.getGlyph().add(sbgnGlyph);
+                    }
+
+            //Second we process the submaps 
+            for (Layer layer : map.getLayers())
+                for (AbstractGlyph glyph : layer.getGlyphs())
+                    if (glyph instanceof Submap) {
+
+                        //First the map associated with the submap
+                        org.sbgn.bindings.Map sbgnSubmapMap = convert(((Submap) glyph).getMap(), sbgn);
+                        libSbgnMapIdToObjects.put(sbgnSubmapMap.getId(), sbgnSubmapMap);
+                        sbgn.getMap().add(sbgnSubmapMap);
+
+                        //Second the submap glyph
+                        Glyph sbgnSubmapGlyph = convert((AbstractNode) glyph);
+                        sbgnSubmapGlyph.setMapRef(sbgnSubmapMap);
+                        libSbgnMapIdToObjects.put(sbgnSubmapGlyph.getId(), sbgnSubmapGlyph);
+                        sbgnMap.getGlyph().add(sbgnSubmapGlyph);
+
+                    }
+
+            //Third we process the activity nodes and logical operators
+            for (Layer layer : map.getLayers())
+                for (AbstractGlyph glyph : layer.getGlyphs())
+                    if (glyph instanceof AbstractNode && !(glyph instanceof Compartment || glyph instanceof Submap)) {
+                        Glyph sbgnGlyph = convert((AbstractNode) glyph);
+                        libSbgnMapIdToObjects.put(sbgnGlyph.getId(), sbgnGlyph);
+                        sbgnMap.getGlyph().add(sbgnGlyph);
+                    }
+
+
+            //Fourth process all arcs 
+            for (Layer layer : map.getLayers())
+                for (AbstractGlyph glyph : layer.getGlyphs())
+                    if (glyph instanceof AbstractArc) {
+                        Arc sbgnArc = convert((AbstractArc) glyph);
+                        libSbgnMapIdToObjects.put(sbgnArc.getId(), sbgnArc);
+                        sbgnMap.getArc().add(sbgnArc);
+                    }
         }
-
-        //First we process the compartments
-        for (Layer layer : map.getLayers())
-            for (AbstractGlyph glyph : layer.getGlyphs())
-                if (glyph instanceof Compartment) {
-                    Glyph sbgnGlyph = convert((AbstractNode) glyph);
-                    libSbgnMapIdToObjects.put(sbgnGlyph.getId(), sbgnGlyph);
-                    sbgnMap.getGlyph().add(sbgnGlyph);
-                }
-
-        //Second we process the submaps 
-        for (Layer layer : map.getLayers())
-            for (AbstractGlyph glyph : layer.getGlyphs())
-                if (glyph instanceof Submap) {
-
-                    //First the map associated with the submap
-                    org.sbgn.bindings.Map sbgnSubmapMap = convert(((Submap) glyph).getMap(), sbgn);
-                    libSbgnMapIdToObjects.put(sbgnSubmapMap.getId(), sbgnSubmapMap);
-                    sbgn.getMap().add(sbgnSubmapMap);
-
-                    //Second the submap glyph
-                    Glyph sbgnSubmapGlyph = convert((AbstractNode) glyph);
-                    sbgnSubmapGlyph.setMapRef(sbgnSubmapMap);
-                    libSbgnMapIdToObjects.put(sbgnSubmapGlyph.getId(), sbgnSubmapGlyph);
-                    sbgnMap.getGlyph().add(sbgnSubmapGlyph);
-
-                }
-
-        //Third we process the activity nodes and logical operators
-        for (Layer layer : map.getLayers())
-            for (AbstractGlyph glyph : layer.getGlyphs())
-                if (glyph instanceof AbstractNode && !(glyph instanceof Compartment || glyph instanceof Submap)) {
-                    Glyph sbgnGlyph = convert((AbstractNode) glyph);
-                    libSbgnMapIdToObjects.put(sbgnGlyph.getId(), sbgnGlyph);
-                    sbgnMap.getGlyph().add(sbgnGlyph);
-                }
-
-
-        //Fourth process all arcs 
-        for (Layer layer : map.getLayers())
-            for (AbstractGlyph glyph : layer.getGlyphs())
-                if (glyph instanceof AbstractArc) {
-                    Arc sbgnArc = convert((AbstractArc) glyph);
-                    libSbgnMapIdToObjects.put(sbgnArc.getId(), sbgnArc);
-                    sbgnMap.getArc().add(sbgnArc);
-                }
-
         return sbgnMap;
     }
 
@@ -357,7 +357,7 @@ public class Converter {
     }
 
     private static Arc.End getEndPoint(AbstractArc arc) {
-        if (arc == null || arc.getSourcePort() == null)
+        if (arc == null || arc.getTargetPort() == null)
             return null;
 
         Arc.End end = new Arc.End();
@@ -745,6 +745,7 @@ public class Converter {
             map.add(layer);
             beaconMapIdToLayers.put(layer.getId(), layer);
         }
+        map.getLayers().get(0).setSelected(true);
 
         return true;
     }
@@ -1018,8 +1019,8 @@ public class Converter {
         if (result == null)
             return null;
 
-        result.setId(arc.getId());
         setShapeStyle(arc, result);
+        result.setId(arc.getId());
 
         result.setSourcePort(getPort(arc, ARC_SOURCE_PORT_ELEMENT));
         result.setTargetPort(getPort(arc, ARC_TARGET_PORT_ELEMENT));

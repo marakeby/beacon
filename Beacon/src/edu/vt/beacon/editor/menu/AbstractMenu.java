@@ -22,10 +22,17 @@ public abstract class AbstractMenu extends JMenu
         document_ = document;
         
         buildMenu();
-
+        registerActions(document);
         repaint();
     }
-    
+
+    public void setDocument(Document doc){
+
+        document_ = doc;
+        registerActions(doc);
+        repaint();
+    }
     // TODO document method
     protected abstract void buildMenu();
+    protected abstract void registerActions(Document doc);
 }

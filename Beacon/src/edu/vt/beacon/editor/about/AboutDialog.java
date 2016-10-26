@@ -9,8 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.*;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -38,20 +37,30 @@ public class AboutDialog extends AbstractDialog {
 	private static final String AC_CONTRIBUTORS = "CONTRIBUTORS";
 	private static final String AC_LICENSE = "LICENSE";
 	private static final String AC_ACKNOWLEDGEMENTS = "ACKNOWLEDGEMENTS";
-	private static final String LICENSE_FILE = "src/edu/vt/beacon/editor/about/GNULesser.txt";
-	private static final String CONTRIBUTOR_FILE = "src/edu/vt/beacon/editor/about/Contributors.txt";
-	private static final String ACK_FILE = "src/edu/vt/beacon/editor/about/Acknowledgements.txt";
+//	private static final String LICENSE_FILE = "src/edu/vt/beacon/editor/about/GNULesser.txt";
+	private static final String LICENSE_FILE = "GNULesser.txt";
+	private static final String CONTRIBUTOR_FILE = "Contributors.txt";
+	private static final String ACK_FILE = "Acknowledgements.txt";
 	
 
 	public AboutDialog(Document document) {
 		super(document, document.getFrame());
-		
+		System.out.println("Working Directory = " +
+				System.getProperty("user.dir"));
+
+		System.out.println(AboutDialog.class.getPackage().getName());
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 	    this.document_ = document;
 	    add(createContentPanel());		
 		pack();
 		setLocationRelativeTo(getOwner());		
 		setVisible(true);
+	}
+
+	public String getABoutDirectoryPath() {
+		return AboutDialog.class.getPackage().getName().replace(".",
+				System.getProperty("file.separator")) +
+				System.getProperty("file.separator");
 	}
 
 	private Component createContentPanel() {
@@ -62,9 +71,13 @@ public class AboutDialog extends AbstractDialog {
 		contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		
 		GridBagConstraints c = new GridBagConstraints();
+//
+//		ImagePanel imagePanel = new ImagePanel(
+//				((ImageIcon)IconType.valueOf("NO_IMAGE").getIcon()).getImage());
 
-		ImagePanel imagePanel = new ImagePanel(
-				((ImageIcon)IconType.valueOf("NO_IMAGE").getIcon()).getImage());
+        ImagePanel imagePanel = new ImagePanel(
+                ((ImageIcon)IconType.valueOf("LOGO").getIcon()).getImage());
+
 		c.insets = new Insets(5, 5, 5, 5);
 		c.gridx = 0;
 		c.gridy = 0;
@@ -131,12 +144,25 @@ public class AboutDialog extends AbstractDialog {
 	private void launchInfoFrame(String contentFile, String title) {
 		String s = null;
 		try {
-			File file = new File(contentFile);
-		    FileInputStream fis = new FileInputStream(file);
-		    byte[] data = new byte[(int)file.length()];
-		    fis.read(data);
-		    fis.close();
-		    s = new String(data, "UTF-8");
+
+			ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+			InputStream is = classloader.getResourceAsStream(getABoutDirectoryPath() + contentFile);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+			StringBuilder out = new StringBuilder();
+			String line;
+			while ((line = reader.readLine()) != null) {
+				out.append(line +"\n");
+			}
+
+			s = out.toString();
+
+//			File file = new File(Thread.currentThread().getContextClassLoader().getResource(
+//					getABoutDirectoryPath() + contentFile).toString().trim());
+//		    FileInputStream fis = new FileInputStream(file);
+//		    byte[] data = new byte[(int)file.length()];
+//		    fis.read(data);
+//		    fis.close();
+//		    s = new String(data, "UTF-8");
 		  } catch(Exception e){
 			  System.out.println(e);
 		  }

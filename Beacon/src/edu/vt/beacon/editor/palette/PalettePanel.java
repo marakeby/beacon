@@ -28,6 +28,8 @@ public class PalettePanel extends JPanel
 
     private PalettePopupMenu popupMenu_;
 
+//    private Document document_;
+
     // TODO document constructor
     public PalettePanel(Document document) {
         setBackground(COLOR_BACKGROUND);
@@ -35,10 +37,14 @@ public class PalettePanel extends JPanel
         setLayout(new BorderLayout());
 
         popupMenu_ = new PalettePopupMenu(this);
-
-        buildButtonPanel(document);
+//        document_ = document;
+        buildButtonPanel();
         buildExpansionPanel();
     }
+//    public void setDocument(Document doc){
+//        document_ = doc;
+//
+//    }
 
     // TODO document method
     @Override
@@ -49,7 +55,7 @@ public class PalettePanel extends JPanel
     }
 
     // TODO document method
-    private void buildButtonPanel(Document document) {
+    private void buildButtonPanel() {
         buttonPanel_ = new JPanel();
         buttonPanel_.setLayout(new BoxLayout(buttonPanel_, BoxLayout.Y_AXIS));
         buttonPanel_.setOpaque(false);
@@ -62,7 +68,7 @@ public class PalettePanel extends JPanel
 
         for (int i = 0; i < buttons_.length; i++) {
 
-            buttons_[i] = new PaletteButton(document, buttonTypes_[i]);
+            buttons_[i] = new PaletteButton(this, buttonTypes_[i]);
             buttonPanel_.add(buttons_[i]);
 
 

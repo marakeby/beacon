@@ -2,7 +2,9 @@ package edu.vt.beacon.pathway;
 
 import edu.vt.beacon.editor.properties.Contributor;
 import edu.vt.beacon.graph.glyph.AbstractGlyph;
+import edu.vt.beacon.io.Converter;
 import edu.vt.beacon.map.Map;
+import org.sbgn.bindings.Sbgn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +25,26 @@ public class Pathway {
     }
 
     // FIXME complete method
-    public Pathway copy() {
-        Pathway pathway = new Pathway(name_);
-        pathway.map_ = map_.copy();
+//    public Pathway copy() {
+//        Pathway pathway = new Pathway(name_);
+//        pathway.map_ = map_.copy();
+//
+//        return pathway;
+//    }
 
-        return pathway;
+
+
+    public Pathway copy() {
+//        Pathway pathway = new Pathway(name_);
+//        pathway.map_ = map_.copy();
+        Sbgn serializedPathway = Converter.convert(this);
+        Pathway copiedPathway = Converter.convert(serializedPathway);
+
+        if (getMap().getLegend() != null)
+            copiedPathway.getMap().setLegend(this.getMap().getLegend().copy());
+
+        return copiedPathway;
+//        return pathway;
     }
 
 

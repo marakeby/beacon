@@ -11,6 +11,10 @@ public class ViewMenu extends AbstractMenu {
     private static final long serialVersionUID = 1L;
 
     private ButtonGroup zoomGroup;
+    private JCheckBoxMenuItem gridLinesItem;
+    private PlatformMenuItem zoomInItem;
+    private PlatformMenuItem zoomOutItem;
+    private JMenu zoomItem;
 
     // FIXME complete constructor
     public ViewMenu(Document document) {
@@ -25,17 +29,12 @@ public class ViewMenu extends AbstractMenu {
     // FIXME complete method
     @Override
     protected void buildMenu() {
-        JCheckBoxMenuItem gridLinesItem = new JCheckBoxMenuItem();
-        PlatformMenuItem zoomInItem = new PlatformMenuItem();
-        PlatformMenuItem zoomOutItem = new PlatformMenuItem();
-        JMenu zoomItem = new JMenu("Zoom...");
-
-        gridLinesItem.setAction(document_.getAction(ActionType.VIEW_GRID_LINES));
-        zoomInItem.setAction(document_.getAction(ActionType.VIEW_ZOOM_IN));
-        zoomOutItem.setAction(document_.getAction(ActionType.VIEW_ZOOM_OUT));
+         gridLinesItem = new JCheckBoxMenuItem();
+         zoomInItem = new PlatformMenuItem();
+         zoomOutItem = new PlatformMenuItem();
+         zoomItem = new JMenu("Zoom...");
 
         populateZoomMenuItem(zoomItem);
-
         add(gridLinesItem);
         add(zoomInItem);
         add(zoomOutItem);
@@ -56,6 +55,17 @@ public class ViewMenu extends AbstractMenu {
                     zoomGroup.add(item);
                 }
         }
+
+    }
+    public void registerActions(Document doc)
+    {
+        gridLinesItem.setAction(document_.getAction(ActionType.VIEW_GRID_LINES));
+        zoomInItem.setAction(document_.getAction(ActionType.VIEW_ZOOM_IN));
+        zoomOutItem.setAction(document_.getAction(ActionType.VIEW_ZOOM_OUT));
+        remove(zoomItem);
+        zoomItem = new JMenu("Zoom...");
+        populateZoomMenuItem(zoomItem);
+        add(zoomItem);
 
     }
 }

@@ -16,17 +16,19 @@ public class StateManager {
     private LinkedList<Command> commandHistory;
     private static StateManager singleton = null;
     private int currentStateIndex;
-    private static Document document;
+    private  Document document;
 
-    public static StateManager getInstance(Document document) {
-        if (singleton == null) singleton = new StateManager();
+//    public  StateManager getInstance(Document document) {
+////        if (singleton == null) singleton = new StateManager();
+//        singleton = new StateManager();
+//
+//        this.document = document;
+//        return singleton;
+//    }
 
-        StateManager.document = document;
-        return singleton;
-    }
-
-    private StateManager() {
+    public  StateManager(Document document) {
         commandHistory = new LinkedList<Command>();
+        this.document = document;
         currentStateIndex = 0;
     }
 

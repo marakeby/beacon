@@ -81,7 +81,6 @@ public class CanvasMouseListener extends MouseAdapter {
     // TODO document method
     private Bound getBoundAt(AbstractGlyph glyph, Point2D.Float point) {
         if (glyph == null)
-
             return null;
 
         for (int i = glyph.getBoundCount() - 1; i >= 0; i--)

@@ -9,7 +9,13 @@ import edu.vt.beacon.editor.swing.platform.PlatformMenuItem;
 public class FormatMenu extends AbstractMenu
 {
 	private static final long serialVersionUID = 1L;
-	
+
+	private PlatformMenuItem legendItem ;
+	private PlatformMenuItem canvasDialogItem ;
+	private PlatformMenuItem fontDialogItem ;
+	private PlatformMenuItem shapeDialogItem ;
+	private PlatformMenuItem labelDialogItem ;
+
 	// FIXME complete constructor
 	public FormatMenu(Document document)
 	{
@@ -20,22 +26,25 @@ public class FormatMenu extends AbstractMenu
 	@Override
 	protected void buildMenu()
 	{
-		PlatformMenuItem legendItem = new PlatformMenuItem();
-		PlatformMenuItem canvasDialogItem = new PlatformMenuItem();
-		PlatformMenuItem fontDialogItem = new PlatformMenuItem();
-		PlatformMenuItem shapeDialogItem = new PlatformMenuItem();
-		PlatformMenuItem labelDialogItem = new PlatformMenuItem();
-
-		legendItem.setAction(document_.getAction( ActionType.FORMAT_LEGEND));
-		canvasDialogItem.setAction(document_.getAction( ActionType.FORMAT_CANVAS));
-		fontDialogItem.setAction(document_.getAction( ActionType.FORMAT_FONT));
-		shapeDialogItem.setAction(document_.getAction( ActionType.FORMAT_SHAPE));
-		labelDialogItem.setAction(document_.getAction( ActionType.FORMAT_LABEL));
+		 legendItem = new PlatformMenuItem();
+		 canvasDialogItem = new PlatformMenuItem();
+		 fontDialogItem = new PlatformMenuItem();
+		 shapeDialogItem = new PlatformMenuItem();
+		 labelDialogItem = new PlatformMenuItem();
 
 		add(labelDialogItem);
 		add(fontDialogItem);
 		add(shapeDialogItem);
 		add(canvasDialogItem);
 		add(legendItem);
+	}
+
+	public void registerActions(Document doc)
+	{
+		legendItem.setAction(document_.getAction( ActionType.FORMAT_LEGEND));
+		canvasDialogItem.setAction(document_.getAction( ActionType.FORMAT_CANVAS));
+		fontDialogItem.setAction(document_.getAction( ActionType.FORMAT_FONT));
+		shapeDialogItem.setAction(document_.getAction( ActionType.FORMAT_SHAPE));
+		labelDialogItem.setAction(document_.getAction( ActionType.FORMAT_LABEL));
 	}
 }

@@ -19,10 +19,12 @@ public class AboutMenu extends AbstractMenu {
     protected void buildMenu() {
         aboutItem_ = new PlatformMenuItem();
 
-        aboutItem_.setAction(document_.getAction(ActionType.ABOUT_ABOUT));
-
         add(aboutItem_);
 
+    }
+    public void registerActions(Document doc)
+    {
+        aboutItem_.setAction(document_.getAction(ActionType.ABOUT_ABOUT));
     }
 
 }

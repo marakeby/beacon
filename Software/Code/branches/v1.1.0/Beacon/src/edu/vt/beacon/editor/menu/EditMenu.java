@@ -35,15 +35,28 @@ public class EditMenu extends AbstractMenu
         undoItem_ = new PlatformMenuItem();
         alignmentItem_ = new JMenu("Alignment...");
         
-        redoItem_.setAction(document_.getAction(ActionType.EDIT_REDO));
-        undoItem_.setAction(document_.getAction(ActionType.EDIT_UNDO));
-        alignmentItem_.setAction(document_.getAction(ActionType.EDIT_ALIGNMENT));
+//        redoItem_.setAction(document_.getAction(ActionType.EDIT_REDO));
+//        undoItem_.setAction(document_.getAction(ActionType.EDIT_UNDO));
+//        alignmentItem_.setAction(document_.getAction(ActionType.EDIT_ALIGNMENT));
 
         populateAlignmentMenuItem();
 
         add(undoItem_);
         add(redoItem_);
         add(alignmentItem_);
+    }
+    public void registerActions(Document doc)
+    {
+        System.out.println("register Edit menu doc "+ doc.getFile().getAbsolutePath());
+        redoItem_.removeAll();
+        undoItem_.removeAll();
+        alignmentItem_.removeAll();
+
+        redoItem_.setAction(document_.getAction(ActionType.EDIT_REDO));
+        undoItem_.setAction(document_.getAction(ActionType.EDIT_UNDO));
+        alignmentItem_.setAction(document_.getAction(ActionType.EDIT_ALIGNMENT));
+        populateAlignmentMenuItem();
+
     }
 
     private void populateAlignmentMenuItem() {
@@ -68,6 +81,8 @@ public class EditMenu extends AbstractMenu
 
     }
 
+
+
     // TODO document method
     public void refresh()
     {
@@ -75,10 +90,10 @@ public class EditMenu extends AbstractMenu
         undoItem_.setText("Can't Undo");
         
         DocumentState state = document_.getState();
-        
+
         if (state.getNext() != null)
             redoItem_.setText("Redo " + state.getNext().getText());
-        
+
         if (state.getPrevious() != null)
             undoItem_.setText("Undo " + state.getText());
     }

@@ -14,20 +14,22 @@ public class PaletteButton extends IconButton
 {
     private static final long serialVersionUID = 1L;
     
-    private Document document_;
-    
+//    private Document document_;
+
+    private PalettePanel panel_ ;
     private GlyphType glyphType_;
     
     // TODO document constructor
-    protected PaletteButton(Document document, GlyphType glyphType)
+    protected PaletteButton(PalettePanel panel, GlyphType glyphType)
     {
         super (IconType.valueOf(glyphType.name()).getIcon());
         
         setAlignmentX(Component.CENTER_ALIGNMENT);
         setToolTipText(glyphType.toString());
         
-        document_ = document;
+//        document_ = document;
         glyphType_ = glyphType;
+        panel_ = panel;
         
         addActionListener(this);
     }
@@ -52,7 +54,7 @@ public class PaletteButton extends IconButton
         if (isSelected) {
             
             PaletteButton selectedButton =
-                document_.getPalette().getSelectedButton();
+                    panel_.getSelectedButton();
             
             if (selectedButton != null)
                 selectedButton.setSelected(false);

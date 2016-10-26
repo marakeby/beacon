@@ -9,7 +9,10 @@ import edu.vt.beacon.editor.swing.platform.PlatformMenuItem;
 public class GlyphsMenu extends AbstractMenu
 {
 	private static final long serialVersionUID = 1L;
-	
+
+	private PlatformMenuItem annotationItem;
+	private PlatformMenuItem geneItem;
+
 	// FIXME complete constructor
 	public GlyphsMenu(Document document)
 	{
@@ -20,14 +23,19 @@ public class GlyphsMenu extends AbstractMenu
 	@Override
 	protected void buildMenu()
 	{
-		PlatformMenuItem annotationItem = new PlatformMenuItem();
-		PlatformMenuItem geneItem = new PlatformMenuItem();
-		
+		 annotationItem = new PlatformMenuItem();
+		 geneItem = new PlatformMenuItem();
 		annotationItem.setAction(document_.getAction( ActionType.GLYPHS_ANNOTATION));
 		geneItem.setAction(document_.getAction( ActionType.GLYPHS_GENE));
         
 //		add(annotationItem);
 		add(geneItem);
+	}
+	public void registerActions(Document doc)
+	{
+
+		annotationItem.setAction(document_.getAction( ActionType.GLYPHS_ANNOTATION));
+		geneItem.setAction(document_.getAction( ActionType.GLYPHS_GENE));
 	}
 }
 

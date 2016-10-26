@@ -114,8 +114,9 @@ public class EditHandler
 
     // TODO document method
     public void redo(Document document) {
-        if (document.getState().getNext() != null)
-            document.getState().getNext().apply(document);
+//        if (document.getState().getNext() != null)
+//            document.getState().getNext().apply(document);
+        document.redo();
     }
 
     // TODO document method
@@ -155,7 +156,8 @@ public class EditHandler
 
     // TODO document method
     public void undo(Document document) {
-        if (document.getState().getPrevious() != null)
-            document.getState().getPrevious().apply(document);
+//        if (document.getState().getPrevious() != null)
+//            document.getState().getPrevious().apply(document);
+        document.undo();
     }
 }

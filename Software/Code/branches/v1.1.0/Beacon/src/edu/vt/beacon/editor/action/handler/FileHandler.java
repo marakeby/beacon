@@ -7,6 +7,7 @@ import java.io.FilenameFilter;
 
 import javax.swing.*;
 
+import edu.vt.beacon.editor.EditorApplication;
 import edu.vt.beacon.editor.action.Action;
 import edu.vt.beacon.editor.dialog.preferences.PreferencesDialog;
 import edu.vt.beacon.editor.dialog.properties.PropertiesDialog;
@@ -23,6 +24,8 @@ public class FileHandler
     private static final FileHandler instance_ = new FileHandler();
 
     private static int fileNo_ = 1;
+
+    private static JTabbedPane tabbedPane ;
 
     // TODO document method
     public static FileHandler getInstance() {
@@ -99,9 +102,18 @@ public class FileHandler
                 && !fileDialog.getDirectory().isEmpty()) {
             Pathway pathway = FileManager.load(fileDialog.getDirectory() + fileDialog.getFile());
 
-            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
-            action.getDocument().setPathway(pathway);
-            action.getDocument().refresh();
+//            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
+//            action.getDocument().setPathway(pathway);
+//            action.getDocument().refresh();
+
+            Document doc = new Document(new File(fileDialog.getDirectory() + fileDialog.getFile()));
+//            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
+
+            doc.setPathway(pathway);
+            new DocumentState(doc);
+            doc.getViewer();
+            doc.refresh();
+
         }
     }
 
@@ -118,9 +130,15 @@ public class FileHandler
         if (fileDialog.getFile() != null && !fileDialog.getFile().isEmpty() && fileDialog.getDirectory() != null
                 && !fileDialog.getDirectory().isEmpty()) {
             Pathway pathway = FileManager.backwardCompatibilityImport(fileDialog.getDirectory() + fileDialog.getFile());
-            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
-            action.getDocument().setPathway(pathway);
-            action.getDocument().refresh();
+//            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
+//            action.getDocument().setPathway(pathway);
+//            action.getDocument().refresh();
+            Document doc = new Document(new File(fileDialog.getDirectory() + fileDialog.getFile()));
+//            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
+            doc.setPathway(pathway);
+            new DocumentState(doc);
+            doc.getViewer();
+            doc.refresh();
         }
     }
 
@@ -147,14 +165,18 @@ public class FileHandler
 
     // FIXME complete method
     public void newFile(Document document) {
+        if (tabbedPane ==null)
+            tabbedPane = new JTabbedPane();
+
         String fileName = "untitled";
 
-        if (fileNo_ > 1)
+//        if (fileNo_ > 1)
             fileName += " " + fileNo_;
 
-        fileNo_++;
+            fileNo_++;
 
-        if (document ==null) {
+//        if (document ==null) {
+            System.out.println("creating file "+fileName);
             Document newDocument = new Document(new File(fileName));
 
             Map map = newDocument.getPathway().getMap();
@@ -165,22 +187,25 @@ public class FileHandler
 
             new DocumentState(newDocument);
             newDocument.getFrame();
+//            newDocument.getTabs();
+            EditorApplication.viewer = newDocument.getViewer();
+            newDocument.refresh();
 
-        }
-        else
-        {
-
-            Pathway pathway = new Pathway("pathway");
-            document.setPathway(pathway);
-            Map map = document.getPathway().getMap();
-            Layer layer = new Layer("New Layer", map);
-            layer.setSelected(true);
-            map.add(layer);
-            map.setSelected(true);
-            document.setFile(new File(fileName));
-            document.getFrame();
-            document.refresh();
-        }
+//        }
+//        else
+//        {
+//
+//            Pathway pathway = new Pathway("pathway");
+//            document.setPathway(pathway);
+//            Map map = document.getPathway().getMap();
+//            Layer layer = new Layer("New Layer", map);
+//            layer.setSelected(true);
+//            map.add(layer);
+//            map.setSelected(true);
+//            document.setFile(new File(fileName));
+//            document.getFrame();
+//            document.refresh();
+//        }
     }
 
     // CMK

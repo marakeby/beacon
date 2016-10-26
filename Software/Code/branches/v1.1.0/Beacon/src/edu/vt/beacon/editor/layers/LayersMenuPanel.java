@@ -35,6 +35,7 @@ public class LayersMenuPanel extends JPanel implements Skinnable {
         refresh();
     }
 
+
     // TODO document method
     private void buildHeaderPanel() {
 //        System.out.println("buildHeaderPanel" );
@@ -143,6 +144,7 @@ public class LayersMenuPanel extends JPanel implements Skinnable {
     public void setDocument(Document document) {
 //        System.out.println("setDocument" );
         document_ = document;
+        selectedMap_ = document_.getPathway().getMap();
         refresh();
     }
 

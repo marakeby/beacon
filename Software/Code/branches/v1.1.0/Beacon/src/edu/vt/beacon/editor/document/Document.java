@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Properties;
@@ -47,26 +48,218 @@ public class Document extends HashMap<String, String> {
 
     private HashMap<String, Component> componentMap_;
 
+    private HashMap<String, Boolean> componentInit_;
+
     private Pathway pathway_;
 
     private static BrowserMenuPanel browser_;
+    private static Frame frame_;
+    private static PalettePanel palette_;
+    private CanvasPanel canvas_;
+    private static LayersMenuPanel layers_;
+    private static MenuBar menu_;
+    private static JTabbedPane tabs_;
+    private static DocumentViewer document_viewer_;
 
+//    private static BrowserMenuPanel palette_;
 
     // FIXME complete constructor
     public Document(File file) {
         contextManager_ = new ContextManager(this);
-        stateManager_ = StateManager.getInstance(this);
+//        stateManager_ = StateManager.getInstance(this);
+        stateManager_ = new StateManager(this);
         legendManager_ = new LegendManager(this);
         componentMap_ = new HashMap<String, Component>();
         file_ = file;
         pathway_ = new Pathway("untitled");
 
+
+//        initializeCanvas();
+        componentInit_ = new HashMap<String, Boolean> ();
         stateManager_.insert(new Command(CommandType.CREATING_PATHWAY, pathway_.copy(), getCanvas().getZoomFactor(),
                 new Date().getTime()));
 
+        String[] comps= {"browser", "frame","palette","canvas","layers", "menuBar", "documentViewer"};
+
+        for(String comp : comps)
+        {
+            componentInit_.put(comp, false);
+        }
+
+
         initializeActionMap();
         initializeProperties();
+//        initializeComponents();
     }
+
+//    private void initComp(String compName){
+//        Boolean compInit = componentInit_.get(compName);
+//
+//        if (compInit)
+//        {
+//            comp = componentMap_.get(compName);
+//            comp
+//        }
+//            canvas_ =  new CanvasPanel(this);
+//        else
+//            canvas_.setDocument_(this);
+//
+//        componentMap_.put(compName, canvas_);
+//    }
+
+    private void initializeCanvas(){
+        if (canvas_ == null)
+            canvas_ =  new CanvasPanel(this);
+
+        if (componentInit_.get("canvas") ==null || ! componentInit_.get("canvas"))
+        {
+            componentInit_.put("canvas", true);
+            canvas_.setDocument(this);
+        }
+
+        componentMap_.put("canvas", canvas_);
+
+    }
+
+    private void initializeTabs(){
+        if (tabs_ ==null) {
+            tabs_ = new JTabbedPane();
+            tabs_.addTab(this.getFile().getName(), null, this.getCanvas().getScrollPane(), this.getFile().getName());
+        }
+        else
+        if (componentInit_.get("tabs") ==null || ! componentInit_.get("tabs"))
+        {
+            componentInit_.put("tabs", true);
+            tabs_.addTab(this.getFile().getName(), null, this.getCanvas().getScrollPane(), this.getFile().getName());
+        }
+
+        componentMap_.put("tabs", tabs_);
+
+    }
+
+    private void initializeViewer(){
+        if (document_viewer_ ==null) {
+            document_viewer_ = new DocumentViewer();
+//            tabs_.addTab(this.getFile().getName(), null, this.getCanvas().getScrollPane(), this.getFile().getName());
+//            document_viewer_.addProject(this);
+        }
+//        else
+        if (componentInit_.get("documentViewer") ==null || ! componentInit_.get("documentViewer"))
+        {
+            componentInit_.put("documentViewer", true);
+            document_viewer_.addProject(this);
+        }
+
+        componentMap_.put("documentViewer", document_viewer_);
+
+    }
+
+    private void initializePalette(){
+        if (palette_ ==null)
+            palette_ =  new PalettePanel(this);
+
+        componentMap_.put("palette", palette_);
+
+    }
+
+    private void initializeMenuBar(){
+        if (menu_ ==null)
+            menu_ =  new MenuBar(this);
+        else
+        if (! componentInit_.get("menuBar"))
+        {
+            componentInit_.put("menuBar", true);
+            menu_.setDocument(this);
+        }
+
+
+        componentMap_.put("menuBar", menu_);
+
+    }
+    private void initializeFrame(){
+        if (frame_ ==null)
+            frame_ =  new Frame(this);
+
+        if (! componentInit_.get("frame")) {
+            componentInit_.put("frame", true);
+            frame_.setDocument(this);
+        }
+
+        componentMap_.put("frame", frame_);
+
+    }
+
+    private void initializeBrowser(){
+        if (browser_ ==null)
+            browser_ =  new BrowserMenuPanel(this);
+
+        if (! componentInit_.get("browser")) {
+            componentInit_.put("browser", true);
+            browser_.setDocument(this);
+        }
+
+        componentMap_.put("browser_", browser_);
+
+    }
+
+    private void initializeLayers(){
+        if (layers_ ==null)
+            layers_ =  new LayersMenuPanel(this);
+
+        if (! componentInit_.get("layers"))
+        {
+            componentInit_.put("layers", true);
+            layers_.setDocument(this);
+        }
+
+        componentMap_.put("layers", layers_);
+
+    }
+
+//    private void initializeComponents(){
+//        if (palette_ ==null)
+//            palette_ = new PalettePanel(this);
+//
+//        componentMap_.put("palette", palette_);
+//
+//
+//        if (menu_==null)
+//            menu_ = new MenuBar(this);
+//        else
+//            menu_.setDocument(this);
+//
+//        componentMap_.put("menuBar", menu_);
+//
+//        if (frame_ ==null)
+//            frame_ = new Frame(this);
+//        else
+//            frame_.setDocument(this);
+//
+//        componentMap_.put("frame", frame_);
+//
+//        if (browser_ == null)
+//            browser_ = new BrowserMenuPanel(this);
+//        else
+//            browser_.setDocument(this);
+//
+//        componentMap_.put("browser", browser_);
+//
+//        if (layers_ ==null)
+//            layers_ = new LayersMenuPanel(this);
+//        else
+//            layers_.setDocument(this);
+//
+////        if (componentMap_.get("layers") == null)
+//        componentMap_.put("layers", new LayersMenuPanel(this));
+//
+//
+//    }
+//    public Document copy(){
+//        Document doc = new Document(this.getFile());
+//        doc.setState(this.getState());
+//        doc.setPathway(this.getPathway().copy());
+//        return doc;
+//    }
 
     // TODO document method
     public Action getAction(ActionType type) {
@@ -80,23 +273,51 @@ public class Document extends HashMap<String, String> {
 
     // TODO document method
     public BrowserMenuPanel getBrowserMenu() {
-        if (browser_ == null)
-            browser_ = new BrowserMenuPanel(this);
-        else
-            browser_.setDocument(this);
+//        System.out.println("getBrowserMenu");
 
-        componentMap_.put("browser", browser_);
-
-
-        return (BrowserMenuPanel) componentMap_.get("browser");
+//        if (browser_ == null)
+//            browser_ = new BrowserMenuPanel(this);
+//        else
+//            browser_.setDocument(this);
+//
+//        componentMap_.put("browser", browser_);
+        initializeBrowser();
+        return (BrowserMenuPanel) componentMap_.get("browser_");
     }
 
     // TODO document method
     public CanvasPanel getCanvas() {
-        if (componentMap_.get("canvas") == null)
-            componentMap_.put("canvas", new CanvasPanel(this));
-
+//        if (canvas_ ==null)
+//            canvas_ =  new CanvasPanel(this);
+//        else
+//            canvas_.setDocument_(this);
+//
+//        componentMap_.put("canvas", canvas_);
+        initializeCanvas();
+//        getTabs();
         return (CanvasPanel) componentMap_.get("canvas");
+    }
+
+    public JTabbedPane getTabs() {
+//        if (canvas_ ==null)
+//            canvas_ =  new CanvasPanel(this);
+//        else
+//            canvas_.setDocument_(this);
+//
+//        componentMap_.put("canvas", canvas_);
+        initializeTabs();
+        return (JTabbedPane) componentMap_.get("tabs");
+    }
+
+    public DocumentViewer getViewer() {
+//        if (canvas_ ==null)
+//            canvas_ =  new CanvasPanel(this);
+//        else
+//            canvas_.setDocument_(this);
+//
+//        componentMap_.put("canvas", canvas_);
+        initializeViewer();
+        return (DocumentViewer) componentMap_.get("documentViewer");
     }
 
     // TODO document method
@@ -133,9 +354,15 @@ public class Document extends HashMap<String, String> {
 
     // TODO document method
     public Frame getFrame() {
-        if (componentMap_.get("frame") == null)
-            componentMap_.put("frame", new Frame(this));
+//        if (frame_ ==null)
+//            frame_ = new Frame(this);
+//        else
+//            frame_.setDocument(this);
+//
+////        if (componentMap_.get("frame") == null)
+//        componentMap_.put("frame", frame_);
 
+        initializeFrame();
         return (Frame) componentMap_.get("frame");
     }
 
@@ -146,25 +373,42 @@ public class Document extends HashMap<String, String> {
 
     // TODO document method
     public LayersMenuPanel getLayersMenu() {
-        if (componentMap_.get("layers") == null)
-            componentMap_.put("layers", new LayersMenuPanel(this));
-
+//        if (layers_ ==null)
+//            layers_ = new LayersMenuPanel(this);
+//        else
+//            layers_.setDocument(this);
+//
+////        if (componentMap_.get("layers") == null)
+//        componentMap_.put("layers", new LayersMenuPanel(this));
+        initializeLayers();
         return (LayersMenuPanel) componentMap_.get("layers");
     }
 
     // TODO document method
     public MenuBar getMenuBar() {
-        if (componentMap_.get("menuBar") == null)
-            componentMap_.put("menuBar", new MenuBar(this));
+//        if (menu_==null)
+//            menu_ = new MenuBar(this);
+//        else
+//            menu_.setDocument(this);
+//
+//
+////        if (componentMap_.get("menuBar") == null)
+//        componentMap_.put("menuBar", menu_);
+        initializeMenuBar();
 
         return (MenuBar) componentMap_.get("menuBar");
     }
 
     // TODO document method
     public PalettePanel getPalette() {
-        if (componentMap_.get("palette") == null)
-            componentMap_.put("palette", new PalettePanel(this));
+//        if (palette_ ==null)
+//            palette_ = new PalettePanel(this);
+////        else
+////            palette_.setDocument(this);
+//
+//        componentMap_.put("palette", palette_);
 
+        initializePalette();
         return (PalettePanel) componentMap_.get("palette");
     }
 
@@ -326,7 +570,7 @@ public class Document extends HashMap<String, String> {
     // TODO document method
     public void setChanged(boolean isChanged) {
 //        System.out.println("setChanged " + isChanged);
-        String title = file_.getName();
+        String title = file_.getAbsolutePath();
 
         if (isChanged)
             title += " - Edited";
@@ -352,11 +596,38 @@ public class Document extends HashMap<String, String> {
     public void setState(DocumentState state) {
         state_ = state;
     }
-    
+
+    public void registerComponents()
+    {
+//        menu_.setDocument(this);
+        getBrowserMenu().setDocument(this);
+//        layers_.setDocument(this);
+        getLayersMenu().setDocument(this);
+//        browser_.setDocument(this);
+//        getBrowserMenu().setDocument(this);
+//        canvas_.setDocument(this);
+        getCanvas().setDocument(this);
+        getFrame().setDocument(this);
+        getMenuBar().setDocument(this);
+        initializeProperties();
+    }
     public void refresh() {
+        getMenuBar();
         getBrowserMenu().refresh();
         getCanvas().repaint();
-        getLayersMenu().setDocument(this);
-        getBrowserMenu().setDocument(this);
+//        getLayersMenu().setDocument(this);
+//        getBrowserMenu().setDocument(this);
+        registerComponents();
+
+
+    }
+
+    public void undo(){
+        if (getState().getPrevious() != null)
+            getState().getPrevious().apply(this);
+    }
+    public void redo(){
+        if (getState().getNext() != null)
+            getState().getNext().apply(this);
     }
 }

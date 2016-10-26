@@ -28,14 +28,22 @@ public enum IconType {
     TAG("tag_right.png"),
     NO_IMAGE("no-available-image.png"),
     VIEW("view.png"),
-    SEARCH("search.png");
+    SEARCH("search.png"),
+    CLOSE("close.png"),
+    CLOSE_PRESS("close_pressed.png"),
+    CLOSE_ROLL("close_rollover.png"),
+    PROJECT("project.png"),
+    LOGO("logo.png");
+
 
     private ImageIcon imageIcon_;
 
     // TODO document constructor
     private IconType(String fileName) {
-        imageIcon_ = new ImageIcon(
-                Thread.currentThread().getContextClassLoader().getResource(
+        System.out.println(
+        Thread.currentThread().getContextClassLoader().getResource(
+                getIconDirectoryPath()));
+        imageIcon_ = new ImageIcon(Thread.currentThread().getContextClassLoader().getResource(
                         getIconDirectoryPath() + fileName));
     }
 
@@ -45,7 +53,7 @@ public enum IconType {
     }
 
     // TODO document method
-    private String getIconDirectoryPath() {
+    public String getIconDirectoryPath() {
         return IconType.class.getPackage().getName().replace(".",
                 System.getProperty("file.separator")) +
                 System.getProperty("file.separator");

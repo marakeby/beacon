@@ -11,15 +11,44 @@ public class MenuBar extends JMenuBar
     private static final long serialVersionUID = 1L;
     
     // FIXME complete constructor
+    private FileMenu fileMenu;
+    private EditMenu editMenu;
+    private ViewMenu viewMenu;
+    private FormatMenu formatMenu;
+    private GlyphsMenu glyphsMenu;
+    private AboutMenu aboutMenu;
+
     public MenuBar(Document document)
     {
-    	add(new FileMenu(document));
-        add(new EditMenu(document));
-        add(new ViewMenu(document));
-        add(new FormatMenu(document));
-        add(new GlyphsMenu(document));
-        add(new AboutMenu(document));
+        fileMenu = new FileMenu(document);
+        editMenu = new EditMenu(document);
+        viewMenu = new ViewMenu(document);
+        formatMenu = new FormatMenu(document);
+        glyphsMenu = new GlyphsMenu(document);
+        aboutMenu = new AboutMenu(document);
+
+        add(fileMenu);
+        add(editMenu);
+        add(viewMenu);
+        add(formatMenu);
+        add(glyphsMenu);
+        add(aboutMenu);
+//    	add(new FileMenu(document));
+//        add(new EditMenu(document));
+//        add(new ViewMenu(document));
+//        add(new FormatMenu(document));
+//        add(new GlyphsMenu(document));
+//        add(new AboutMenu(document));
         
+    }
+    public void setDocument(Document doc){
+        fileMenu.setDocument(doc);
+        editMenu.setDocument(doc);
+        viewMenu.setDocument(doc);
+        formatMenu.setDocument(doc);
+        glyphsMenu.setDocument(doc);
+        aboutMenu.setDocument(doc);
+        editMenu.refresh();
     }
     
     // TODO document method

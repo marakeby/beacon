@@ -3,8 +3,7 @@ package edu.vt.beacon.editor.canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.*;
 import java.awt.geom.Rectangle2D;
 
 import javax.swing.JPanel;
@@ -41,6 +40,36 @@ public class CanvasPanel extends JPanel
         canvasScroll_.setFocusable(true);
         selectionBox_ = new Rectangle2D.Float();
         zoomFactor = 1;
+
+        initializeListeners();
+    }
+    public void setDocument(Document doc)
+    {
+        System.out.println("canvas setDoc");
+        document_ = doc;
+//        canvasScroll_ = new PlatformScrollPane(this);
+        canvasScroll_.setFocusable(true);
+        selectionBox_ = new Rectangle2D.Float();
+//        zoomFactor = 1;
+
+//        canvasScroll_ = new PlatformScrollPane(this);
+
+        for (MouseListener m : this.getMouseListeners())
+            this.removeMouseListener(m);
+
+        for (MouseMotionListener m : this.getMouseMotionListeners())
+            this.removeMouseMotionListener(m);
+//            removeMouseMotionListener(m);
+
+        for (KeyListener m : this.getKeyListeners())
+            this.removeKeyListener(m);
+//            removeKeyListener(m);
+
+//        this.getScrollPane().removeKeyListener();
+        for (KeyListener m : this.getScrollPane().getKeyListeners())
+            this.getScrollPane().removeKeyListener(m);
+//            removeKeyListener(m);
+
 
         initializeListeners();
     }

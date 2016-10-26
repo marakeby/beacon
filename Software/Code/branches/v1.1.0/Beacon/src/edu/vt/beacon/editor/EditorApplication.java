@@ -12,6 +12,8 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import edu.vt.beacon.editor.action.handler.FileHandler;
+import edu.vt.beacon.editor.document.DocumentViewer;
+import edu.vt.beacon.editor.resources.icons.IconType;
 import edu.vt.beacon.editor.util.PlatformManager;
 
 public class EditorApplication
@@ -30,7 +32,8 @@ public class EditorApplication
     {
         return "0.1";
     }
-    
+
+    public static DocumentViewer viewer;
     // FIXME complete method
     private static void initializeLogging()
     {
@@ -116,6 +119,9 @@ public class EditorApplication
     @Override
     public void run()
     {
+//        java.net.URL url = ClassLoader.getSystemResource( "logo.png");
+//        java.net.URL url = IconType.PROJECT.getIcon();
+
         initializeLogging();
         initializeLookAndFeel();
         

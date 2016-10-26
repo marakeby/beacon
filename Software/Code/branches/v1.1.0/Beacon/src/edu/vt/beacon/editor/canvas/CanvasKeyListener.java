@@ -31,6 +31,7 @@ public class CanvasKeyListener extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        System.out.println("Key pressed");
         if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
             document_.getCanvas().setState(CanvasStateType.PORT_SHOWING);
             document_.getCanvas().repaint();
@@ -51,7 +52,10 @@ public class CanvasKeyListener extends KeyAdapter {
 
         //Ctrl + Z is a shortcut for undo
         if (e.getKeyCode() == KeyEvent.VK_Z && e.isControlDown() && !e.isShiftDown()) {
-            document_.getStateManager().undo();
+            System.out.println("UNDOOOOOOŌ");
+//            document_.getStateManager().undo();
+//            document_.getState().apply(document_);
+            document_.undo();
             return;
         }
 
@@ -59,7 +63,8 @@ public class CanvasKeyListener extends KeyAdapter {
         //Ctrl + Y OR Ctrl + Shift + Z are the shortcuts for redo
         if ((e.getKeyCode() == KeyEvent.VK_Y && e.isControlDown() && !e.isShiftDown()) ||
                 e.getKeyCode() == KeyEvent.VK_Z && e.isControlDown() && e.isShiftDown()) {
-            document_.getStateManager().redo();
+//            document_.getStateManager().redo();
+            document_.redo();
             return;
         }
 

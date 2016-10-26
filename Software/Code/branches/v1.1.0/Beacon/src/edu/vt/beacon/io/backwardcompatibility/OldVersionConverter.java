@@ -60,6 +60,7 @@ public class OldVersionConverter {
         Layer layer = new Layer("New Layer", map);
         map.add(layer);
         beaconMapIdToLayers.put(layer.getId(), layer);
+        map.getLayers().get(0).setSelected(true);
         return true;
     }
 

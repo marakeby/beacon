@@ -14,9 +14,9 @@ public class ActionManager
     // FIXME complete method
     public static void updateEditActions(Document document)
     {
-        document.getAction(ActionType.EDIT_REDO).setEnabled(
-            document.getState().getNext() != null);
-        document.getAction(ActionType.EDIT_UNDO).setEnabled(
-            document.getState().getPrevious() != null);
+//        document.getAction(ActionType.EDIT_REDO).setEnabled(
+//            document.getState().getNext() != null);
+//        document.getAction(ActionType.EDIT_UNDO).setEnabled(
+//            document.getState().getPrevious() != null);
     }
 }

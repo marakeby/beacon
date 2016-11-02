@@ -357,25 +357,47 @@ public class Converter {
     }
 
     private static Arc.End getEndPoint(AbstractArc arc) {
-        if (arc == null || arc.getTargetPort() == null)
+        if (arc == null )
             return null;
+
+        float x = 0;
+        float y = 0;
+        if (arc.getTargetPort() == null){
+            int end_index= arc.getPointCount()-1;
+            x= arc.getPointAt(end_index).x;
+            y= arc.getPointAt(end_index).y;
+        }
+        else{
+            x= arc.getTargetPort().getCenterX();
+            y= arc.getTargetPort().getCenterY();
+        }
 
         Arc.End end = new Arc.End();
 
-        end.setX(arc.getTargetPort().getCenterX());
-        end.setY(arc.getTargetPort().getCenterY());
+        end.setX(x);
+        end.setY(y);
 
         return end;
     }
 
     private static Arc.Start getStartPoint(AbstractArc arc) {
-        if (arc == null || arc.getSourcePort() == null)
+        if (arc == null )
             return null;
 
+        float x= 0;
+        float y = 0;
+        if (arc.getSourcePort() == null){
+            x= arc.getPointAt(0).x;
+            y= arc.getPointAt(0).y;
+        }
+        else{
+            x= arc.getSourcePort().getCenterX();
+            y= arc.getSourcePort().getCenterY();
+        }
         Arc.Start start = new Arc.Start();
 
-        start.setX(arc.getSourcePort().getCenterX());
-        start.setY(arc.getSourcePort().getCenterY());
+        start.setX(x);
+        start.setY(y);
 
         return start;
     }
@@ -1024,8 +1046,7 @@ public class Converter {
 
         result.setSourcePort(getPort(arc, ARC_SOURCE_PORT_ELEMENT));
         result.setTargetPort(getPort(arc, ARC_TARGET_PORT_ELEMENT));
-
-        setPoints(arc.getNext(), result);
+        setPoints(arc, result);
 
         setLayer(arc, result);
         result.update();
@@ -1033,16 +1054,27 @@ public class Converter {
         return result;
     }
 
-    private static boolean setPoints(List<Arc.Next> nexts, AbstractArc arc) {
+    private static boolean setPoints(Arc sbgn_arc, AbstractArc arc) {
+
         if (arc == null)
             return false;
+        List<Arc.Next> nexts = sbgn_arc.getNext();
+        float x, y;
 
-        if (nexts == null || nexts.isEmpty())
-            return true;
+            x = sbgn_arc.getStart().getX();
+            y = sbgn_arc.getStart().getY();
+            arc.getPoints().set(0,  new Point2D.Float(x,y));
+            x = sbgn_arc.getEnd().getX();
+            y = sbgn_arc.getEnd().getY();
+            arc.getPoints().set(1, new Point2D.Float(x,y));
+
+
 
         int index = 1;
         for (Arc.Next next : nexts) {
-            arc.getPoints().add(index, new Point2D.Float(next.getX(), next.getY()));
+            x = next.getX();
+            y = next.getY();
+            arc.getPoints().add(index, new Point2D.Float(x,y));
             arc.incrementBounds();
             index++;
         }

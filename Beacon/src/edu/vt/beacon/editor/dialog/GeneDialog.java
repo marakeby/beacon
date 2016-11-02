@@ -24,6 +24,8 @@ public class GeneDialog extends AbstractDialog {
     private static final String AC_BUTTON_GENE_DELETE = "GENE_DELETE";
     private static final String AC_BUTTON_GENE_EDIT = "GENE_EDIT";
 
+    private String organism;
+
     JButton addButton_;
     JButton editButton_;
     JButton deleteButton_;
@@ -127,11 +129,20 @@ public class GeneDialog extends AbstractDialog {
                     String searchTerm = (String) geneListModel_.getValueAt(row, col - 1);
 
                     try {
-
+                        String organism = document_.getPathway().getOrganism();
+                        String url= "";
                         if (col == 1)
-                            link = new URI("http://www.ncbi.nlm.nih.gov/gene/?term=" + searchTerm);
+                            url = "http://www.ncbi.nlm.nih.gov/gene/?term=";
                         else
-                            link = new URI("http://www.ncbi.nlm.nih.gov/pubmed/?term=" + searchTerm);
+                            url = "http://www.ncbi.nlm.nih.gov/pubmed/?term=";
+
+                        url = url + searchTerm;
+
+                        if (organism != null && !organism.equals(""))
+                            url = url + ", "+ organism;
+
+                        url = url.replace(" ","%20");
+                        link = new URI( url );
 
                         Desktop.getDesktop().browse(link);
 

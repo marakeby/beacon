@@ -246,7 +246,8 @@ public class Converter {
         }
 
         if (node instanceof Terminal)
-            glyph.setTagRef(libSbgnMapIdToObjects.get(((Terminal) node).getParent().getTerminalToTagMapping().get(node).getId()));
+            if (((Terminal) node).getParent() !=null)
+                glyph.setTagRef(libSbgnMapIdToObjects.get(((Terminal) node).getParent().getTerminalToTagMapping().get(node).getId()));
 
         if (node instanceof Compartment)
             glyph.setCompartmentOrder(((float) ((Compartment) node).getRenderingOrder()));

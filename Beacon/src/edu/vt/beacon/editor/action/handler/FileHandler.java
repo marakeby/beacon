@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.util.HashMap;
 
 import javax.swing.*;
 
@@ -23,6 +24,7 @@ public class FileHandler
         implements ActionHandler {
     private static final FileHandler instance_ = new FileHandler();
 
+    private HashMap<String, Document> opendDocs;
     private static int fileNo_ = 1;
 
     private static JTabbedPane tabbedPane ;
@@ -105,6 +107,11 @@ public class FileHandler
 //            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
 //            action.getDocument().setPathway(pathway);
 //            action.getDocument().refresh();
+//            action.getDocument().getFrame()
+            String path = fileDialog.getDirectory() + fileDialog.getFile();
+            System.out.print("trying to open file " + path);
+            if (action.getDocument().getViewer().setSelectedProject(path))
+                return;
 
             Document doc = new Document(new File(fileDialog.getDirectory() + fileDialog.getFile()));
 //            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
@@ -133,7 +140,12 @@ public class FileHandler
 //            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
 //            action.getDocument().setPathway(pathway);
 //            action.getDocument().refresh();
-            Document doc = new Document(new File(fileDialog.getDirectory() + fileDialog.getFile()));
+            String path = fileDialog.getDirectory() + fileDialog.getFile();
+            System.out.print("trying to open file " + path);
+            if (action.getDocument().getViewer().setSelectedProject(path))
+                return;
+
+            Document doc = new Document(new File(path));
 //            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
             doc.setPathway(pathway);
             new DocumentState(doc);
@@ -165,8 +177,8 @@ public class FileHandler
 
     // FIXME complete method
     public void newFile(Document document) {
-        if (tabbedPane ==null)
-            tabbedPane = new JTabbedPane();
+//        if (tabbedPane ==null)
+//            tabbedPane = new JTabbedPane();
 
         String fileName = "untitled";
 

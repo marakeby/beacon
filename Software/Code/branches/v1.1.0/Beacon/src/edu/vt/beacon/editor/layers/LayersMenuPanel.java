@@ -104,11 +104,12 @@ public class LayersMenuPanel extends JPanel implements Skinnable {
     // TODO document method
     public Layer getSelectedLayer() {
 //        System.out.println("getSelectedLayer" );
-        if (selectedMap_ != null)
-        for (int i = selectedMap_.getLayerCount() - 1; i >= 0; i--)
-            if (selectedMap_.getLayerAt(i).isSelected())
-
-                return selectedMap_.getLayerAt(i);
+        if (selectedMap_ != null) {
+            for (int i = selectedMap_.getLayerCount() - 1; i >= 0; i--)
+                if (selectedMap_.getLayerAt(i).isSelected())
+                    return selectedMap_.getLayerAt(i);
+            return selectedMap_.getLayerAt(0);
+        }
 
         return null;
     }

@@ -75,6 +75,8 @@ public class CanvasKeyListener extends KeyAdapter {
             if (selectedGlyphs == null || selectedGlyphs.isEmpty())
                 return;
 
+            document_.setChanged(true);
+            new DocumentState(document_, "Delete Glyph(s)", false);
             removeArcConstraints(selectedGlyphs);
             document_.getPathway().removeGlyphs(selectedGlyphs, document_.getBrowserMenu().getSelectedMap());
 

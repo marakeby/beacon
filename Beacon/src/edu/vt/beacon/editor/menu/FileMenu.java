@@ -13,6 +13,7 @@ public class FileMenu extends AbstractMenu {
     PlatformMenuItem preferencesItem;
     PlatformMenuItem newItem;
     PlatformMenuItem saveItem;
+    PlatformMenuItem saveAsItem;
     PlatformMenuItem openItem;
     PlatformMenuItem exportItem;
     PlatformMenuItem compImportItem;
@@ -31,6 +32,7 @@ public class FileMenu extends AbstractMenu {
         newItem = new PlatformMenuItem();
         preferencesItem = new PlatformMenuItem();
         saveItem = new PlatformMenuItem();
+        saveAsItem = new PlatformMenuItem();
         openItem = new PlatformMenuItem();
         exportItem = new PlatformMenuItem();
         compImportItem = new PlatformMenuItem();
@@ -38,6 +40,7 @@ public class FileMenu extends AbstractMenu {
         add(newItem);
         add(openItem);
         add(saveItem);
+        add(saveAsItem);
         add(exportItem);
         add(compImportItem);
         add(propertiesItem);
@@ -58,6 +61,9 @@ public class FileMenu extends AbstractMenu {
 
         saveItem.setAction(document_.getAction(
                 ActionType.FILE_SAVE));
+
+        saveAsItem.setAction(document_.getAction(
+                ActionType.FILE_SAVE_AS));
 
         openItem.setAction(document_.getAction(
                 ActionType.FILE_OPEN));

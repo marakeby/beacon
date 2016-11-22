@@ -33,6 +33,7 @@ public class Document extends HashMap<String, String> {
     private static final long serialVersionUID = 1L;
 
     private boolean isChanged_;
+    private boolean isSavedAtLeastOnce_;
 
     private ContextManager contextManager_;
 
@@ -542,6 +543,13 @@ public class Document extends HashMap<String, String> {
         return isChanged_;
     }
 
+    public boolean isSavedAtLeastOnce(){
+        return isSavedAtLeastOnce_;
+    }
+
+    public void setSavedAtLeastOnce(boolean state){
+        isSavedAtLeastOnce_ = state;
+    }
     // TODO document method
     public void put(String key, boolean value) {
         put(key, Boolean.toString(value));
@@ -580,6 +588,7 @@ public class Document extends HashMap<String, String> {
                 "Window.documentModified", isChanged);
 
         isChanged_ = isChanged;
+        getViewer().highlightProject(this, isChanged_);
     }
 
     // TODO document method
@@ -629,5 +638,12 @@ public class Document extends HashMap<String, String> {
     public void redo(){
         if (getState().getNext() != null)
             getState().getNext().apply(this);
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        return ((Document) obj).getPathway().equals(getPathway());
     }
 }

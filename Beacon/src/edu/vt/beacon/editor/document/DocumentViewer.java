@@ -73,18 +73,38 @@ public class DocumentViewer
             }
         }
 
+//        for(int i =0; i<)
         this.projects.remove(p);
 
         this.projectTabs.remove(p.getCanvas().getScrollPane());
     }
 
+    public void refresh(){
+        int count =  this.getProjectTabs().getTabCount();
+
+        for(int i =0; i< count; i++)
+        {
+            DocumentTab tab = (DocumentTab)getProjectTabs().getTabComponentAt(i);
+            tab.refresh();
+        }
+    }
+    public void highlightProject(Document p, boolean state){
+        int count =  this.getProjectTabs().getTabCount();
+
+        for(int i =0; i< count; i++)
+        {
+            DocumentTab tab = (DocumentTab)getProjectTabs().getTabComponentAt(i);
+            if (tab.getDocument().getFile().getAbsoluteFile().equals(p.getFile().getAbsoluteFile()))
+                tab.setHighlightTab(state);
+        }
+    }
     public Boolean setSelectedProject(String path)
     {
 
         for (Document doc : this.projects)
         {
             String pp= doc.getFile().getAbsolutePath();
-            System.out.print("we have project opend"+pp);
+            System.out.println("we have project opend "+pp);
             if (pp.equals(path))
             {
                 setSelectedProject(doc);
@@ -99,7 +119,9 @@ public class DocumentViewer
     {
         for (int i =0; i<projects.size(); i++){
             DocumentTab tab = (DocumentTab)this.projectTabs.getTabComponentAt(i);
-            if (tab.getDocument().equals(p))
+            String file1 = tab.getDocument().getFile().getAbsolutePath();
+            String file2 = p.getFile().getAbsolutePath();
+            if (file1.equals(file2))
                 projectTabs.setSelectedIndex(i);
         }
 //        int index= this.projects.indexOf(p);

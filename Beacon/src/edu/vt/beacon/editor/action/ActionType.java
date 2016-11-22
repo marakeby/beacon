@@ -16,7 +16,8 @@ public enum ActionType
     FILE_PREFERENCES 	  ("Preferences..."),
     FILE_NEW 	  ("New"),
     FILE_OPEN 	          ("Open..."),
-    FILE_SAVE 	          ("Save..."),
+    FILE_SAVE 	          ("Save"),
+    FILE_SAVE_AS 	          ("Save As..."),
     FILE_EXPORT	          ("Export..."),
     FILE_BACK_COMP_IMPORT ("Import From Previous Version..."),
 

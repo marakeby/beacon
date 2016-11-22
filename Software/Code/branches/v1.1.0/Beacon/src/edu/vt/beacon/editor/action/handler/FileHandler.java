@@ -53,6 +53,9 @@ public class FileHandler
             case FILE_SAVE:
                 processSaveFile(action);
                 break;
+            case FILE_SAVE_AS:
+                processSaveAsFile(action);
+                break;
             case FILE_EXPORT:
                 processExportFile(action);
                 break;
@@ -70,7 +73,14 @@ public class FileHandler
 
     }
 
-    private void processSaveFile(Action action) {
+    private void save(Document doc){
+        System.out.println("saving to " + doc.getFile().getAbsolutePath());
+        FileManager.save(doc.getPathway(), doc.getFile().getAbsolutePath());
+        doc.setChanged(false);
+    }
+
+    private void save_As(Document doc) {
+
         FileDialog fileDialog = new FileDialog(new Frame(), "Save", FileDialog.SAVE);
         fileDialog.setFilenameFilter(new FilenameFilter() {
             public boolean accept(File dir, String name) {
@@ -83,12 +93,34 @@ public class FileHandler
 
         if (fileDialog.getFile() != null && !fileDialog.getFile().isEmpty() && fileDialog.getDirectory() != null
                 && !fileDialog.getDirectory().isEmpty()) {
-            FileManager.save(action.getDocument().getPathway(), fileDialog.getDirectory() + fileDialog.getFile());
+            String fileName = fileDialog.getDirectory() + fileDialog.getFile();
+            FileManager.save(doc.getPathway(), fileName);
+            doc.setFile(new File(fileName));
+            doc.setChanged(false);
+            doc.getViewer().refresh();
+        }
+    }
+
+    private void processSaveAsFile(Action action) {
+
+        save_As(action.getDocument());
 
 //            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
 //            action.getDocument().setChanged(false);
-        }
     }
+
+    private void processSaveFile(Action action) {
+
+        Document doc = action.getDocument();
+        if(doc.isSavedAtLeastOnce())
+            save(doc);
+        else
+            save_As(doc);
+
+//            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
+//            action.getDocument().setChanged(false);
+    }
+
 
     private void processOpenFile(Action action) {
         FileDialog fileDialog = new FileDialog(new Frame(), "Open", FileDialog.LOAD);
@@ -118,6 +150,7 @@ public class FileHandler
 
             doc.setPathway(pathway);
             new DocumentState(doc);
+            doc.setSavedAtLeastOnce(true);
             doc.getViewer();
             doc.refresh();
 
@@ -149,6 +182,7 @@ public class FileHandler
 //            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
             doc.setPathway(pathway);
             new DocumentState(doc);
+            doc.setSavedAtLeastOnce(false);
             doc.getViewer();
             doc.refresh();
         }
@@ -201,6 +235,7 @@ public class FileHandler
             newDocument.getFrame();
 //            newDocument.getTabs();
             EditorApplication.viewer = newDocument.getViewer();
+            newDocument.setSavedAtLeastOnce(false);
             newDocument.refresh();
 
 //        }

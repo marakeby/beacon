@@ -42,6 +42,18 @@ public class DocumentTab
         return doc;
     }
 
+    public void refresh(){
+        this.titleLabel.setText(doc.getFile().getName());
+        setHighlightTab(doc.isChanged());
+    }
+    public void setHighlightTab(boolean state){
+        if (state)
+            this.titleLabel.setForeground(Color.red);
+        else
+            this.titleLabel.setForeground(Color.black);
+
+
+    }
 
     public void setFontStyle(int style)
     {

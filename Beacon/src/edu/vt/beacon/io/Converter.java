@@ -172,7 +172,8 @@ public class Converter {
             //Third we process the activity nodes and logical operators
             for (Layer layer : map.getLayers())
                 for (AbstractGlyph glyph : layer.getGlyphs())
-                    if (glyph instanceof AbstractNode && !(glyph instanceof Compartment || glyph instanceof Submap)) {
+                    if (glyph instanceof AbstractNode && !(glyph instanceof Compartment || glyph instanceof Submap || glyph instanceof Terminal)) {
+//                    if (glyph instanceof AbstractNode && !(glyph instanceof Compartment || glyph instanceof Submap)) {
                         Glyph sbgnGlyph = convert((AbstractNode) glyph);
                         libSbgnMapIdToObjects.put(sbgnGlyph.getId(), sbgnGlyph);
                         sbgnMap.getGlyph().add(sbgnGlyph);
@@ -246,7 +247,7 @@ public class Converter {
         }
 
         if (node instanceof Terminal)
-            if (((Terminal) node).getParent() !=null)
+//            if (((Terminal) node).getParent() !=null)
                 glyph.setTagRef(libSbgnMapIdToObjects.get(((Terminal) node).getParent().getTerminalToTagMapping().get(node).getId()));
 
         if (node instanceof Compartment)

@@ -78,11 +78,35 @@ public class DocumentViewer
         this.projectTabs.remove(p.getCanvas().getScrollPane());
     }
 
+    public Boolean setSelectedProject(String path)
+    {
+
+        for (Document doc : this.projects)
+        {
+            String pp= doc.getFile().getAbsolutePath();
+            System.out.print("we have project opend"+pp);
+            if (pp.equals(path))
+            {
+                setSelectedProject(doc);
+                return true;
+            }
+        }
+
+       return false;
+    }
+
     public void setSelectedProject(Document p)
     {
-        int index= this.projects.indexOf(p);
-        System.out.println("selecting index " + index + " " + p.getFile().toString());
-        this.projectTabs.setSelectedIndex(index);
+        for (int i =0; i<projects.size(); i++){
+            DocumentTab tab = (DocumentTab)this.projectTabs.getTabComponentAt(i);
+            if (tab.getDocument().equals(p))
+                projectTabs.setSelectedIndex(i);
+        }
+//        int index= this.projects.indexOf(p);
+//        System.out.println("selecting index " + index + " " + p.getFile().toString());
+//        this.projectTabs.setSelectedIndex(index);
+
+
     }
 
     private class TabListener

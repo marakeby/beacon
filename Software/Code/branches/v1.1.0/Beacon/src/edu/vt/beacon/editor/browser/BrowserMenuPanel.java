@@ -128,6 +128,12 @@ public class BrowserMenuPanel extends JPanel
     // FIXME complete method
     public void refresh() {
 
+//        MapNode selecetd = (MapNode) mapTree_.getLastSelectedPathComponent();
+        int[] selected_rows = mapTree_.getSelectionRows();
+        int selected = 0;
+        if (selected_rows !=null && selected_rows.length >0)
+            selected = selected_rows[0];
+
         MapNode rootNode = new MapNode(document_.getPathway().getMap());
 
         ArrayList<MapNode> rootNodes = new ArrayList<MapNode>();
@@ -148,7 +154,11 @@ public class BrowserMenuPanel extends JPanel
         }
 
         mapTree_.setModel(new DefaultTreeModel(rootNode));
-        mapTree_.setSelectionPath(new TreePath(rootNode.getPath()));
+        if (selected >0)
+            mapTree_.setSelectionInterval(selected, selected);
+        else
+             mapTree_.setSelectionPath(new TreePath(rootNode.getPath()));
+
         revalidate();
         repaint();
     }

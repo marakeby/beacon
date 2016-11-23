@@ -117,6 +117,8 @@ public class FileHandler
         else
             save_As(doc);
 
+        doc.setSavedAtLeastOnce(true);
+
 //            action.getDocument().setFile(new File(fileDialog.getDirectory() + fileDialog.getFile()));
 //            action.getDocument().setChanged(false);
     }

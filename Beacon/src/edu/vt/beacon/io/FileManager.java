@@ -17,7 +17,7 @@ import java.util.Properties;
 import org.freehep.graphics2d.VectorGraphics;
 import org.freehep.graphicsio.pdf.PDFGraphics2D;
 import org.freehep.graphicsio.ps.PSGraphics2D;
-import org.freehep.graphicsio.pdf.PDFGraphics2D;
+
 /**
  * Created by ppws on 2/21/16.
  */

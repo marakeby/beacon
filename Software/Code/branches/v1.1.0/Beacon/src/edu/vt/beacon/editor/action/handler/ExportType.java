@@ -8,7 +8,9 @@ public enum ExportType {
     bmp          ("BMP  (*.bmp)"),
     gif          ("GIF  (*.gif)"),
     jpeg         ("JPEG (*.jpeg)"),
-    png          ("PNG  (*.png)");
+    png          ("PNG  (*.png)"),
+    pdf          ("PDF  (*.pdf)"),
+    eps          ("PS  (*.eps)");
 
     private String text;
 

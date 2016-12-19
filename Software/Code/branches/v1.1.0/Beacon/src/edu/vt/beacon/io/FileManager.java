@@ -12,7 +12,12 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-
+import java.io.FileNotFoundException;
+import java.util.Properties;
+import org.freehep.graphics2d.VectorGraphics;
+import org.freehep.graphicsio.pdf.PDFGraphics2D;
+import org.freehep.graphicsio.ps.PSGraphics2D;
+import org.freehep.graphicsio.pdf.PDFGraphics2D;
 /**
  * Created by ppws on 2/21/16.
  */
@@ -68,10 +73,71 @@ public class FileManager {
         }
     }
 
+    public static boolean export_vector(Document document, String filename, ExportType exportType) {
+        if (document == null || document.getPathway() == null || filename == null || filename.trim().isEmpty()
+                || exportType == null)
+            return false;
+        File file = new File(filename + "." + exportType.name());
+        float zoomFactor = document.getCanvas().getZoomFactor();
+
+
+//
+//
+//        int h = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getWidth() ) + 100;
+//        int w = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getHeight()) + 100;
+
+
+//        File out = new File("YourPanel.pdf");
+        VectorGraphics graphics = null;
+        try {
+
+            if(exportType == ExportType.pdf) {
+                document.getCanvas().setZoomFactor(1);
+                int h = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getWidth() ) + 100;
+                int w = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getHeight()) + 100;
+
+                Properties p = new Properties();
+                p.setProperty("PageSize", "A4");
+                graphics = new PDFGraphics2D(file, new Dimension(h, w));
+                graphics.setProperties(p);
+
+                graphics.startExport();
+                document.getCanvas().print(graphics);
+                graphics.endExport();
+                document.getCanvas().setZoomFactor(zoomFactor);
+
+            }
+            else if(exportType == ExportType.eps)
+            {
+                int h = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getWidth() * zoomFactor) + 100;
+                int w = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getHeight() * zoomFactor) + 100;
+                Properties p = new Properties();
+                p.setProperty("PageSize","A4");
+                graphics = new PSGraphics2D(file, new Dimension(h,w));
+                graphics.setProperties(p);
+                graphics.startExport();
+                document.getCanvas().print(graphics);
+                graphics.endExport();
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+
+
+
+        return true;
+
+    }
     public static boolean export(Document document, String filename, ExportType exportType) {
         if (document == null || document.getPathway() == null || filename == null || filename.trim().isEmpty()
                 || exportType == null)
             return false;
+
+        if (exportType == ExportType.pdf || exportType == ExportType.eps)
+            return export_vector(document, filename, exportType);
 
         File file = new File(filename + "." + exportType.name());
         float zoomFactor = document.getCanvas().getZoomFactor();

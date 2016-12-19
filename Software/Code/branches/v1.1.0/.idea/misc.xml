@@ -17,6 +17,23 @@
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="branchUrls">
+                <list>
+                  <option value="svn://expresso.cs.vt.edu/Beacon/Software/Code/branches" />
+                  <option value="svn://expresso.cs.vt.edu/Beacon/Software/Code/tags" />
+                </list>
+              </option>
+              <option name="trunkUrl" value="svn://expresso.cs.vt.edu/Beacon/Software/Code/trunk" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="mySupportsUserInfoFilter" value="true" />
   </component>
 </project>

@@ -198,6 +198,8 @@ public class FileHandler
         fileChooser.addChoosableFileFilter(new FileTypeFilter(ExportType.gif.name(), ExportType.gif.toString()));
         fileChooser.addChoosableFileFilter(new FileTypeFilter(ExportType.jpeg.name(), ExportType.jpeg.toString()));
         fileChooser.addChoosableFileFilter(new FileTypeFilter(ExportType.png.name(), ExportType.png.toString()));
+        fileChooser.addChoosableFileFilter(new FileTypeFilter(ExportType.pdf.name(), ExportType.pdf.toString()));
+        fileChooser.addChoosableFileFilter(new FileTypeFilter(ExportType.eps.name(), ExportType.eps.toString()));
 
         int returnVal = fileChooser.showSaveDialog(null);
 

@@ -1063,12 +1063,17 @@ public class Converter {
         List<Arc.Next> nexts = sbgn_arc.getNext();
         float x, y;
 
+        if (sbgn_arc.getStart() !=null) {
             x = sbgn_arc.getStart().getX();
             y = sbgn_arc.getStart().getY();
-            arc.getPoints().set(0,  new Point2D.Float(x,y));
+            arc.getPoints().set(0, new Point2D.Float(x, y));
+        }
+
+        if (sbgn_arc.getEnd() !=null) {
             x = sbgn_arc.getEnd().getX();
             y = sbgn_arc.getEnd().getY();
-            arc.getPoints().set(1, new Point2D.Float(x,y));
+            arc.getPoints().set(1, new Point2D.Float(x, y));
+        }
 
 
 

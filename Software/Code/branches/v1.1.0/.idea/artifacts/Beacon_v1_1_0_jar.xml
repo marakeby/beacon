@@ -6,6 +6,25 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/org.sbgn.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/AppleJavaExtensions.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/jsch-0.1.50.jar" path-in-jar="/" />
+      <element id="library" level="project" name="freehep-export-2.1.1" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-export-2.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphics2d-2.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-2.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-emf-2.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-java-2.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-pdf-2.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-ps-2.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-svg-2.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-swf-2.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-tests-2.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-io-2.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-swing-2.0.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-util-2.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-xml-2.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/jas-plotter-2.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/jdom-1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/junit-3.8.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/openide-lookup-1.9-patched-1.0.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

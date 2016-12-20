@@ -78,8 +78,14 @@ public class RenderingManager {
 
         int increment = Math.round(CanvasGridManager.getGridSize());
 
-        int canvasWidth = document_.getCanvas().getWidth();
-        int canvasHeight = document_.getCanvas().getHeight();
+        float zoomFactor = document_.getCanvas().getZoomFactor();
+
+//        int canvasWidth = document_.getCanvas().getWidth();
+//        int canvasHeight = document_.getCanvas().getHeight();
+
+//        (int) Math.ceil(
+        int canvasWidth = (int) Math.ceil(document_.getCanvas().getWidth()/zoomFactor);
+        int canvasHeight = (int) Math.ceil(document_.getCanvas().getHeight()/zoomFactor);
 
         // for each horizontal grid line
         for (int i = 0; i < canvasHeight; i += increment) {

@@ -93,12 +93,14 @@ public class FileManager {
 
             if(exportType == ExportType.pdf) {
                 document.getCanvas().setZoomFactor(1);
-                int h = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getWidth() ) + 100;
-                int w = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getHeight()) + 100;
+//                int w = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getWidth() ) + 100;
+//                int h = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getHeight()) + 100;
+
 
                 Properties p = new Properties();
                 p.setProperty("PageSize", "A4");
-                graphics = new PDFGraphics2D(file, new Dimension(h, w));
+//                graphics = new PDFGraphics2D(file, new Dimension(w, h));
+                graphics = new PDFGraphics2D(file,  document.getCanvas());
                 graphics.setProperties(p);
 
                 graphics.startExport();
@@ -109,11 +111,14 @@ public class FileManager {
             }
             else if(exportType == ExportType.eps)
             {
-                int h = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getWidth() * zoomFactor) + 100;
-                int w = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getHeight() * zoomFactor) + 100;
+//                int h = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getWidth() ) + 100;
+//                int w = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getHeight() ) + 100;
+
+
                 Properties p = new Properties();
                 p.setProperty("PageSize","A4");
-                graphics = new PSGraphics2D(file, new Dimension(h,w));
+//                graphics = new PSGraphics2D(file, new Dimension(w,h));
+                graphics = new PSGraphics2D(file, document.getCanvas());
                 graphics.setProperties(p);
                 graphics.startExport();
                 document.getCanvas().print(graphics);

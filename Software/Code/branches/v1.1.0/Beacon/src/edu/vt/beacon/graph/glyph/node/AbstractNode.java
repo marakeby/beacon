@@ -94,6 +94,16 @@ public abstract class AbstractNode extends AbstractGlyph implements Orientable {
 
         super.delete();
     }
+    public ArrayList<AbstractArc> getInputArcs(){
+        ArrayList<AbstractArc> arcs = new ArrayList<AbstractArc>();
+        for(Port p: this.getPorts())
+        {
+            for(AbstractArc arc : p.getArcs())
+                if (arc.getTarget().equals(this))
+                    arcs.add(arc);
+        }
+        return arcs;
+    }
 
     public Compartment getParentCompartment() {
         return parentCompartment;

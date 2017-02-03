@@ -5,7 +5,7 @@ import edu.vt.beacon.graph.AbstractEntity;
 import java.awt.geom.Rectangle2D;
 
 public class Bound extends AbstractEntity {
-    private static float size_ = 7.0F;
+    private static float size_ = 10.0F;
 
     private BoundType type_;
 

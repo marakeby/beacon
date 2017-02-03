@@ -39,7 +39,18 @@ public abstract class AbstractEntity
     {
         return intersects(point);
     }
-    
+
+    // use this to find if a point is close enough to the center of this Entity
+    public boolean closeTo(Point2D.Float point, float offset)
+    {
+        System.out.println(this.boundary_);
+        Rectangle2D.Float rec = this.boundary_;
+        Point2D.Float center = new Point2D.Float((float)rec.getCenterX(),(float) rec.getCenterY());
+
+        return ( center.distance(point) <= offset) ;
+
+    }
+
     // TODO document method
     public Rectangle2D.Float getBoundary()
     {
@@ -108,7 +119,7 @@ public abstract class AbstractEntity
     {
         return shape_.contains(point);
     }
-    
+
     // TODO document method
     public void move(float deltaX, float deltaY)
     {

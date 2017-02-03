@@ -10,7 +10,7 @@ import edu.vt.beacon.graph.glyph.node.AbstractNode;
 
 public class Port extends AbstractEntity
 {
-    private static float size_ = 7.0F;
+    private static float size_ = 10.0F;
     
     private AbstractNode parent_;
     

@@ -52,15 +52,25 @@ public abstract class AbstractGlyph extends AbstractEntity
     public boolean contains(Point2D.Float point)
     {
         if (isSelected()) {
-
             for (Bound bound : bounds_)
                 if (bound.contains(point))
-
                     return true;
         }
 
         return super.contains(point);
     }
+
+
+    public boolean closeTo(Point2D.Float point, float offest)
+    {
+        if (isSelected()) {
+            for (Bound bound : bounds_)
+                if (bound.closeTo(point, offest))
+                    return true;
+        }
+        return false;
+    }
+
 
     // TODO document method
     public AbstractGlyph copy()

@@ -229,6 +229,74 @@ public class CanvasMouseListener extends MouseAdapter {
         return null;
     }
 
+    public ArrayList<AbstractGlyph> getActiveGlyphs(){
+
+        ArrayList<AbstractGlyph> allGlyphs = new ArrayList<AbstractGlyph>();
+        Layer layer;
+        Map map = document_.getBrowserMenu().getSelectedMap();
+
+        for (int i = map.getLayerCount() - 1; i >= 0; i--) {
+
+            layer = map.getLayerAt(i);
+
+            if (layer.isActive()) {
+
+                for (int j = layer.getGlyphCount() - 1; j >= 0; j--) {
+                    AbstractGlyph glyph = layer.getGlyphAt(j);
+                    allGlyphs.add(glyph);
+                }
+            }
+        }
+        return allGlyphs;
+
+    }
+
+    public ArrayList<AbstractNode> getActiveNodes(){
+
+        ArrayList<AbstractNode> allGlyphs = new ArrayList<AbstractNode>();
+        Layer layer;
+        Map map = document_.getBrowserMenu().getSelectedMap();
+
+        for (int i = map.getLayerCount() - 1; i >= 0; i--) {
+
+            layer = map.getLayerAt(i);
+
+            if (layer.isActive()) {
+
+                for (int j = layer.getGlyphCount() - 1; j >= 0; j--) {
+                    AbstractGlyph glyph = layer.getGlyphAt(j);
+                    if (glyph instanceof AbstractNode){
+                        allGlyphs.add((AbstractNode)glyph);
+                    }
+
+                }
+            }
+        }
+        return allGlyphs;
+
+    }
+
+    public Port getPortAt( Point2D.Float point, AbstractEntity ignoredGlyph) {
+
+        ArrayList<AbstractNode> nodes = getActiveNodes();
+
+        for (AbstractNode node : nodes) {
+
+            if (node == null ||  node.equals(ignoredGlyph))
+                continue;
+
+            for (int k = node.getPortCount() - 1; k >= 0; k--)
+                if (node.getPortAt(k).closeTo(point, 20.0F))
+                    return node.getPortAt(k);
+
+        }
+
+        return null;
+
+    }
+
+
+
     // FIXME complete method
     private void initializeGlyph(AbstractGlyph glyph) {
         glyph.setBackgroundColor(document_.getColor("glyph.background"));
@@ -605,8 +673,14 @@ public class CanvasMouseListener extends MouseAdapter {
     // TODO document method
     private void processPortChange() {
 //        AbstractGlyph glyph = getGlyphAt(currentPoint_, glyph_);
-        AbstractGlyph glyph = getNodeAt(currentPoint_, glyph_);
-        Port port = getPortAt(glyph, currentPoint_);
+
+//        AbstractGlyph glyph = getNodeAt(currentPoint_, glyph_, 10.0F);
+//        if (glyph == null)
+//            return;
+//        System.out.println(currentPoint_.toString() + glyph.toString());
+
+//        Port port = getPortAt(glyph, currentPoint_);
+        Port port = getPortAt(currentPoint_, glyph_);
 
         AbstractArc arc = (AbstractArc) glyph_;
 

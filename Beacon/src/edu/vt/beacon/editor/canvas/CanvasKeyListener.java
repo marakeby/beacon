@@ -10,6 +10,8 @@ import edu.vt.beacon.graph.glyph.arc.AbstractArc;
 import edu.vt.beacon.graph.glyph.node.AbstractNode;
 import edu.vt.beacon.graph.glyph.node.auxiliary.Port;
 import edu.vt.beacon.graph.glyph.node.submap.Submap;
+import edu.vt.beacon.graph.glyph.node.submap.Tag;
+import edu.vt.beacon.graph.glyph.node.submap.Terminal;
 import edu.vt.beacon.layer.Layer;
 
 import java.awt.event.KeyAdapter;
@@ -81,9 +83,21 @@ public class CanvasKeyListener extends KeyAdapter {
             document_.getPathway().removeGlyphs(selectedGlyphs, document_.getBrowserMenu().getSelectedMap());
 
             if (selectedGlyphs != null)
-                for (AbstractGlyph glyph : selectedGlyphs)
+                for (AbstractGlyph glyph : selectedGlyphs) {
                     if (glyph instanceof Submap)
                         document_.getBrowserMenu().removeSubmap((Submap) glyph);
+                    if (glyph instanceof Terminal){
+                        Terminal t = (Terminal)glyph;
+                        if (t.getParent() !=null)
+                            t.getParent().removeTerminal(t);
+                    }
+                    if (glyph instanceof Tag){
+                        Tag t = (Tag)glyph;
+                        if (t.getParent() !=null)
+                            t.getParent().removeTag(t);
+                    }
+
+                }
 
             document_.getCanvas().repaint();
         }

@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import static java.util.Collections.singleton;
+
 public class Submap extends AbstractNode {
     private Map map_;
     private Set<Terminal> terminals;
@@ -213,6 +215,30 @@ public class Submap extends AbstractNode {
 
         return true;
     }
+
+    public void removeTerminal(Terminal terminal){
+
+        terminals.remove(terminal);
+        Port p = terminalToPortMapping.get(terminal);
+        ports_.remove(p);
+        terminalToPortMapping.remove(terminal);
+
+        Tag t = terminalToTagMapping.get(terminal);
+        t.getLayer().remove(t);
+        tags.remove(t);
+
+        terminalToTagMapping.remove(terminal);
+
+        tagToTerminalMapping.values().removeAll(singleton(terminal));
+
+    }
+
+    public void removeTag(Tag tag){
+        Terminal terminal = tagToTerminalMapping.get(tag);
+        removeTerminal(terminal);
+
+    }
+
 
     private void addTerminal(Terminal terminal) {
         if (terminal == null || terminals.contains(terminal))

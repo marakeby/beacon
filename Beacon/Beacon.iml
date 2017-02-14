@@ -44,5 +44,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="freehep-export-2.1.1" level="project" />
+    <orderEntry type="library" name="jsbml-tidy-1.2" level="project" />
+    <orderEntry type="library" name="jsbml-1.2-with-dependencies" level="project" />
   </component>
 </module>

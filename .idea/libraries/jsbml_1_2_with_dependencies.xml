@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jsbml-1.2-with-dependencies">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/jsbml-1.2-with-dependencies.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/jsbml-1.2-with-dependencies.jar!/" />
+    </SOURCES>
+  </library>
+</component>

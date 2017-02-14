@@ -59,7 +59,7 @@ public class DocumentViewer
         return this.projectTabs;
     }
 
-    public void removeProject(Document p)
+    public boolean removeProject(Document p)
     {
         if (p.isChanged())
         {
@@ -69,14 +69,30 @@ public class DocumentViewer
                     "Confirm Close",
                     0, 2);
             if (result != 0) {
-                return;
+                return false;
             }
         }
-
-//        for(int i =0; i<)
         this.projects.remove(p);
-
         this.projectTabs.remove(p.getCanvas().getScrollPane());
+        return true;
+    }
+
+
+    public boolean isAllProjectsSaved(){
+
+        int count =  this.getProjectTabs().getTabCount();
+
+        for(int i =0; i< count; i++)
+        {
+            DocumentTab tab = (DocumentTab)getProjectTabs().getTabComponentAt(i);
+            Document currentDoc = tab.getDocument();
+            if(currentDoc != null){
+                if (currentDoc.isChanged())
+                    return false ;
+            }
+
+        }
+        return true;
     }
 
     public void refresh(){

@@ -46,6 +46,7 @@ public class Frame extends JFrame {
         setDocument( document);
         buildContentPane();
 
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setVisible(true);
 
         hSplitPane_.setDividerLocation(document.getDouble("frame.hSplit"));
@@ -54,6 +55,19 @@ public class Frame extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                Frame frame= (Frame)e.getSource();
+                if (frame !=null){
+
+                    if (!frame.document_.getViewer().isAllProjectsSaved()) {
+                        int result = JOptionPane.showConfirmDialog(
+                                frame.document_.getCanvas(), "Some projects have not been saved. Are you sure you want to close the Beacon Editor?",
+                                "Confirm Close",
+                                0, 2);
+                        if (result != 0)
+                            return;
+                    }
+                }
+
                 System.exit(0);
             }
         });

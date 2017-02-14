@@ -337,7 +337,7 @@ public class CanvasPopupMenu extends JPopupMenu {
         Terminal terminal = new Terminal(submap);
         initializeGlyph(terminal);
 
-        System.out.println("currentLocation.x " + currentLocation.x + "currentLocation.y "+ currentLocation.y);
+//        System.out.println("currentLocation.x " + currentLocation.x + "currentLocation.y "+ currentLocation.y);
         if (Math.abs(currentLocation.x - submap.getMinX()) < submap.getLineWidth()) {
 
             terminal.setOrientation(OrientationType.RIGHT);
@@ -358,7 +358,7 @@ public class CanvasPopupMenu extends JPopupMenu {
             terminal.setOrientation(OrientationType.UP);
             float x = currentLocation.x - terminal.getWidth() / 2;
             float y = submap.getMaxY() - terminal.getHeight();
-            System.out.println("x = "+ x + "y= "+ y);
+//            System.out.println("x = "+ x + "y= "+ y);
             terminal.moveIntoSubmap(x,y );
 
 
@@ -368,7 +368,7 @@ public class CanvasPopupMenu extends JPopupMenu {
             terminal.setOrientation(OrientationType.UP);
             float x = submap.getMaxX() - terminal.getWidth() ;
             float y = submap.getMaxY() - terminal.getHeight();
-            System.out.println("else, x = "+ x + "y= "+ y);
+//            System.out.println("else, x = "+ x + "y= "+ y);
             terminal.moveIntoSubmap(x,y );
         }
 

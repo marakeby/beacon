@@ -47,7 +47,7 @@ public class EditMenu extends AbstractMenu
     }
     public void registerActions(Document doc)
     {
-        System.out.println("register Edit menu doc "+ doc.getFile().getAbsolutePath());
+//        System.out.println("register Edit menu doc "+ doc.getFile().getAbsolutePath());
         redoItem_.removeAll();
         undoItem_.removeAll();
         alignmentItem_.removeAll();

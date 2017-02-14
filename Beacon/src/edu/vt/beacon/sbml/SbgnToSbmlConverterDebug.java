@@ -39,11 +39,11 @@ public class SbgnToSbmlConverterDebug {
     public SBMLDocument getSbml(){
 
         ArrayList<AbstractGlyph> allActivites = getAllActivites(pathway);
-        System.out.println(allActivites.size() + " activities found");
+//        System.out.println(allActivites.size() + " activities found");
         addSpecies(allActivites);
 
         ArrayList<AbstractArc> allArcs = getAllArcs(pathway);
-        System.out.println(allArcs.size()+ " arcs found");
+//        System.out.println(allArcs.size()+ " arcs found");
         addTansitions(allArcs);
         return sbmlDoc;
     }
@@ -141,7 +141,7 @@ public class SbgnToSbmlConverterDebug {
         //get the target
         String target_id = arc.getTarget().getLabel().getText();
         target_id= nomalizeName(target_id);
-        System.out.println(target_id);
+//        System.out.println(target_id);
         Output o = new Output( qualModel.getQualitativeSpecies(target_id), OutputTransitionEffect.assignmentLevel );
         tr.addOutput(o);
 

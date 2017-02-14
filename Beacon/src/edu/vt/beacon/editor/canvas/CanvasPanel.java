@@ -45,7 +45,7 @@ public class CanvasPanel extends JPanel
     }
     public void setDocument(Document doc)
     {
-        System.out.println("canvas setDoc");
+//        System.out.println("canvas setDoc");
         document_ = doc;
 //        canvasScroll_ = new PlatformScrollPane(this);
         canvasScroll_.setFocusable(true);

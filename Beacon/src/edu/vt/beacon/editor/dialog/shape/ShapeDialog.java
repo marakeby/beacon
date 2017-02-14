@@ -649,7 +649,7 @@ public class ShapeDialog extends AbstractDialog implements ActionListener,
     @Override
     public void focusLost(FocusEvent e) {
         if (e.getSource() instanceof EditingTextField) {
-            System.out.println(((EditingTextField) e.getSource()).getName());
+//            System.out.println(((EditingTextField) e.getSource()).getName());
             String name = ((EditingTextField) e.getSource()).getName();
 
             if (name.equals(NAME_LINE_WIDTH)) {

@@ -52,7 +52,7 @@ public class FileMenu extends AbstractMenu {
     }
     public void registerActions(Document doc)
     {
-        System.out.println("register doc "+ doc.getFile().getAbsolutePath());
+//        System.out.println("register doc "+ doc.getFile().getAbsolutePath());
         propertiesItem.setAction(document_.getAction(
                 ActionType.FILE_PROPERTIES));
 

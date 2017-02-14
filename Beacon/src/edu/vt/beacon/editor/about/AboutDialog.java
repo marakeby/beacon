@@ -45,10 +45,10 @@ public class AboutDialog extends AbstractDialog {
 
 	public AboutDialog(Document document) {
 		super(document, document.getFrame());
-		System.out.println("Working Directory = " +
-				System.getProperty("user.dir"));
+//		System.out.println("Working Directory = " +
+//				System.getProperty("user.dir"));
 
-		System.out.println(AboutDialog.class.getPackage().getName());
+//		System.out.println(AboutDialog.class.getPackage().getName());
 		setModalityType(ModalityType.DOCUMENT_MODAL);
 	    this.document_ = document;
 	    add(createContentPanel());		
@@ -196,7 +196,7 @@ public class AboutDialog extends AbstractDialog {
 	}
 	
 	private Component createOkButtonPanel() {
-		System.out.println("button");
+//		System.out.println("button");
 		JComponent panel = new JPanel();
 		((FlowLayout)panel.getLayout()).setAlignment(FlowLayout.RIGHT);
 		JButton okButton = new JButton(LABEL_BUTTON_OK);

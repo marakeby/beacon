@@ -43,7 +43,7 @@ public abstract class AbstractEntity
     // use this to find if a point is close enough to the center of this Entity
     public boolean closeTo(Point2D.Float point, float offset)
     {
-        System.out.println(this.boundary_);
+//        System.out.println(this.boundary_);
         Rectangle2D.Float rec = this.boundary_;
         Point2D.Float center = new Point2D.Float((float)rec.getCenterX(),(float) rec.getCenterY());
 

@@ -40,9 +40,9 @@ public enum IconType {
 
     // TODO document constructor
     private IconType(String fileName) {
-        System.out.println(
-        Thread.currentThread().getContextClassLoader().getResource(
-                getIconDirectoryPath()));
+//        System.out.println(
+//        Thread.currentThread().getContextClassLoader().getResource(
+//                getIconDirectoryPath()));
         imageIcon_ = new ImageIcon(Thread.currentThread().getContextClassLoader().getResource(
                         getIconDirectoryPath() + fileName));
     }

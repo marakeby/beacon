@@ -68,7 +68,7 @@ public class DocumentTab
 
         public void actionPerformed(ActionEvent ae)
         {
-            System.out.println("removing project " + this.document.getFile());
+//            System.out.println("removing project " + this.document.getFile());
             this.document.getViewer().removeProject(this.document);
         }
     }

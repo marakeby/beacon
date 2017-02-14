@@ -36,7 +36,7 @@ public class DocumentViewer
 
     public void addProject(Document p)
     {
-        System.out.println("number of projects " + this.projects.size());
+//        System.out.println("number of projects " + this.projects.size());
         addProject(this.projects.size(), p);
     }
 
@@ -120,7 +120,7 @@ public class DocumentViewer
         for (Document doc : this.projects)
         {
             String pp= doc.getFile().getAbsolutePath();
-            System.out.println("we have project opend "+pp);
+//            System.out.println("we have project opend "+pp);
             if (pp.equals(path))
             {
                 setSelectedProject(doc);
@@ -163,7 +163,7 @@ public class DocumentViewer
                 if (tab !=null) {
                     Document doc = tab.getDocument();
                     if (doc !=null) {
-                        System.out.println("tab change, index= " + index + ", file = " + doc.getFile().getAbsolutePath() + "empty? " + doc.isEmpty() + "change? " + doc.isChanged());
+//                        System.out.println("tab change, index= " + index + ", file = " + doc.getFile().getAbsolutePath() + "empty? " + doc.isEmpty() + "change? " + doc.isChanged());
                         doc.refresh();
                     }
                 }

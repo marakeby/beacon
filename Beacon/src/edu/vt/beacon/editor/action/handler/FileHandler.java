@@ -154,7 +154,7 @@ public class FileHandler
 //            action.getDocument().refresh();
 //            action.getDocument().getFrame()
             String path = fileDialog.getDirectory() + fileDialog.getFile();
-            System.out.print("trying to open file " + path);
+//            System.out.print("trying to open file " + path);
             if (action.getDocument().getViewer().setSelectedProject(path))
                 return;
 
@@ -187,7 +187,7 @@ public class FileHandler
 //            action.getDocument().setPathway(pathway);
 //            action.getDocument().refresh();
             String path = fileDialog.getDirectory() + fileDialog.getFile();
-            System.out.print("trying to open file " + path);
+//            System.out.print("trying to open file " + path);
             if (action.getDocument().getViewer().setSelectedProject(path))
                 return;
 
@@ -237,7 +237,7 @@ public class FileHandler
             fileNo_++;
 
 //        if (document ==null) {
-            System.out.println("creating file "+fileName);
+//            System.out.println("creating file "+fileName);
             Document newDocument = new Document(new File(fileName));
 
             Map map = newDocument.getPathway().getMap();

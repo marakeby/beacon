@@ -36,11 +36,11 @@ public class SbgnToSbmlConverter_backup {
     public SBMLDocument getSbml(){
 
         ArrayList<AbstractGlyph> allActivites = getAllActivites(pathway);
-        System.out.println(allActivites.size() + " activities found");
+//        System.out.println(allActivites.size() + " activities found");
         addSpecies(allActivites);
 
         ArrayList<AbstractArc> allArcs = getAllArcs(pathway);
-        System.out.println(allArcs.size()+ " arcs found");
+//        System.out.println(allArcs.size()+ " arcs found");
         addTansitions(allArcs);
         return sbmlDoc;
 

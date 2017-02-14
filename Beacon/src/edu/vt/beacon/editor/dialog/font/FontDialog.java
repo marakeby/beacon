@@ -488,9 +488,9 @@ public final class FontDialog extends JDialog
 
         @Override
         public void mousePressed(MouseEvent me) {
-            System.out.println("out-ok");
+//            System.out.println("out-ok");
             if (me.getSource().equals(approveButton)) {
-                System.out.println("ok");
+//                System.out.println("ok");
                 FormatFont_.dispose();
             }
         }

@@ -57,22 +57,25 @@ public class Frame extends JFrame {
             public void windowClosing(WindowEvent e) {
                 Frame frame= (Frame)e.getSource();
                 if (frame !=null){
-
-                    if (!frame.document_.getViewer().isAllProjectsSaved()) {
-                        int result = JOptionPane.showConfirmDialog(
-                                frame.document_.getCanvas(), "Some projects have not been saved. Are you sure you want to close the Beacon Editor?",
-                                "Confirm Close",
-                                0, 2);
-                        if (result != 0)
-                            return;
-                    }
+                    frame.quit();
                 }
 
-                System.exit(0);
             }
         });
     }
 
+    public void quit(){
+        if (!this.document_.getViewer().isAllProjectsSaved()) {
+            int result = JOptionPane.showConfirmDialog(
+                    this.document_.getCanvas(), "Some projects have not been saved. Are you sure you want to close the Beacon Editor?",
+                    "Confirm Close",
+                    0, 2);
+            if (result != 0)
+                return;
+        }
+        System.exit(0);
+
+    }
     // FIXME complete method
     private void buildContentPane() {
         vSplitPane_ = new ClearSplitPane(JSplitPane.VERTICAL_SPLIT);

@@ -62,11 +62,22 @@ public class FileHandler
             case FILE_BACK_COMP_IMPORT:
                 processBackwardCompatibilityImport(action);
                 break;
+            case FILE_QUIT:
+                quit(action);
+                break;
             default:
                 throw new IllegalStateException("missing action type case");
         }
     }
 
+    private void quit(Action action){
+        Document doc = action.getDocument();
+        if (doc !=null)
+        {
+            if(doc.getFrame() !=null)
+                doc.getFrame().quit();
+        }
+    }
     private void showPreferencesDialog(Action action) {
 
         PreferencesDialog dialog = new PreferencesDialog(action.getDocument().getCanvas(), action.getDocument());
@@ -74,7 +85,7 @@ public class FileHandler
     }
 
     private void save(Document doc){
-        System.out.println("saving to " + doc.getFile().getAbsolutePath());
+//        System.out.println("saving to " + doc.getFile().getAbsolutePath());
         FileManager.save(doc.getPathway(), doc.getFile().getAbsolutePath());
         doc.setChanged(false);
     }

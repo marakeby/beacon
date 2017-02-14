@@ -20,6 +20,7 @@ public enum ActionType
     FILE_SAVE_AS 	          ("Save As..."),
     FILE_EXPORT	          ("Export..."),
     FILE_BACK_COMP_IMPORT ("Import From Previous Version..."),
+    FILE_QUIT ("Quit"),
 
 	VIEW_GRID_LINES 	("Grid Lines..."),
 	VIEW_ZOOM_IN  		("Zoom In..."),

@@ -17,6 +17,7 @@ public class FileMenu extends AbstractMenu {
     PlatformMenuItem openItem;
     PlatformMenuItem exportItem;
     PlatformMenuItem compImportItem;
+    PlatformMenuItem quitItem;
 
 
     // FIXME complete constructor
@@ -36,6 +37,7 @@ public class FileMenu extends AbstractMenu {
         openItem = new PlatformMenuItem();
         exportItem = new PlatformMenuItem();
         compImportItem = new PlatformMenuItem();
+        quitItem = new PlatformMenuItem();
 
         add(newItem);
         add(openItem);
@@ -45,6 +47,7 @@ public class FileMenu extends AbstractMenu {
         add(compImportItem);
         add(propertiesItem);
         add(preferencesItem);
+        add(quitItem);
 
     }
     public void registerActions(Document doc)
@@ -73,5 +76,8 @@ public class FileMenu extends AbstractMenu {
 
         compImportItem.setAction(document_.getAction(
                 ActionType.FILE_BACK_COMP_IMPORT));
+
+        quitItem.setAction(document_.getAction(
+                ActionType.FILE_QUIT));
     }
 }

@@ -167,7 +167,7 @@ public class AboutDialog extends AbstractDialog {
 			  System.out.println(e);
 		  }
 		JTextArea textArea = new JTextArea(s);
-
+		textArea.setEditable(false);
 		JScrollPane scrollPane = new JScrollPane(textArea);  
 		textArea.setLineWrap(true);  
 		textArea.setWrapStyleWord(true); 

@@ -1,17 +1,21 @@
-Dr. Heath Lenwood (heath@vt.edu)
+Dr. Heath Lenwood, PI (heath@vt.edu)
 
-Dr. Ruth Grene (grene@vt.edu)
+Dr. Ruth Grene, Co-PI (grene@vt.edu)
 
-Dr. Andy Pereira (apereira@uark.edu)
+Dr. Andy Pereira, Co-PI (apereira@uark.edu)
 
-Dr. Subodh Srivastava (subodhs@uark.edu)
+Dr. Song Li (songli@vt.edu)
 
-Elijah Myers (esm2310@vt.edu)
+Dr. Subodh Srivastava
 
-Curtis Klumas (curtisk@vt.edu)
+Elijah Myers
 
-Hanaa Torkey (htorkey@vt.edu)
+Curtis Klumas
 
-Mahdi Nabiyouni (nabiyoun@vt.edu)
+Hanaa Torkey
+
+Mahdi Nabiyouni
+
+Mostafa Arefiyan (arefiyan@vt.edu)
 
 Haitham Elmarakeby (marakeby@vt.edu)

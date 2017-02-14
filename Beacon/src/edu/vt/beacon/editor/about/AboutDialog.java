@@ -29,7 +29,7 @@ import edu.vt.beacon.editor.resources.icons.IconType;
 public class AboutDialog extends AbstractDialog {
 	
 	// Label Constants
-	private static final String LABEL_VERSION = "Beacon Pathway Editor v1.1.0 build 8";
+	private static final String LABEL_VERSION = "Beacon Pathway Editor v1.1.0 build 13";
 	private static final String LABEL_CONTRIBUTORS = "Beacon Contributors";
 	private static final String LABEL_ACKNOWLEDGEMENTS = "Acknowledgements";
 	private static final String LABEL_LICENSE = "Software License";
@@ -167,6 +167,7 @@ public class AboutDialog extends AbstractDialog {
 			  System.out.println(e);
 		  }
 		JTextArea textArea = new JTextArea(s);
+
 		JScrollPane scrollPane = new JScrollPane(textArea);  
 		textArea.setLineWrap(true);  
 		textArea.setWrapStyleWord(true); 

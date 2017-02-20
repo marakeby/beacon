@@ -4,6 +4,8 @@ import edu.vt.beacon.editor.document.Document;
 import edu.vt.beacon.graph.glyph.AbstractGlyph;
 import edu.vt.beacon.graph.glyph.GlyphType;
 import edu.vt.beacon.graph.glyph.arc.AbstractArc;
+import edu.vt.beacon.graph.glyph.node.AbstractNode;
+import edu.vt.beacon.graph.glyph.node.auxiliary.Port;
 import edu.vt.beacon.graph.glyph.node.container.Compartment;
 import edu.vt.beacon.graph.glyph.node.submap.Submap;
 import edu.vt.beacon.io.Converter;
@@ -88,6 +90,12 @@ public class ClipBoardManager {
         if (results != null) {
             for (AbstractGlyph glyph : results) {
                 glyph.setId(IdGenerator.generate());
+                if (glyph instanceof AbstractNode) {
+                   ArrayList<Port> ports= ((AbstractNode) glyph).getPorts();
+                    for(Port port : ports)
+                        port.setId(IdGenerator.generate());
+                }
+
                 if(glyph.getType() == GlyphType.EQUIVALENCE_ARC || glyph.
                         getType() == GlyphType.LOGIC_ARC || glyph.getType() == GlyphType.POSITIVE_INFLUENCE|| glyph.getType() == GlyphType.NEGATIVE_INFLUENCE ||glyph.getType() == GlyphType.NECESSARY_STIMULATION ){
                     ((AbstractArc)glyph).move_without_dependents(x,x);}

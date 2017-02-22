@@ -1,28 +1,18 @@
 package edu.vt.beacon.editor.dialog.properties;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.HeadlessException;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -45,8 +35,9 @@ public class PropertiesDialog extends AbstractDialog implements FocusListener, L
 	private static final String LABEL_JLIST_CONTRIBUTORS = "Contributors: ";
 	
 	// GUI combobox constants
-	private static final String[] CHOICES_ORGANISM = {"Arabidopsis thaliana", "Zea mays"};
-	
+//	private static final String[] CHOICES_ORGANISM = {"Arabidopsis thaliana", "Zea mays"};
+	private static final String ORGANISMS_FILE = "organisms.txt";
+
 	// GUI action command constants
 	private static final String AC_TEXTFIELD_PATHWAY_NAME = "TEXTFIELD_PATHWAY_NAME";
 	private static final String AC_COMBOBOX_ORGANISM = "COMBOBOX_ORGANISM";
@@ -55,6 +46,7 @@ public class PropertiesDialog extends AbstractDialog implements FocusListener, L
 	private static final String AC_TEXTFIELD_CONTRIBUTOR_NAME = "TEXTFIELD_NAME";
 	private static final String AC_TEXTFIELD_CONTRIBUTOR_INSTITUTION = "TEXTFIELD_INSTITUTION";
 	private static final String AC_TEXTFIELD_CONTRIBUTOR_EMAIL = "TEXTFIELD_EMAIL";
+	private static final String AC_Edit_ORGANISM = "EDIT_ORGANISM";
 	
 	//GUI default value constants
 	private static final String DEFAULT_CONTRIBUTOR_NAME = "<new name>";
@@ -76,6 +68,7 @@ public class PropertiesDialog extends AbstractDialog implements FocusListener, L
 	private JButton addButton;
 	private JButton deleteButton;
 	private EditingTextField pathwayNameTextField;
+	private JButton addOrganism;
 	private JComboBox organismComboBox;
 
 	public PropertiesDialog(Document document) throws HeadlessException {		
@@ -89,6 +82,43 @@ public class PropertiesDialog extends AbstractDialog implements FocusListener, L
 		pack();
 		setLocationRelativeTo(getOwner());		
 		setVisible(true);
+	}
+
+	private void populateOrganismCombobox() {
+
+		List<String> organismsList = new ArrayList<String>();
+		try {
+
+			ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+//			InputStream is = classloader.getResourceAsStream(getAPropertiesDirectoryPath() + ORGANISMS_FILE);
+			InputStream is= this.getClass().getResourceAsStream(ORGANISMS_FILE);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+			StringBuilder out = new StringBuilder();
+			String line;
+			while ((line = reader.readLine()) != null) {
+				organismsList.add(line);
+			}
+		} catch(Exception e){
+			System.out.println(e);
+		}
+		String[] organismArray = new String[organismsList.size()];
+		organismArray = organismsList.toArray(organismArray);
+
+		if (organismComboBox==null)
+			organismComboBox = new JComboBox(organismArray);
+		else
+			organismComboBox.setModel(new DefaultComboBoxModel (organismArray));
+		organismComboBox.setSelectedItem(pathway_.getOrganism());
+		organismComboBox.setActionCommand(AC_COMBOBOX_ORGANISM);
+		organismComboBox.addActionListener(this);
+		organismComboBox.addFocusListener(this);
+
+
+	}
+	public String getAPropertiesDirectoryPath() {
+		return PropertiesDialog.class.getPackage().getName().replace(".",
+				System.getProperty("file.separator")) +
+				System.getProperty("file.separator");
 	}
 
 	private Component createContentPanel() {
@@ -105,15 +135,31 @@ public class PropertiesDialog extends AbstractDialog implements FocusListener, L
 		pathwayNameTextField.setActionCommand(AC_TEXTFIELD_PATHWAY_NAME);
 		pathwayNameTextField.addActionListener(this);
 		pathwayNameTextField.addFocusListener(this);
-		
-		organismComboBox = new JComboBox(CHOICES_ORGANISM);
-		organismComboBox.setSelectedItem(pathway_.getOrganism());
-		organismComboBox.setActionCommand(AC_COMBOBOX_ORGANISM);
-		organismComboBox.addActionListener(this);
-		organismComboBox.addFocusListener(this);
-				
+
+		populateOrganismCombobox();
+
+
+		addOrganism = new JButton("Edit organisms");
+		addOrganism.setActionCommand(AC_Edit_ORGANISM);
+		addOrganism.addActionListener(this);
+		addOrganism.addFocusListener(this);
+
 		panel.add(getLabelledPanel(pathwayNameLabel, pathwayNameTextField));
-		panel.add(getLabelledPanel(organismLabel, organismComboBox));
+		JPanel panel2 = new JPanel();
+
+		panel2.setLayout(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+
+		c.gridx=0;
+		c.gridy=0;
+		c.gridwidth=2;
+		panel2.add(organismComboBox, c);
+		c.gridx=3;
+		c.gridy=0;
+		c.gridwidth=1;
+		panel2.add(addOrganism, c);
+		panel.add(getLabelledPanel(organismLabel, panel2));
+
 		panel.add(createContributorListPanel());
 		panel.add(createContributorEditPanel());
 		basePanel.add(panel, BorderLayout.CENTER);
@@ -229,6 +275,7 @@ public class PropertiesDialog extends AbstractDialog implements FocusListener, L
 	public void actionPerformed(ActionEvent e) {
 		
 	    String actionCommand = e.getActionCommand();
+//		System.out.println("AC_COMBOBOX_ORGANISM");
 	    
 		if (actionCommand.equals(AC_TEXTFIELD_PATHWAY_NAME))
 			updatePathwayName(e);
@@ -259,10 +306,19 @@ public class PropertiesDialog extends AbstractDialog implements FocusListener, L
 			JComboBox cb = (JComboBox)e.getSource();
 			performOrganismComboBox(cb);
 		}
+
+		else if (actionCommand.equals(AC_Edit_ORGANISM)){
+			OrganismDialog dlg =new OrganismDialog(this.document_, this);
+			populateOrganismCombobox();
+			this.repaint();
+//			System.out.println("repaint");
+
+		}
 		
 	}
 
 	private void performOrganismComboBox(JComboBox cb) {
+
 		pathway_.setOrganism_((String)cb.getSelectedItem());
 		
 	}

@@ -12,6 +12,7 @@ public class NegativeInfluence extends AbstractArc
     /*
      * document constructor
      */
+    private static final double pesudoTargetDistance = 7.0;
     public NegativeInfluence()
     {
         super (GlyphType.NEGATIVE_INFLUENCE);
@@ -29,8 +30,8 @@ public class NegativeInfluence extends AbstractArc
         float cap = getEndCapSize();
         Point2D.Float targetPoint = points_.get(points_.size() - 1);
         
-        endCap_.moveTo(targetPoint.x, targetPoint.y - cap);
-        endCap_.lineTo(targetPoint.x, targetPoint.y + cap);
+        endCap_.moveTo(targetPoint.x-pesudoTargetDistance, targetPoint.y - cap);
+        endCap_.lineTo(targetPoint.x-pesudoTargetDistance, targetPoint.y + cap);
         
         endCap_.closePath();
     }
@@ -80,7 +81,7 @@ public class NegativeInfluence extends AbstractArc
     {
         Point2D.Float sourcePoint = points_.get(0);
         Point2D.Float targetPoint = points_.get(points_.size() - 1);
-        
+
         ArcManager.setPointCoordinates(targetPoint, sourcePoint);
 
         Path2D.Float path = (Path2D.Float) shape_;
@@ -88,11 +89,15 @@ public class NegativeInfluence extends AbstractArc
         
         path.moveTo(points_.get(0).x, points_.get(0).y);
         
-        for (int i = 1; i < points_.size(); i++)
+        for (int i = 1; i < points_.size()-1; i++)
             path.lineTo(points_.get(i).x, points_.get(i).y);
-        
-        path.lineTo(ArcManager.getCurrentPoint().x,
-                    ArcManager.getCurrentPoint().y);
+
+        Point2D.Float p = ArcManager.getPesudoTarget(pesudoTargetDistance);
+//        System.out.println("targetPoint " +sourcePoint +" " +targetPoint +"  " + p);
+        path.lineTo(p.x, p.y);
+
+//        path.lineTo(ArcManager.getCurrentPoint().x,
+//                    ArcManager.getCurrentPoint().y);
         
         setEndCapCoordinates();
     }

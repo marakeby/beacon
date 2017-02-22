@@ -3,6 +3,7 @@ package edu.vt.beacon.editor.action.handler;
 import edu.vt.beacon.editor.action.Action;
 import edu.vt.beacon.editor.action.ActionType;
 import edu.vt.beacon.editor.document.Document;
+import edu.vt.beacon.editor.document.DocumentState;
 import edu.vt.beacon.graph.glyph.AbstractGlyph;
 import edu.vt.beacon.graph.glyph.node.annotation.Annotation;
 import edu.vt.beacon.graph.glyph.node.container.Compartment;
@@ -108,6 +109,8 @@ public class EditHandler
 
         }
 
+        action.getDocument().setChanged(true);
+        new DocumentState(action.getDocument(), "Alignment", false);
         action.getDocument().getCanvas().repaint();
 
     }

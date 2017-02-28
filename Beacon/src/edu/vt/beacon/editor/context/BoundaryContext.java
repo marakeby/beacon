@@ -76,26 +76,26 @@ public class BoundaryContext extends AbstractContext
     {
         float minX = activeBoundary_.x;
         
-        if (Float.isNaN(minX) || zoomFactor * glyph.getAbsMinX() < minX)
+        if (Float.isNaN(minX) || glyph.getAbsMinX() < minX)
             minX = glyph.getAbsMinX();
         
         float minY = activeBoundary_.y;
         
-        if (Float.isNaN(minY) || zoomFactor * glyph.getAbsMinY() < minY)
+        if (Float.isNaN(minY) || glyph.getAbsMinY() < minY)
             minY = glyph.getAbsMinY();
         
         float width = activeBoundary_.width;
         
-        if (Float.isNaN(width) || zoomFactor * glyph.getAbsMaxX() > width)
+        if (Float.isNaN(width) || glyph.getAbsMaxX() > width)
             width = glyph.getAbsMaxX();
         
         float height = activeBoundary_.height;
         
-        if (Float.isNaN(height) || zoomFactor * glyph.getAbsMaxY() > height)
+        if (Float.isNaN(height) ||  glyph.getAbsMaxY() > height)
             height = glyph.getAbsMaxY();
-        
+
         activeBoundary_.setFrame(minX, minY, width, height);
-        
+
         if (glyph.isSelected())
             processSelected(glyph, zoomFactor);
     }

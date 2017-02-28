@@ -100,12 +100,12 @@ public class CanvasPanel extends JPanel
         if (!Float.isNaN(activeBoundary_.width))
             if (activeBoundary_.getMaxX() > size.getWidth())
                 size.setSize(activeBoundary_.getWidth(), size.getHeight());
-        
+
         if (!Float.isNaN(activeBoundary_.height))
             if (activeBoundary_.getMaxY() > size.getHeight())
                 size.setSize(size.getWidth(), activeBoundary_.getHeight());
 
-        size.setSize((size.getWidth() + 200) * zoomFactor, (size.getHeight() + 200) * zoomFactor);
+        size.setSize((size.getWidth() + 100) * zoomFactor, (size.getHeight() + 100) * zoomFactor);
 
         return size;
     }

@@ -560,6 +560,7 @@ public class Converter {
         if (aux == null || aux.getType() == null)
             return true;
 
+        aux.setLayer(node.getLayer());
         Glyph unitOfInformation = new Glyph();
         unitOfInformation.setId(aux.getId());
         unitOfInformation.setClazz("unit of information");
@@ -573,7 +574,11 @@ public class Converter {
 
         unitOfInformation.setBbox(getBoundingBox(aux));
 
+        unitOfInformation.setExtension(getExtension(aux));
+
         glyph.getGlyph().add(unitOfInformation);
+
+
 
         return true;
     }
@@ -1027,8 +1032,9 @@ public class Converter {
 
         aux.setId(sbgnAux.getId());
         setLabel(sbgnAux.getLabel(), aux);
-        setFont(glyph, node);
-        setShapeStyle(glyph, node);
+        setShapeStyle(sbgnAux, aux);
+//        setFont(glyph, node);
+//        setShapeStyle(glyph, node);
 
         setBoundingBox(sbgnAux.getBbox(), aux);
         aux.update();

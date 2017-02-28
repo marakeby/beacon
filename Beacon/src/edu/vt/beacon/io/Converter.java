@@ -8,6 +8,8 @@ import edu.vt.beacon.graph.glyph.arc.AbstractArc;
 import edu.vt.beacon.graph.glyph.node.AbstractNode;
 import edu.vt.beacon.graph.glyph.node.activity.AbstractActivity;
 import edu.vt.beacon.graph.glyph.node.activity.BiologicalActivity;
+import edu.vt.beacon.graph.glyph.node.annotation.Annotation;
+import edu.vt.beacon.graph.glyph.node.annotation.CalloutPoint;
 import edu.vt.beacon.graph.glyph.node.auxiliary.*;
 import edu.vt.beacon.graph.glyph.node.auxiliary.Label;
 import edu.vt.beacon.graph.glyph.node.auxiliary.Port;
@@ -22,6 +24,7 @@ import edu.vt.beacon.layer.Layer;
 import edu.vt.beacon.map.Map;
 import edu.vt.beacon.pathway.Pathway;
 import org.sbgn.bindings.*;
+import org.sbgn.bindings.Point;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -287,6 +290,8 @@ public class Converter {
         glyph.setLabel(getLabel(node.getLabel(), node));
 
         glyph.setExtension(getExtension(node));
+
+
         return glyph;
     }
 
@@ -616,6 +621,8 @@ public class Converter {
         Element layerInfo = null;
         Element shapeInfo = null;
         Element fontInfo = null;
+        Element TargetInfo = null;
+        Element CalloutPoint= null;
 
         try {
 
@@ -651,6 +658,19 @@ public class Converter {
 
                     fontInfo.setAttribute(FONT_STYLE, style);
                 }
+
+            }
+            if (glyph instanceof Annotation){
+                TargetInfo = createElement("Target");
+                CalloutPoint = createElement("CalloutPoint");
+                if (((Annotation) glyph).getTarget() !=null)
+                    TargetInfo.setAttribute("id", ((Annotation) glyph).getTarget().getId());
+                edu.vt.beacon.graph.glyph.node.annotation.CalloutPoint p = ((Annotation) glyph).getCalloutPoint();
+
+                if ( p!=null) {
+                    CalloutPoint.setAttribute("x", Float.toString(p.getCenterX()));
+                    CalloutPoint.setAttribute("y", Float.toString(p.getCenterY()));
+                }
             }
 
             if (layerInfo != null)
@@ -661,6 +681,12 @@ public class Converter {
 
             if (fontInfo != null)
                 extension.getAny().add(fontInfo);
+
+            if (TargetInfo != null)
+                extension.getAny().add(TargetInfo);
+
+            if (CalloutPoint != null)
+                extension.getAny().add(CalloutPoint);
 
             return extension;
 
@@ -683,10 +709,29 @@ public class Converter {
     }
 
     private static Glyph.Callout getAnnotation(AbstractNode node) {
-        return null;
+        Glyph.Callout callout = new Glyph.Callout();
+        Annotation annotation = node.getAnnotation();
+//        if (node.getAnnotation()==null || node.getAnnotation().getTarget() ==null)
+        if (node.getAnnotation()==null )
+            return null;
+        if(node.getAnnotation().getTarget() !=null) {
+            String id = annotation.getTarget().getId();
+            Object obj= libSbgnMapIdToObjects.get(id);
+            callout.setTarget(obj);
+        }
+        if(node.getAnnotation().getCalloutPoint() !=null) {
+            Point p = new Point();
+            p.setX(annotation.getCalloutPoint().getCenterX());
+            p.setY(annotation.getCalloutPoint().getCenterY());
+            callout.setPoint(p);
+        }
+
+        return callout;
     }
 
     private static boolean setAnnotation(Glyph glyph, AbstractNode node) {
+//        Point p = glyph.getCallout().getPoint();
+//        glyph.getCallout().
         return false;
     }
 
@@ -917,6 +962,36 @@ public class Converter {
         if (glyph.getClazz().equalsIgnoreCase(GlyphType.TERMINAL.toString()) && glyph.getTagRef() != null)
             beaconMapTerminalToTagId.put((Terminal) node, ((Glyph) glyph.getTagRef()).getId());
 
+        if (node instanceof Annotation){
+            Annotation ann = (Annotation)node;
+            String id = "";
+            float x =-1 ;
+            float y =-1;
+            for (Element elt : glyph.getExtension().getAny()){
+                if (elt.getLocalName().equals("Target"))
+                    id  = elt.getAttribute("id");
+
+                if (elt.getLocalName().equals("CalloutPoint")) {
+                    x = Float.parseFloat((elt.getAttribute("x")));
+                    y = Float.parseFloat((elt.getAttribute("y")));
+
+                }
+
+            }
+//            System.out.println(id);
+            AbstractGlyph target = (AbstractGlyph) beaconMapIdToObjects.get(id);
+            if (target !=null) {
+//                System.out.println("setting the target");
+                ann.setTarget(target);
+            }
+            if (x !=-1 && y!=-1) {
+//                System.out.println("setting the calloutpoint");
+                ann.setCalloutPoint(new CalloutPoint(x, y, ann));
+                ann.update();
+            }
+
+        }
+
         return node;
     }
 
@@ -1044,6 +1119,8 @@ public class Converter {
 
         else //if (node instanceof BiologicalActivity)
             ((BiologicalActivity) node).setAuxiliaryUnit(aux);
+
+
 
         return true;
     }

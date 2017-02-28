@@ -59,6 +59,11 @@ public class Annotation extends AbstractNode {
         return calloutPoint;
     }
 
+    public void setCalloutPoint(CalloutPoint calloutPoint) {
+        this.calloutPoint = calloutPoint;
+    }
+
+
     public Path2D.Float getFoldedCorner() {
         return foldedCorner;
     }

@@ -16,18 +16,28 @@ import edu.vt.beacon.graph.glyph.node.submap.AbstractTagTerminal;
 import edu.vt.beacon.graph.glyph.node.submap.Submap;
 import edu.vt.beacon.graph.glyph.node.submap.Tag;
 import edu.vt.beacon.graph.glyph.node.submap.Terminal;
+import edu.vt.beacon.graph.legend.Legend;
+import edu.vt.beacon.graph.legend.LegendEntry;
 import edu.vt.beacon.layer.Layer;
 import edu.vt.beacon.map.Map;
 import edu.vt.beacon.pathway.Pathway;
 import org.sbgn.bindings.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 
+import javax.xml.bind.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.*;
+import javax.xml.transform.stream.StreamResult;
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -121,6 +131,7 @@ public class Converter {
         return sbgn;
     }
 
+
     private static org.sbgn.bindings.Map convert(Map map, Sbgn sbgn) {
         if (map == null) {
             map = new Map("");
@@ -138,7 +149,27 @@ public class Converter {
                 mapNameElement.setAttribute(MAP_NAME, map.getName());
                 sbgnMap.getExtension().getAny().add(mapNameElement);
 
+                // add legend
+                Legend legend= map.getLegend();
+                if (legend !=null) {
+
+                    JAXBContext jaxbContext = JAXBContext.newInstance(Legend.class);
+                    Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+                    jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+                    jaxbMarshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE); // removes xml declaration line
+                    Element legendElement = createElement("legend");
+
+                    jaxbMarshaller.marshal(legend,legendElement );
+                    legendElement.getFirstChild().setPrefix(PREFIX);
+                    sbgnMap.getExtension().getAny().add(legendElement);
+                }
+
             } catch (ParserConfigurationException e) {
+                e.printStackTrace();
+            }
+            catch (PropertyException e) {
+                e.printStackTrace();
+            } catch (JAXBException e) {
                 e.printStackTrace();
             }
 
@@ -654,6 +685,7 @@ public class Converter {
         return false;
     }
 
+
     public static Pathway convert(Sbgn sbgn) {
         libSbgnMapIdToObjects.clear();
         beaconMapIdToObjects.clear();
@@ -672,6 +704,7 @@ public class Converter {
 
             Map beaconMap = new Map("");
             setLayers(sbgnMap, beaconMap);
+            setLegend(sbgnMap, beaconMap);
             convert(sbgnMap, beaconMap);
             beaconMapIdToObjects.put(beaconMap.getId(), beaconMap);
 
@@ -682,6 +715,32 @@ public class Converter {
         pathway.setMap(findMainMap(sbgn.getMap()));
 
         return pathway;
+    }
+
+    private static void setLegend(org.sbgn.bindings.Map sbgnMap, Map beaconMap) {
+
+        if(sbgnMap.getExtension() ==null)
+            return;
+
+        for (Element elt :sbgnMap.getExtension().getAny()){
+            if (elt !=null && elt.getTagName().equals("beacon:legend")) {
+                JAXBContext jaxbContext = null;
+                try {
+                    jaxbContext = JAXBContext.newInstance(Legend.class);
+                    Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+                    Element child = (Element) elt.getFirstChild();
+                    Legend legend = (Legend) jaxbUnmarshaller.unmarshal(child);
+                    beaconMap.setLegend(legend);
+                    for(LegendEntry entery : legend.getEntries())
+                        entery.setParent(legend);
+
+                } catch (JAXBException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }
     }
 
     private static Map findMainMap(List<org.sbgn.bindings.Map> sbgnMaps) {

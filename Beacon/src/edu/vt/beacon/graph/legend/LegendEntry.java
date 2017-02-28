@@ -3,6 +3,9 @@ package edu.vt.beacon.graph.legend;
 import edu.vt.beacon.graph.AbstractEntity;
 
 import javax.swing.*;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -11,8 +14,10 @@ import java.util.StringTokenizer;
 /**
  * Created by mostafa on 3/16/16.
  */
+@XmlType(name="LegendEntry", namespace = "https://bioinformatics.cs.vt.edu")
 public class LegendEntry extends AbstractEntity {
 
+    @XmlTransient
     private Legend parent_;
 
     private ArrayList<String> lines_;
@@ -21,6 +26,11 @@ public class LegendEntry extends AbstractEntity {
 
     private Color color;
 
+    public LegendEntry(){
+        lines_ = new ArrayList<String>();
+    }
+
+    public void setParent(Legend p){this.parent_ = p;}
     // TODO document constructor
     public LegendEntry(Legend parent, Color color, String text) {
         parent_ = parent;
@@ -35,11 +45,12 @@ public class LegendEntry extends AbstractEntity {
         parent_ = parent;
         lines_ = new ArrayList<String>();
     }
-
+    @XmlTransient
     public Legend getParent() {
         return parent_;
     }
 
+    @XmlJavaTypeAdapter(Legend.ColorAdapter.class)
     public Color getColor() {
         return color;
     }
@@ -109,6 +120,8 @@ public class LegendEntry extends AbstractEntity {
     protected void setBoundary() {
         JLabel sizeLabel = new JLabel(" ");
 
+        if(parent_ ==null)
+            return;
         sizeLabel.setFont(parent_.getFont());
 
         boundary_.width = (float) sizeLabel.getPreferredSize().getWidth();

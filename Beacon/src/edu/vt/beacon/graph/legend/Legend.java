@@ -6,6 +6,9 @@ import edu.vt.beacon.graph.OrientationType;
 import edu.vt.beacon.graph.glyph.auxiliary.Bound;
 import edu.vt.beacon.graph.glyph.auxiliary.BoundType;
 
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 /**
  * Created by ppws on 3/14/16.
  */
+@XmlRootElement(name = "Legend", namespace = "https://bioinformatics.cs.vt.edu")
 public class Legend extends AbstractEntity implements Orientable {
 
     protected ArrayList<Bound> bounds;
@@ -42,6 +46,7 @@ public class Legend extends AbstractEntity implements Orientable {
 
     private float colorBarHeight;
 
+//    @XmlElement(name = "LegendEntry")
     private ArrayList<LegendEntry> entries;
 
     // TODO document constructor
@@ -141,6 +146,7 @@ public class Legend extends AbstractEntity implements Orientable {
         return getMinY() - lineWidth / 2.0F;
     }
 
+    @XmlElement(name = "LegendEntry", namespace = "https://bioinformatics.cs.vt.edu")
     public ArrayList<LegendEntry> getEntries() {
         return entries;
     }
@@ -154,6 +160,7 @@ public class Legend extends AbstractEntity implements Orientable {
     }
 
     // TODO document method
+    @XmlJavaTypeAdapter(FontAdapter.class)
     public Font getFont() {
         return font;
     }
@@ -168,6 +175,7 @@ public class Legend extends AbstractEntity implements Orientable {
     }
 
     // TODO document method
+    @XmlJavaTypeAdapter(ColorAdapter.class)
     public Color getFontColor() {
         return fontColor;
     }
@@ -201,6 +209,7 @@ public class Legend extends AbstractEntity implements Orientable {
     }
 
     // TODO document method
+    @XmlJavaTypeAdapter(ColorAdapter.class)
     public Color getBackgroundColor() {
         return backgroundColor;
     }
@@ -216,6 +225,7 @@ public class Legend extends AbstractEntity implements Orientable {
     }
 
     // TODO document method
+    @XmlJavaTypeAdapter(ColorAdapter.class)
     public Color getForegroundColor() {
         return foregroundColor;
     }
@@ -330,11 +340,13 @@ public class Legend extends AbstractEntity implements Orientable {
         update();
     }
 
+
     public void setFontColor(Color color) {
         fontColor = color;
         update();
     }
 
+    @XmlElement(name = "orientation")
     @Override
     public OrientationType getOrientation() {
         return orientation;
@@ -369,5 +381,66 @@ public class Legend extends AbstractEntity implements Orientable {
         super.update();
         setBoundCoordinates();
 
+    }
+
+    // added for unmarshalling
+    //http://stackoverflow.com/questions/33055349/jaxb-xml-to-java-awt
+    static class ColorAdapter extends XmlAdapter<ColorAdapter.ColorValueType, Color> {
+
+        @Override
+        public Color unmarshal(ColorValueType v) throws Exception {
+            return new Color(v.red, v.green, v.blue);
+        }
+
+        @Override
+        public ColorValueType marshal(Color v) throws Exception {
+            if (v==null) return new ColorValueType();
+            return new ColorValueType(v.getRed(), v.getGreen(), v.getBlue());
+        }
+
+        @XmlAccessorType(XmlAccessType.FIELD)
+        public static class ColorValueType {
+            private int red;
+            private int green;
+            private int blue;
+
+            public ColorValueType() {
+            }
+
+            public ColorValueType(int red, int green, int blue) {
+                this.red = red;
+                this.green = green;
+                this.blue = blue;
+            }
+        }
+    }
+
+    static class FontAdapter extends XmlAdapter<FontAdapter.FontValueType, Font> {
+
+        @Override
+        public Font unmarshal(FontValueType v) throws Exception {
+            return new Font(v.family, v.style, v.size);
+        }
+
+        @Override
+        public FontValueType marshal(Font v) throws Exception {
+            return new FontValueType(v.getFamily(), v.getStyle(), v.getSize());
+        }
+
+        @XmlAccessorType(XmlAccessType.FIELD)
+        public static class FontValueType {
+            private String family;
+            private int style;
+            private int size;
+
+            public FontValueType() {
+            }
+
+            public FontValueType(String family, int style, int size) {
+                this.family = family;
+                this.style = style;
+                this.size = size;
+            }
+        }
     }
 }

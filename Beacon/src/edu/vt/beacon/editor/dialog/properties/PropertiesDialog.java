@@ -6,10 +6,9 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.*;
@@ -35,8 +34,10 @@ public class PropertiesDialog extends AbstractDialog implements FocusListener, L
 	private static final String LABEL_JLIST_CONTRIBUTORS = "Contributors: ";
 	
 	// GUI combobox constants
-//	private static final String[] CHOICES_ORGANISM = {"Arabidopsis thaliana", "Zea mays"};
-	private static final String ORGANISMS_FILE = "organisms.txt";
+	private static final String[] defaultOrganisms = {"Arabidopsis thaliana", "Medicago truncatula", "Populus", "Rice", "Zea mays"};
+	private static final String fileSep =  System.getProperty("file.separator");
+	private static final String organismFileName = System.getProperty("user.home") + fileSep+ ".beacon" +fileSep + "organism.properties";
+
 
 	// GUI action command constants
 	private static final String AC_TEXTFIELD_PATHWAY_NAME = "TEXTFIELD_PATHWAY_NAME";
@@ -89,18 +90,20 @@ public class PropertiesDialog extends AbstractDialog implements FocusListener, L
 		List<String> organismsList = new ArrayList<String>();
 		try {
 
-			ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-//			InputStream is = classloader.getResourceAsStream(getAPropertiesDirectoryPath() + ORGANISMS_FILE);
-			InputStream is= this.getClass().getResourceAsStream(ORGANISMS_FILE);
+			InputStream is = new FileInputStream(new File(organismFileName));
 			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-			StringBuilder out = new StringBuilder();
 			String line;
 			while ((line = reader.readLine()) != null) {
 				organismsList.add(line);
 			}
 		} catch(Exception e){
-			System.out.println(e);
+//			System.out.println(e);
 		}
+
+		if (organismsList.size()==0){
+			organismsList.addAll(Arrays.asList(defaultOrganisms));
+		}
+
 		String[] organismArray = new String[organismsList.size()];
 		organismArray = organismsList.toArray(organismArray);
 

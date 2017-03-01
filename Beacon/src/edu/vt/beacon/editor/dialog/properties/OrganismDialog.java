@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.*;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -20,20 +21,18 @@ public class OrganismDialog extends AbstractDialog {
     private static final String AC_OK_BUTTON = "OK";
     private static final String AC_CANCEL_BUTTON = "CANCEL";
 
-    private static final String ORGANISMS_FILE = "organisms.txt";
     private boolean isChanged =false;
+    private static final String[] defaultOrganisms = {"Arabidopsis thaliana", "Medicago truncatula", "Populus", "Rice", "Zea mays"};
+    private static final String fileSep =  System.getProperty("file.separator");
+    private static final String organismFileName = System.getProperty("user.home") + fileSep+ ".beacon" +fileSep + "organism.properties";
 
-    private String organism;
-
-    JButton addButton_;
-    JButton editButton_;
-    JButton deleteButton_;
-    JButton okButton_;
-    JButton cancelButton_;
-    OrganismTableModel organismListModel_;
-    JTable organismList_;
-
-
+    private JButton addButton_;
+    private JButton editButton_;
+    private JButton deleteButton_;
+    private JButton okButton_;
+    private JButton cancelButton_;
+    private OrganismTableModel organismListModel_;
+    private JTable organismList_;
 
     public OrganismDialog(Document document, Component owner) throws HeadlessException {
 
@@ -53,7 +52,6 @@ public class OrganismDialog extends AbstractDialog {
         setMinimumSize(new Dimension(600, 350));
         setLocationRelativeTo(getOwner());
         setVisible(true);
-//        System.out.println("OrganismDialog");
         isChanged =false;
     }
 
@@ -68,10 +66,9 @@ public class OrganismDialog extends AbstractDialog {
         Vector<String> organismsList = new Vector<String>();
         try {
 
-//            ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-//            InputStream is = classloader.getResourceAsStream(getAPropertiesDirectoryPath() + ORGANISMS_FILE);
-            InputStream is= this.getClass().getResourceAsStream(ORGANISMS_FILE);
-//            BufferedReader br = new BufferedReader(is);
+//            System.out.println("loading prop file for organism " + organismFileName);
+
+            InputStream is = new FileInputStream(new File(organismFileName));
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             String line;
@@ -79,7 +76,11 @@ public class OrganismDialog extends AbstractDialog {
                 organismsList.add(line);
             }
         } catch(Exception e){
-            System.out.println(e);
+//            System.out.println(e);
+        }
+
+        if (organismsList.size()==0){
+            organismsList.addAll(Arrays.asList(defaultOrganisms));
         }
 
         organismListModel_= new OrganismTableModel(organismsList);
@@ -224,10 +225,11 @@ public class OrganismDialog extends AbstractDialog {
 
             List<String> organismsList = organismListModel_.getData();
             try {
+
+
                 PrintWriter writer =
                         new PrintWriter(
-                                new File(this.getClass().getResource(ORGANISMS_FILE).getPath()));
-//                FileWriter writer = new FileWriter(getAPropertiesDirectoryPath() + ORGANISMS_FILE);
+                                new File(organismFileName));
                 for(String str: organismsList) {
                     writer.write(str+"\n");
                 }

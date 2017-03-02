@@ -97,16 +97,19 @@ public class ArcManager
         targetPoint_.setLocation(targetPoint);
     }
 
-    public static Point2D.Float getPesudoTarget(double pesudoTargetDistance)
+    public static Point2D.Float getPesudoTarget(double pesudoTargetDistance, Point2D.Float source, Point2D.Float target)
     {
-        double adjacent = targetPoint_.x - sourcePoint_.x;
-        double opposite = targetPoint_.y - sourcePoint_.y;
-        double hypotenuse = targetPoint_.distance(sourcePoint_);
+
+//        System.out.println(sourcePoint_+ "" + targetPoint_);
+        double adjacent = target.x - source.x;
+        double opposite = target.y - source.y;
+        double hypotenuse = target.distance(source);
 
         double x = (hypotenuse-pesudoTargetDistance)*adjacent/hypotenuse;
         double y = (hypotenuse-pesudoTargetDistance)*opposite/hypotenuse;
-        x =  Math.abs( targetPoint_.x) -x;
-        y = targetPoint_.y -y;
+        x =  Math.abs( target.x -x);
+        y = Math.abs(target.y -y);
+
         Point2D.Float p= new Point2D.Float();
         p.setLocation(x,y);
         return p;

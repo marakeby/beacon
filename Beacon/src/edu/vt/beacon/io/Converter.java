@@ -972,8 +972,10 @@ public class Converter {
                     id  = elt.getAttribute("id");
 
                 if (elt.getLocalName().equals("CalloutPoint")) {
-                    x = Float.parseFloat((elt.getAttribute("x")));
-                    y = Float.parseFloat((elt.getAttribute("y")));
+                    if(elt.getAttribute("x") !=null &&  ! elt.getAttribute("x").isEmpty())
+                        x = Float.parseFloat((elt.getAttribute("x")));
+                    if(elt.getAttribute("y") !=null && !elt.getAttribute("y").isEmpty())
+                        y = Float.parseFloat((elt.getAttribute("y")));
 
                 }
 

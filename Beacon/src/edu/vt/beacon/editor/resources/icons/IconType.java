@@ -55,7 +55,7 @@ public enum IconType {
 //        System.out.println(filepath);
 //        URL url = getClass().getClassLoader().getResource(filepath);
         URL url = getClass().getResource(filepath);
-        System.out.println(url);
+//        System.out.println(url);
         if (url != null) {
             imageIcon_ = new ImageIcon(url);
         }

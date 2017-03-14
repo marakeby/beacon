@@ -102,6 +102,7 @@ public class EditorApplication
             
             UIManager.setLookAndFeel(
                 UIManager.getSystemLookAndFeelClassName());
+
         }
         catch (Exception exception) {}
         

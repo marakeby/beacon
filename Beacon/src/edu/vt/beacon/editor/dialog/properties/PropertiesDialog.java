@@ -79,7 +79,8 @@ public class PropertiesDialog extends AbstractDialog implements FocusListener, L
 	    this.document_ = document;
 	    this.pathway_ = document_.getPathway();
 		
-	    add(createContentPanel());		
+	    add(createContentPanel());
+		setResizable(false);
 		pack();
 		setLocationRelativeTo(getOwner());		
 		setVisible(true);

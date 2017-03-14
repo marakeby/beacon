@@ -50,17 +50,20 @@ public class GeneDialog extends AbstractDialog {
         setModalityType(ModalityType.DOCUMENT_MODAL);
         this.document_ = document;
         add(createContentPanel());
-        setSize(600, 180);
-        setPreferredSize(new Dimension(600, 180));
-        setMaximumSize(new Dimension(600, 180));
+//        setSize(600, 180);
+//        setPreferredSize(new Dimension(600, 180));
+//        setMaximumSize(new Dimension(600, 180));
         setMinimumSize(new Dimension(600, 180));
+        setResizable(true);
+//        this.setUndecorated(false);
+        pack();
         setLocationRelativeTo(getOwner());
         setVisible(true);
     }
 
     private Component createContentPanel() {
         JComponent panel = createBasePanel();
-        panel.setLayout(new BorderLayout());
+//        panel.setLayout(new BorderLayout());
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new GridBagLayout());
         contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -201,6 +204,8 @@ public class GeneDialog extends AbstractDialog {
         new GeneDialogInput(document_, resultValue);
         if (resultValue.getId() != null && !resultValue.getId().trim().isEmpty()) {
             geneListModel_.getData().add(resultValue);
+            geneList_.repaint();
+            geneList_.updateUI();
         }
 
     }
@@ -227,6 +232,7 @@ public class GeneDialog extends AbstractDialog {
         if (selectedRow >= 0) {
             geneListModel_.getData().remove(selectedRow);
             geneList_.repaint();
+            geneList_.updateUI();
         }
 
     }

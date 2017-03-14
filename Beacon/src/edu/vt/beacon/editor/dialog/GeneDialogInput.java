@@ -38,10 +38,11 @@ public class GeneDialogInput extends AbstractDialog {
         add(createBasePanel(), BorderLayout.SOUTH);
         add(createContentPanel(), BorderLayout.CENTER);
         initForm();
-        setSize(700, 300);
-        setPreferredSize(new Dimension(700, 300));
-        setMaximumSize(new Dimension(700, 300));
-        setMinimumSize(new Dimension(700, 300));
+//        setSize(700, 300);
+//        setPreferredSize(new Dimension(700, 300));
+//        setMaximumSize(new Dimension(700, 300));
+//        setMinimumSize(new Dimension(700, 300));
+        this.setUndecorated(false);
         setLocationRelativeTo(getOwner());
         pack();
         setVisible(true);

@@ -79,6 +79,7 @@ public class FileManager {
             return false;
         File file = new File(filename + "." + exportType.name());
         float zoomFactor = document.getCanvas().getZoomFactor();
+        System.out.println(zoomFactor);
 
 
 //
@@ -92,7 +93,7 @@ public class FileManager {
         try {
 
             if(exportType == ExportType.pdf) {
-                document.getCanvas().setZoomFactor(1);
+                document.getCanvas().setZoomFactor(1f);
 //                int w = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getWidth() ) + 100;
 //                int h = (int) Math.ceil(document.getContextManager().getBoundaryContext().getActiveBoundary().getHeight()) + 100;
 

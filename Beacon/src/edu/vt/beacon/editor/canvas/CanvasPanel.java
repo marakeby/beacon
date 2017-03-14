@@ -39,7 +39,7 @@ public class CanvasPanel extends JPanel
         canvasScroll_ = new PlatformScrollPane(this);
         canvasScroll_.setFocusable(true);
         selectionBox_ = new Rectangle2D.Float();
-        zoomFactor = 1;
+        zoomFactor = 1f;
 
         initializeListeners();
     }

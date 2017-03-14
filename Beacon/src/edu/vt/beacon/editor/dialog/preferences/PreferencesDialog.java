@@ -46,18 +46,18 @@ public class PreferencesDialog extends Dialog {
 
         buildComponents();
 
-        setPreferredSize(new Dimension(485, 450));
-        setSize(new Dimension(485, 450));
+//        setPreferredSize(new Dimension(485, 450));
+//        setSize(new Dimension(485, 450));
 //        setMaximumSize(new Dimension(475, 450));
 //        setMinimumSize(new Dimension(475, 450));
-        setLocationRelativeTo(parent);
+
         setResizable(false);
 
         this.document = document;
         initComponents();
 
         pack();
-
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -162,6 +162,7 @@ public class PreferencesDialog extends Dialog {
         c.insets = new Insets(0, 10, 10, 0);
         glyphLineWidthTextField = new TextField();
         glyphLineWidthTextField.setPreferredSize(new Dimension(40, 20));
+        glyphLineWidthTextField.setMinimumSize(new Dimension(40, 20));
         glyphSection.add(glyphLineWidthTextField, c);
 
         c.gridx = x++;
@@ -175,6 +176,7 @@ public class PreferencesDialog extends Dialog {
         c.insets = new Insets(0, 10, 10, 0);
         glyphPaddingTextField = new TextField();
         glyphPaddingTextField.setPreferredSize(new Dimension(40, 20));
+        glyphPaddingTextField.setMinimumSize(new Dimension(40, 20));
         glyphSection.add(glyphPaddingTextField, c);
 
         x = 0;

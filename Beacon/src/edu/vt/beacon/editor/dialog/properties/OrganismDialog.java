@@ -36,7 +36,8 @@ public class OrganismDialog extends AbstractDialog {
 
     public OrganismDialog(Document document, Component owner) throws HeadlessException {
 
-        super(document, document.getFrame());
+//        super(document, document.getFrame());
+        super(document, (JFrame) null);
         setTitle("Organisms");
 
         if (document == null)
@@ -46,13 +47,20 @@ public class OrganismDialog extends AbstractDialog {
         this.document_ = document;
 
         add(createContentPanel());
-        setSize(600, 350);
-        setPreferredSize(new Dimension(600, 350));
-        setMaximumSize(new Dimension(600, 350));
-        setMinimumSize(new Dimension(600, 350));
-        setLocationRelativeTo(getOwner());
-        setVisible(true);
+//        setSize(600, 350);
+//        setPreferredSize(new Dimension(600, 350));
+//        setMaximumSize(new Dimension(600, 350));
+//        setMinimumSize(new Dimension(600, 350));
+//        setResizable(false);
+//        pack();
+//        setLocationRelativeTo(getOwner());
+//        setVisible(true);
+
         isChanged =false;
+        setLocationRelativeTo(document.getCanvas());
+        setResizable(false);
+        pack();
+        setVisible(true);
     }
 
     public String getAPropertiesDirectoryPath() {
@@ -225,6 +233,10 @@ public class OrganismDialog extends AbstractDialog {
 
             List<String> organismsList = organismListModel_.getData();
             try {
+
+                File directory = new File(String.valueOf(System.getProperty("user.home") + fileSep+ ".beacon"));
+                if (! directory.exists())
+                    directory.mkdir();
 
 
                 PrintWriter writer =

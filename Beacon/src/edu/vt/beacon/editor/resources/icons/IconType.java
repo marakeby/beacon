@@ -2,6 +2,10 @@ package edu.vt.beacon.editor.resources.icons;
 
 import javax.swing.*;
 
+import java.net.URL;
+
+import static java.lang.Thread.*;
+
 public enum IconType {
     AND("and.png"),
     ARROW_EXPAND("arrow_expand.png"),
@@ -43,8 +47,12 @@ public enum IconType {
 //        System.out.println(
 //        Thread.currentThread().getContextClassLoader().getResource(
 //                getIconDirectoryPath()));
-        imageIcon_ = new ImageIcon(Thread.currentThread().getContextClassLoader().getResource(
-                        getIconDirectoryPath() + fileName));
+//        imageIcon_ = new ImageIcon(currentThread().getContextClassLoader().getResource(
+//                        getIconDirectoryPath() + fileName));
+        String filepath= getIconDirectoryPath() + fileName;
+        URL url = getClass().getClassLoader().getResource(filepath);
+        imageIcon_ = new ImageIcon(url);
+
     }
 
     // TODO document method
@@ -54,8 +62,11 @@ public enum IconType {
 
     // TODO document method
     public String getIconDirectoryPath() {
-        return IconType.class.getPackage().getName().replace(".",
+
+        String ret = IconType.class.getPackage().getName().replace(".",
                 System.getProperty("file.separator")) +
                 System.getProperty("file.separator");
+//        System.out.println(ret);
+        return ret;
     }
 }

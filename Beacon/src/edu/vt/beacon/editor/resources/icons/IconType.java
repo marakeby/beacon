@@ -49,9 +49,16 @@ public enum IconType {
 //                getIconDirectoryPath()));
 //        imageIcon_ = new ImageIcon(currentThread().getContextClassLoader().getResource(
 //                        getIconDirectoryPath() + fileName));
-        String filepath= getIconDirectoryPath() + fileName;
-        URL url = getClass().getClassLoader().getResource(filepath);
-        imageIcon_ = new ImageIcon(url);
+//        String filepath= getIconDirectoryPath() + fileName;
+        String filepath=  fileName;
+//        System.out.println(fileName);
+//        System.out.println(filepath);
+//        URL url = getClass().getClassLoader().getResource(filepath);
+        URL url = getClass().getResource(filepath);
+        System.out.println(url);
+        if (url != null) {
+            imageIcon_ = new ImageIcon(url);
+        }
 
     }
 
@@ -63,7 +70,8 @@ public enum IconType {
     // TODO document method
     public String getIconDirectoryPath() {
 
-        String ret = IconType.class.getPackage().getName().replace(".",
+        String ret;
+        ret = IconType.class.getPackage().getName().replace(".",
                 System.getProperty("file.separator")) +
                 System.getProperty("file.separator");
 //        System.out.println(ret);

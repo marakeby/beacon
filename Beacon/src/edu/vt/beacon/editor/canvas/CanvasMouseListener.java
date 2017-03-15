@@ -128,6 +128,17 @@ public class CanvasMouseListener extends MouseAdapter {
                                 && event.isAltDown())
                             return ((Compartment) glyph).getLabel();
 
+                        if (glyph instanceof Compartment && event.isAltDown()){
+                            if (((Compartment) glyph).getLabel().contains(point) )
+                                return ((Compartment) glyph).getLabel();
+                            for(AbstractGlyph node: ((Compartment) glyph).getNodes() )
+                            {
+                                if (node.contains(point))
+                                    return node;
+                            }
+
+                        }
+
                         if (glyph instanceof Submap && ((Submap) glyph).getTerminals() != null) {
 
                             Set<Terminal> terminals = ((Submap) glyph).getTerminals();

@@ -30,7 +30,7 @@ public class EditorApplication
     // TODO document method
     public static String getVersion()
     {
-        return "0.1";
+        return "1.1.0";
     }
 
     public static DocumentViewer viewer;

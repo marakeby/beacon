@@ -60,6 +60,9 @@ public class Compartment extends AbstractNode {
 
     }
 
+    public ArrayList<AbstractGlyph> getNodes(){
+        return nodes;
+    }
     public void move_without_dependents(float deltaX, float deltaY) {
         move_self(deltaX, deltaY);
     }

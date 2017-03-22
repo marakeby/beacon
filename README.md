@@ -1,5 +1,7 @@
-<p align="center">![Alt](https://github.com/marakeby/beacon/blob/v1.1.0/Beacon/src/edu/vt/beacon/editor/resources/icons/logo/png/256x256.png "Beacon Editor")
+<p align="center">
+  <img src="https://github.com/marakeby/beacon/blob/v1.1.0/Beacon/src/edu/vt/beacon/editor/resources/icons/logo/png/256x256.png?raw=true" alt="Beacon Editor"/>
 </p>
+
 # Beacon Editor
 The Beacon Editor is a cross-platform desktop application for the creation and modification
 of signal transduction pathways using the Systems Biology Graphical Notation Activity Flow (SBGN-AF)sd

@@ -2,7 +2,7 @@
   <img src="https://github.com/marakeby/beacon/blob/v1.1.0/Beacon/src/edu/vt/beacon/editor/resources/icons/logo/png/256x256.png?raw=true" alt="Beacon Editor"/>
 </p>
 
-# Beacon Editor
+# Beacon Editor v1.2.0 (under development)
 The Beacon Editor is a cross-platform desktop application for the creation and modification
 of signal transduction pathways using the Systems Biology Graphical Notation Activity Flow (SBGN-AF)sd
 language. Prompted by biologists’ requests for enhancements, the Beacon Editor includes numerous

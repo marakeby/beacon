@@ -1,7 +1,8 @@
-![Alt](https://github.com/marakeby/beacon/blob/v1.1.0/Beacon/src/edu/vt/beacon/editor/resources/icons/logo/png/256x256.png "Beacon Editor")
+<p align="center">![Alt](https://github.com/marakeby/beacon/blob/v1.1.0/Beacon/src/edu/vt/beacon/editor/resources/icons/logo/png/256x256.png "Beacon Editor")
+</p>
 # Beacon Editor
 The Beacon Editor is a cross-platform desktop application for the creation and modification
-of signal transduction pathways using the Systems Biology Graphical Notation Activity Flow (SBGN-AF)
+of signal transduction pathways using the Systems Biology Graphical Notation Activity Flow (SBGN-AF)sd
 language. Prompted by biologists’ requests for enhancements, the Beacon Editor includes numerous
 powerful features for the benefit of creation and presentation.
 
@@ -30,11 +31,12 @@ You need to set the settings on your Mac to allow running applications that are 
 4. Under the section labeled "Allow applications downloaded from:", select the option "Anywhere"
 
 
-###Windows
+### Windows
 Download the [Windows executable](https://bioinformatics.cs.vt.edu/beacon/downloads/Beacon_v1.1.0_build14.exe). Double click the downloaded exe file e.g. **Beacon_v1.1.0_build14.exe** 
 You may need to ublock the file before running it. To do so, right-click on the file and open Properties.
 Click on the Unblock button and then on Apply/OK.
-###Linux
+
+### Linux
 Download the [Jar file](https://bioinformatics.cs.vt.edu/beacon/downloads/Beacon_v1.1.0_build14.jar). Open the terminal and navigate to the folder in which you downloaded the jar file. Type
  ~~~~ 
  java -jar Beacon_v1.1.0_build14.jar
@@ -43,5 +45,5 @@ Download the [Jar file](https://bioinformatics.cs.vt.edu/beacon/downloads/Beacon
  # Citation
  If you use the Beacon Editor, please cite the following paper
  
- #Funding
+ # Funding
  Funding provided by NSF grant ABI-1062472. 

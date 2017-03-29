@@ -85,73 +85,37 @@ public class test_convert {
     }
 
 
-    public static void test_converter() throws IOException, XMLStreamException {
-        String path = "examples/ex1_drought_stress.sbgn";
-        String output_fileName = "examples/ex1_drought_stress2.sbml";
+    public static void test_converter(String path) throws IOException, XMLStreamException{
+        String output_fileName = path +".sbml";
+        path = path +".sbgn";
         Pathway pathway = FileManager.load(path);
 
-        SbgnToSbmlConverter conveter = new SbgnToSbmlConverter(pathway);
+        SbgnToSbmlConverterDebug conveter = new SbgnToSbmlConverterDebug(pathway, IDOption.Name);
 
         SBMLDocument doc = conveter.getSbml();
 
         SBMLWriter w = new SBMLWriter();
-
-        w.writeSBMLToFile(doc,output_fileName );
-
-    }
-
-
-
-    public static void test_converter_withlogic() throws IOException, XMLStreamException {
-        String path = "examples/simple_logic.sbgn";
-        String output_fileName = "examples/simple_logic.sbml";
-        Pathway pathway = FileManager.load(path);
-
-        SbgnToSbmlConverterDebug conveter = new SbgnToSbmlConverterDebug(pathway);
-
-        SBMLDocument doc = conveter.getSbml();
-
-        SBMLWriter w = new SBMLWriter();
-
-        w.writeSBMLToFile(doc,output_fileName );
-
-    }
-    public static void test_converter_withlogic2() throws IOException, XMLStreamException {
-        String path = "examples/simple_logic2.sbgn";
-        String output_fileName = "examples/simple_logic2.sbml";
-        Pathway pathway = FileManager.load(path);
-
-        SbgnToSbmlConverterDebug conveter = new SbgnToSbmlConverterDebug(pathway);
-
-        SBMLDocument doc = conveter.getSbml();
-
-        SBMLWriter w = new SBMLWriter();
-
-        w.writeSBMLToFile(doc,output_fileName );
+        try {
+//            w.write(doc, System.out);
+            w.writeSBMLToFile(doc,output_fileName );
+        }
+        catch (Exception e) {
+            for(StackTraceElement el:e.getStackTrace())
+                System.out.println(el);
+        }
 
     }
 
     public static void main(String[] args) throws IOException, XMLStreamException {
 //        test_memory();
-//        test_converter();
-        test_converter_withlogic();
-          test_converter_withlogic2();
 
-//        String a = "a";
-//        String b = "b";
-//        FunctionTerm fterm = new FunctionTerm();
-//        fterm.setResultLevel(0);
-//
-//        ASTNode andNode = new ASTNode(ASTNode.Type.LOGICAL_AND);
-//        andNode.addChild(new ASTNode(a));
-//        andNode.addChild(new ASTNode(b));
-//
-//        ASTNode math = new ASTNode(ASTNode.Type.RELATIONAL_EQ);
-//        math.addChild(andNode);
-//        math.addChild(new ASTNode(1));
-//
-//        fterm.setMath(math);
-//        System.out.println(fterm.getMathMLString());
+//        test_converter("examples/simple_logic");
+//        test_converter("examples/simple_logic2");
+//        test_converter("examples/ex1_drought_stress");
+//        test_converter("examples/Gillaspy");
+//        test_converter("examples/Gillaspy");
+        test_converter("examples/negative");
+
 
 
     }

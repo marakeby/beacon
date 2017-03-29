@@ -9,6 +9,7 @@ import edu.vt.beacon.graph.glyph.node.activity.BiologicalActivity;
 import edu.vt.beacon.graph.glyph.node.activity.Phenotype;
 import edu.vt.beacon.graph.glyph.node.auxiliary.Port;
 import edu.vt.beacon.graph.glyph.node.operator.AbstractOperator;
+import edu.vt.beacon.graph.glyph.node.submap.Submap;
 import edu.vt.beacon.layer.Layer;
 import edu.vt.beacon.map.Map;
 import edu.vt.beacon.pathway.Pathway;
@@ -24,16 +25,44 @@ import java.util.HashMap;
 /**
  * Created by marakeby on 1/18/17.
  */
+enum IDOption{
+    Id, Name;
+}
 public class SbgnToSbmlConverterDebug {
     private Pathway pathway;
     private SBMLDocument sbmlDoc;
     private static HashMap<String, Object> allSpecies = new HashMap<String, Object>();
-//    public SbgnToSbmlConverter() {
-//    }
+    IDOption id;
+    private HashMap<String, Integer> unique_ids =new HashMap<String, Integer>();
 
-    public SbgnToSbmlConverterDebug(Pathway pathway){
+
+    public SbgnToSbmlConverterDebug(Pathway pathway, IDOption option){
         this.pathway = pathway;
         sbmlDoc = getInitialSbmlDoc( pathway.getName());
+        this.id = option;
+    }
+
+    private String get_id(AbstractNode node){
+        String id="";
+        if (this.id == IDOption.Id)
+            id= node.getId();
+        else {
+            id = node.getLabel().getText();
+            id = nomalizeName(id);
+
+        }
+        System.out.println(id);
+
+//        Integer count = unique_ids.get(id);
+//        if (count ==null)
+//            count = 0;
+//        else
+//            count +=1;
+//
+//        unique_ids.put(id, count);
+//        if (count>1)
+//            id = id + "_" + count;
+        return id;
     }
 
     public SBMLDocument getSbml(){
@@ -131,6 +160,17 @@ public class SbgnToSbmlConverterDebug {
         tr.addFunctionTerm(defterm);
     }
     private void getTransition(AbstractArc arc, QualModelPlugin qualModel ){
+        System.out.println("getTransition");
+        String target_id = get_id(arc.getTarget());
+        String source_name = get_id(arc.getSource());
+        QualitativeSpecies source = qualModel.getQualitativeSpecies(source_name);
+        QualitativeSpecies target = qualModel.getQualitativeSpecies(target_id);
+        if (target ==null || source ==null)
+        {
+            System.out.println("null"+ target_id + source_name);
+            return;
+        }
+
         Transition tr = qualModel.createTransition(arc.getId());
         addDefaultFunctionTerm(tr);
 
@@ -139,30 +179,25 @@ public class SbgnToSbmlConverterDebug {
         FunctionTerm fterm = new FunctionTerm();
 
         //get the target
-        String target_id = arc.getTarget().getLabel().getText();
-        target_id= nomalizeName(target_id);
-//        System.out.println(target_id);
-        Output o = new Output( qualModel.getQualitativeSpecies(target_id), OutputTransitionEffect.assignmentLevel );
+        Output o = new Output(target , OutputTransitionEffect.assignmentLevel );
         tr.addOutput(o);
-
-        Sign sign = Sign.positive;
         ASTNode math = new ASTNode(ASTNode.Type.RELATIONAL_EQ);
 
-        String source_name = arc.getSource().getLabel().getText();
-        source_name= nomalizeName(source_name);
 
-        Input in= new Input("tr_" + source_name +"something" , qualModel.getQualitativeSpecies(source_name), InputTransitionEffect.none );
+        Input in= new Input("tr_" + source_name + target_id , source , InputTransitionEffect.none );
         in.setThresholdLevel(1);
 
         if (arc instanceof NegativeInfluence) {
+            System.out.println("negative arc");
             in.setSign(Sign.negative);
-            fterm.setResultLevel(0);
+            fterm.setResultLevel(1);
             math.addChild(new ASTNode(source_name));
-            math.addChild(new ASTNode(1));
+            math.addChild(new ASTNode(0));
 
         }
 
-        if (arc instanceof PositiveInfluence) {
+        else if (arc instanceof PositiveInfluence) {
+            System.out.println("positive arc");
             in.setSign(Sign.positive);
             fterm.setResultLevel(1);
             math.addChild(new ASTNode(source_name));
@@ -170,7 +205,9 @@ public class SbgnToSbmlConverterDebug {
 
         }
 
-        if (arc instanceof UnknownInfluence) {
+//        else if (arc instanceof UnknownInfluence) {
+        else {
+            System.out.println("unknown arc");
             in.setSign(Sign.unknown);
             //TODO:change this to reflect unknown relationship
             fterm.setResultLevel(1);
@@ -179,8 +216,8 @@ public class SbgnToSbmlConverterDebug {
 
         }
 
-        in.setThresholdLevel(1);
-        in.setSign(sign);
+//        in.setThresholdLevel(1);
+//        in.setSign(sign);
         tr.addInput(in);
         fterm.setMath(math);
         tr.addFunctionTerm(fterm);
@@ -193,7 +230,7 @@ public class SbgnToSbmlConverterDebug {
 
         for (AbstractArc arc : allArcs){
 
-            if (arc instanceof LogicArc)
+            if (arc instanceof LogicArc || arc.getTarget() instanceof Submap || arc.getSource() instanceof Submap)
                 continue;
 
             getTransition(arc, qualModel);
@@ -203,11 +240,17 @@ public class SbgnToSbmlConverterDebug {
     }
     private void logicalGateToTransition(AbstractOperator node, QualModelPlugin qualModel){
 
-        Transition tr = qualModel.createTransition("tr_"+node.getLabel().getText());
+        Transition tr = qualModel.createTransition("tr_"+ get_id(node));
         addDefaultFunctionTerm(tr);
-        String target_id = node.getLabel().getText();
-        target_id = nomalizeName(target_id);
-        Output o = new Output( qualModel.getQualitativeSpecies(target_id), OutputTransitionEffect.assignmentLevel );
+        String target_id = get_id(node);
+        if (target_id==null) {
+
+            System.out.println("missing" + target_id);
+            return;
+        }
+        QualitativeSpecies target = qualModel.getQualitativeSpecies(target_id);
+
+        Output o = new Output( target, OutputTransitionEffect.assignmentLevel);
         tr.addOutput(o);
 
         // add a function term to the transition (SBML) based on the arc type in SBGN
@@ -218,14 +261,19 @@ public class SbgnToSbmlConverterDebug {
             logicalNode = new ASTNode(ASTNode.Type.LOGICAL_AND);
         else if (node.getType() == GlyphType.OR)
             logicalNode = new ASTNode(ASTNode.Type.LOGICAL_OR);
+        else if (node.getType() == GlyphType.NOT)
+            logicalNode = new ASTNode(ASTNode.Type.LOGICAL_NOT);
 
         ArrayList<AbstractArc> arcs = node.getInputArcs();
         for (AbstractArc a: arcs) {
 
-            String source_name = a.getSource().getLabel().getText();
-            source_name = nomalizeName(source_name);
-
-            Input in= new Input("tr_" + source_name +"_input" , qualModel.getQualitativeSpecies(source_name), InputTransitionEffect.none );
+            String source_name = get_id(a.getSource());
+            QualitativeSpecies source = qualModel.getQualitativeSpecies(source_name);
+            if (source==null) {
+                System.out.println("no source found" + source_name);
+                continue;
+            }
+            Input in= new Input("tr_" + source_name +"_input" +target_id , source, InputTransitionEffect.none );
             in.setThresholdLevel(1);
             in.setSign(Sign.positive);
             tr.addInput(in);
@@ -248,9 +296,12 @@ public class SbgnToSbmlConverterDebug {
 
         for (AbstractGlyph g : allActivites){
 
+            if (g == null)
+                continue;
             String id = g.getId();
-            String name= ((AbstractNode)g).getLabel().getText();
-            name= nomalizeName(name);
+
+            String name = get_id((AbstractNode)g);
+            System.out.println(name);
             QualitativeSpecies specisA = qualModel.createQualitativeSpecies(name, compartment);
             specisA.setName(name);
             specisA.setMaxLevel(1);
@@ -260,16 +311,22 @@ public class SbgnToSbmlConverterDebug {
                 specisA.setConstant(true);
             else
                 specisA.setConstant(false);
-
-            if (g instanceof AbstractOperator){
-                logicalGateToTransition((AbstractOperator) g, qualModel);
-            }
-
         }
+
+        for (AbstractGlyph g : allActivites)
+            if (g instanceof AbstractOperator)
+                logicalGateToTransition((AbstractOperator) g, qualModel);
     }
 
     private String nomalizeName(String name){
-        return name.replace(" ", "_");
+        name = name.replaceAll(" ", "_");
+        name = name.replaceAll("\r", "_");
+        name = name.replaceAll("\n", "_");
+        name = name.replaceAll("\r\n", "_");
+        name = name.replaceAll("\\n\\r", "_");
+        name = name.replaceAll("\\r\\n", "");
+        return name.replaceAll("[^A-Za-z0-9 ]", "");
+//        return name;
     }
 
     private Boolean isInputNode(AbstractNode node){

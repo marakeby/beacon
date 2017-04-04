@@ -90,7 +90,7 @@ public class test_convert {
         path = path +".sbgn";
         Pathway pathway = FileManager.load(path);
 
-        SbgnToSbmlConverterDebug conveter = new SbgnToSbmlConverterDebug(pathway, IDOption.Name);
+        SbgnToSbmlConverterDebug conveter = new SbgnToSbmlConverterDebug(pathway, IDOption.Id);
 
         SBMLDocument doc = conveter.getSbml();
 
@@ -113,8 +113,8 @@ public class test_convert {
 //        test_converter("examples/simple_logic2");
 //        test_converter("examples/ex1_drought_stress");
 //        test_converter("examples/Gillaspy");
-//        test_converter("examples/Gillaspy");
-        test_converter("examples/negative");
+        test_converter("examples/Gillaspy");
+//        test_converter("examples/negative");
 
 
 

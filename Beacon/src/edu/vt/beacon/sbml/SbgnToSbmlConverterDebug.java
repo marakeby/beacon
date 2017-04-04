@@ -303,6 +303,8 @@ public class SbgnToSbmlConverterDebug {
             String name = get_id((AbstractNode)g);
             System.out.println(name);
             QualitativeSpecies specisA = qualModel.createQualitativeSpecies(name, compartment);
+            name = ((AbstractNode)g).getLabel().getText();
+            name= nomalizeName(name);
             specisA.setName(name);
             specisA.setMaxLevel(1);
 
@@ -319,13 +321,13 @@ public class SbgnToSbmlConverterDebug {
     }
 
     private String nomalizeName(String name){
-        name = name.replaceAll(" ", "_");
-        name = name.replaceAll("\r", "_");
-        name = name.replaceAll("\n", "_");
-        name = name.replaceAll("\r\n", "_");
-        name = name.replaceAll("\\n\\r", "_");
-        name = name.replaceAll("\\r\\n", "");
-        return name.replaceAll("[^A-Za-z0-9 ]", "");
+//        name = name.replaceAll(" ", "_");
+//        name = name.replaceAll("\r", "_");
+//        name = name.replaceAll("\n", "_");
+//        name = name.replaceAll("\r\n", "_");
+//        name = name.replaceAll("\\n\\r", "_");
+//        name = name.replaceAll("\\r\\n", "");
+        return name.replaceAll("[^A-Za-z0-9 ]", "_");
 //        return name;
     }
 

@@ -10,7 +10,8 @@ public enum ExportType {
     jpeg         ("JPEG (*.jpeg)"),
     png          ("PNG  (*.png)"),
     pdf          ("PDF  (*.pdf)"),
-    eps          ("PS  (*.eps)");
+    eps          ("PS  (*.eps)"),
+    sbml          ("SBML  (*.sbml)");
 
     private String text;
 

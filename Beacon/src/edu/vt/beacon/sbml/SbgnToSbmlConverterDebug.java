@@ -25,9 +25,7 @@ import java.util.HashMap;
 /**
  * Created by marakeby on 1/18/17.
  */
-enum IDOption{
-    Id, Name;
-}
+
 public class SbgnToSbmlConverterDebug {
     private Pathway pathway;
     private SBMLDocument sbmlDoc;

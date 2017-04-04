@@ -44,7 +44,8 @@ public enum ActionType
 	GLYPHS_ANNOTATION 	("Annotation..."),
 	GLYPHS_GENE  		("Genes..."),
 	
-	ABOUT_ABOUT			("About Beacon");
+	ABOUT_ABOUT			("About Beacon"),
+	SIMULATE_SIMULATE			("Simulate");
 
     private String text_;
     
@@ -74,6 +75,9 @@ public enum ActionType
         
         if (name().startsWith("ABOUT"))
             return AboutHandler.getInstance();
+
+        if (name().startsWith("SIMULATE"))
+            return SimulateHandler.getInstance();
         
         throw new IllegalStateException("missing action handler case");
     }

@@ -211,6 +211,7 @@ public class FileHandler
         fileChooser.addChoosableFileFilter(new FileTypeFilter(ExportType.png.name(), ExportType.png.toString()));
         fileChooser.addChoosableFileFilter(new FileTypeFilter(ExportType.pdf.name(), ExportType.pdf.toString()));
         fileChooser.addChoosableFileFilter(new FileTypeFilter(ExportType.eps.name(), ExportType.eps.toString()));
+        fileChooser.addChoosableFileFilter(new FileTypeFilter(ExportType.sbml.name(), ExportType.sbml.toString()));
 
         int returnVal = fileChooser.showSaveDialog(null);
 

@@ -17,6 +17,7 @@ public class MenuBar extends JMenuBar
     private FormatMenu formatMenu;
     private GlyphsMenu glyphsMenu;
     private AboutMenu aboutMenu;
+    private SimulateMenu simulateMenu;
 
     public MenuBar(Document document)
     {
@@ -25,14 +26,18 @@ public class MenuBar extends JMenuBar
         viewMenu = new ViewMenu(document);
         formatMenu = new FormatMenu(document);
         glyphsMenu = new GlyphsMenu(document);
+        simulateMenu = new SimulateMenu(document);
         aboutMenu = new AboutMenu(document);
+
 
         add(fileMenu);
         add(editMenu);
         add(viewMenu);
         add(formatMenu);
         add(glyphsMenu);
+        add(simulateMenu);
         add(aboutMenu);
+
 //    	add(new FileMenu(document));
 //        add(new EditMenu(document));
 //        add(new ViewMenu(document));
@@ -48,6 +53,7 @@ public class MenuBar extends JMenuBar
         formatMenu.setDocument(doc);
         glyphsMenu.setDocument(doc);
         aboutMenu.setDocument(doc);
+        simulateMenu.setDocument(doc);
         editMenu.refresh();
     }
     

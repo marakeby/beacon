@@ -5,10 +5,13 @@ import edu.vt.beacon.editor.document.Document;
 import edu.vt.beacon.io.backwardcompatibility.OldVersionConverter;
 import edu.vt.beacon.io.backwardcompatibility.OldVersionParser;
 import edu.vt.beacon.pathway.Pathway;
+import edu.vt.beacon.sbml.IDOption;
+import edu.vt.beacon.sbml.SbgnToSbmlConverterDebug;
 import org.sbgn.SbgnUtil;
 import org.sbgn.bindings.Sbgn;
 
 import javax.imageio.ImageIO;
+import javax.xml.stream.XMLStreamException;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,6 +20,8 @@ import java.util.Properties;
 import org.freehep.graphics2d.VectorGraphics;
 import org.freehep.graphicsio.pdf.PDFGraphics2D;
 import org.freehep.graphicsio.ps.PSGraphics2D;
+import org.sbml.jsbml.SBMLDocument;
+import org.sbml.jsbml.SBMLWriter;
 
 /**
  * Created by ppws on 2/21/16.
@@ -126,6 +131,7 @@ public class FileManager {
                 graphics.endExport();
 
             }
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return false;
@@ -137,6 +143,28 @@ public class FileManager {
         return true;
 
     }
+
+    public static boolean export_sbml(Document document, String filename, ExportType exportType){
+
+        if(exportType == ExportType.sbml)
+        {
+            SbgnToSbmlConverterDebug conveter = new SbgnToSbmlConverterDebug(document.getPathway(), IDOption.Id);
+
+            SBMLDocument doc = conveter.getSbml();
+
+            SBMLWriter w = new SBMLWriter();
+
+            try {
+                w.writeSBMLToFile(doc,filename + "." + exportType.name() );
+            } catch (FileNotFoundException | XMLStreamException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+        }
+        return true;
+    }
+
     public static boolean export(Document document, String filename, ExportType exportType) {
         if (document == null || document.getPathway() == null || filename == null || filename.trim().isEmpty()
                 || exportType == null)
@@ -144,6 +172,9 @@ public class FileManager {
 
         if (exportType == ExportType.pdf || exportType == ExportType.eps)
             return export_vector(document, filename, exportType);
+
+        if (exportType == ExportType.sbml)
+            return export_sbml(document, filename, exportType);
 
         File file = new File(filename + "." + exportType.name());
         float zoomFactor = document.getCanvas().getZoomFactor();

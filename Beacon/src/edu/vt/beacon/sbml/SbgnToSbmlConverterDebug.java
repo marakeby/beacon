@@ -236,6 +236,25 @@ public class SbgnToSbmlConverterDebug {
         }
 
     }
+
+    private void set_transition_inputs(Transition tr, QualModelPlugin qualModel, AbstractOperator node){
+        ArrayList<AbstractArc> arcs = node.getInputArcs();
+        for (AbstractArc a: arcs) {
+
+            String source_name = get_id(a.getSource());
+            QualitativeSpecies source = qualModel.getQualitativeSpecies(source_name);
+            if (source==null) {
+                System.out.println("no source found" + source_name);
+                continue;
+            }
+            Input in= new Input("tr_" + source_name +"_input"  , source, InputTransitionEffect.none );
+            in.setThresholdLevel(1);
+            in.setSign(Sign.positive);
+            tr.addInput(in);
+
+        }
+    }
+
     private void logicalGateToTransition(AbstractOperator node, QualModelPlugin qualModel){
 
         Transition tr = qualModel.createTransition("tr_"+ get_id(node));
@@ -250,6 +269,9 @@ public class SbgnToSbmlConverterDebug {
 
         Output o = new Output( target, OutputTransitionEffect.assignmentLevel);
         tr.addOutput(o);
+        set_transition_inputs(tr, qualModel, node);
+
+        ArrayList<AbstractArc> arcs = node.getInputArcs();
 
         // add a function term to the transition (SBML) based on the arc type in SBGN
         FunctionTerm fterm = new FunctionTerm();
@@ -259,26 +281,19 @@ public class SbgnToSbmlConverterDebug {
             logicalNode = new ASTNode(ASTNode.Type.LOGICAL_AND);
         else if (node.getType() == GlyphType.OR)
             logicalNode = new ASTNode(ASTNode.Type.LOGICAL_OR);
-        else if (node.getType() == GlyphType.NOT)
-            logicalNode = new ASTNode(ASTNode.Type.LOGICAL_NOT);
+        else if (node.getType() == GlyphType.NOT) {
+            logicalNode = new ASTNode(ASTNode.Type.LOGICAL_OR);
+        }
 
-        ArrayList<AbstractArc> arcs = node.getInputArcs();
+
         for (AbstractArc a: arcs) {
-
             String source_name = get_id(a.getSource());
-            QualitativeSpecies source = qualModel.getQualitativeSpecies(source_name);
-            if (source==null) {
-                System.out.println("no source found" + source_name);
-                continue;
-            }
-            Input in= new Input("tr_" + source_name +"_input" +target_id , source, InputTransitionEffect.none );
-            in.setThresholdLevel(1);
-            in.setSign(Sign.positive);
-            tr.addInput(in);
-
             ASTNode equal = new ASTNode(ASTNode.Type.RELATIONAL_EQ);
             equal.addChild(new ASTNode(source_name));
-            equal.addChild(new ASTNode(1));
+            if( node.getType() == GlyphType.NOT)
+                equal.addChild(new ASTNode(0));
+            else
+                equal.addChild(new ASTNode(1));
             logicalNode.addChild(equal);
         }
 

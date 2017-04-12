@@ -45,7 +45,10 @@ public enum ActionType
 	GLYPHS_GENE  		("Genes..."),
 	
 	ABOUT_ABOUT			("About Beacon"),
-	SIMULATE_SIMULATE			("Simulate");
+	SIMULATE_SIMULATE			("Simulate"),
+	SIMULATE_EXPORT			("Export to SBML"),
+	SIMULATE_LOAD_SBML			("Load SBML"),
+	SIMULATE_VISUALIZE			("Simulate");
 
     private String text_;
     

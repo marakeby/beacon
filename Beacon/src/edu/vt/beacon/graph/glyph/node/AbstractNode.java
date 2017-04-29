@@ -355,4 +355,17 @@ public abstract class AbstractNode extends AbstractGlyph implements Orientable {
         setLabelCoordinates();
         setPortCoordinates();
     }
+
+    public Boolean isInputNode(){
+
+            Boolean output = true;
+            for(Port p: this.getPorts())
+            {
+                for(AbstractArc arc : p.getArcs())
+                    if (arc.getTarget().equals(this))
+                        output=false;
+            }
+            return output;
+
+    }
 }

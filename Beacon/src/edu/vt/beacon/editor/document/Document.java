@@ -10,6 +10,7 @@ import edu.vt.beacon.editor.command.CommandType;
 import edu.vt.beacon.editor.context.ContextManager;
 import edu.vt.beacon.editor.frame.Frame;
 import edu.vt.beacon.editor.layers.LayersMenuPanel;
+import edu.vt.beacon.editor.simulation.SimulationPanel;
 import edu.vt.beacon.editor.menubar.MenuBar;
 import edu.vt.beacon.editor.palette.PalettePanel;
 import edu.vt.beacon.editor.util.LegendManager;
@@ -62,6 +63,8 @@ public class Document extends HashMap<String, String> {
     private static JTabbedPane tabs_;
     private static DocumentViewer document_viewer_;
 
+    private static SimulationPanel simulation_;
+
 //    private static BrowserMenuPanel palette_;
 
     // FIXME complete constructor
@@ -80,7 +83,7 @@ public class Document extends HashMap<String, String> {
         stateManager_.insert(new Command(CommandType.CREATING_PATHWAY, pathway_.copy(), getCanvas().getZoomFactor(),
                 new Date().getTime()));
 
-        String[] comps= {"browser", "frame","palette","canvas","layers", "menuBar", "documentViewer"};
+        String[] comps= {"browser", "frame","palette","canvas","layers", "menuBar", "documentViewer", "simulation"};
 
         for(String comp : comps)
         {
@@ -90,6 +93,7 @@ public class Document extends HashMap<String, String> {
 
         initializeActionMap();
         initializeProperties();
+
 //        initializeComponents();
     }
 
@@ -173,7 +177,6 @@ public class Document extends HashMap<String, String> {
             menu_.setDocument(this);
         }
 
-
         componentMap_.put("menuBar", menu_);
 
     }
@@ -214,6 +217,21 @@ public class Document extends HashMap<String, String> {
         }
 
         componentMap_.put("layers", layers_);
+
+    }
+
+    private void initializeSimulation(){
+        System.out.println("initialize simulation");
+        if (simulation_ ==null)
+            simulation_ =  new SimulationPanel(this);
+
+        if (! componentInit_.get("simulation"))
+        {
+            componentInit_.put("simulation", true);
+            simulation_.setDocument(this);
+        }
+
+        componentMap_.put("simulation", simulation_);
 
     }
 
@@ -385,6 +403,11 @@ public class Document extends HashMap<String, String> {
         return (LayersMenuPanel) componentMap_.get("layers");
     }
 
+    public SimulationPanel getSimulationPanel() {
+
+        initializeSimulation();
+        return (SimulationPanel) componentMap_.get("simulation");
+    }
     // TODO document method
     public MenuBar getMenuBar() {
 //        if (menu_==null)
@@ -612,6 +635,7 @@ public class Document extends HashMap<String, String> {
         getBrowserMenu().setDocument(this);
 //        layers_.setDocument(this);
         getLayersMenu().setDocument(this);
+        getSimulationPanel().setDocument(this);
 //        browser_.setDocument(this);
 //        getBrowserMenu().setDocument(this);
 //        canvas_.setDocument(this);

@@ -108,12 +108,11 @@ public class test_convert {
 
     public static void main(String[] args) throws IOException, XMLStreamException {
 //        test_memory();
-
 //        test_converter("examples/simple_logic");
 //        test_converter("examples/simple_logic2");
 //        test_converter("examples/ex1_drought_stress");
 //        test_converter("examples/Gillaspy");
-        test_converter("examples/Gillaspy");
+            test_converter("examples/Gillaspy");
 //        test_converter("examples/negative");
 
 

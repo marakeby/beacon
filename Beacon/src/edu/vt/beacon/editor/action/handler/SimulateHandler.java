@@ -4,6 +4,7 @@ import edu.vt.beacon.editor.about.AboutDialog;
 import edu.vt.beacon.editor.action.Action;
 import edu.vt.beacon.editor.document.Document;
 import edu.vt.beacon.editor.document.DocumentState;
+import edu.vt.beacon.editor.swing.platform.PlatformMenuItem;
 import edu.vt.beacon.graph.glyph.AbstractGlyph;
 import edu.vt.beacon.graph.glyph.arc.AbstractArc;
 import edu.vt.beacon.graph.glyph.node.AbstractNode;
@@ -67,6 +68,22 @@ public class SimulateHandler implements ActionHandler {
     public void handle(Action action, ActionEvent event) {
         switch (action.getType()) {
 
+            case SIMULATE_SHOW_HIDE:
+
+                PlatformMenuItem menuItem = (PlatformMenuItem)event.getSource();
+                if (menuItem.getText().equals("Show Simulation"))
+                {
+                    menuItem.setText("Hide Simulation");
+                    action.getDocument().getFrame().showSimulation();
+                }
+                else
+                {
+                    menuItem.setText("Show Simulation");
+                    action.getDocument().getFrame().hideSimulation();
+                }
+
+
+                break;
             case SIMULATE_EXPORT:
                 FileManager.export_sbml(action.getDocument(), action.getDocument().getFile().getPath(), ExportType.sbml);
                 break;

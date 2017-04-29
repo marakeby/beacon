@@ -29,7 +29,6 @@ public class MenuBar extends JMenuBar
         simulateMenu = new SimulateMenu(document);
         aboutMenu = new AboutMenu(document);
 
-
         add(fileMenu);
         add(editMenu);
         add(viewMenu);

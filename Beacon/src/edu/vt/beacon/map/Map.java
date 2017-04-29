@@ -1,6 +1,7 @@
 package edu.vt.beacon.map;
 
 import edu.vt.beacon.graph.glyph.AbstractGlyph;
+import edu.vt.beacon.graph.glyph.node.AbstractNode;
 import edu.vt.beacon.graph.glyph.node.submap.Submap;
 import edu.vt.beacon.graph.legend.Legend;
 import edu.vt.beacon.layer.Layer;
@@ -204,6 +205,31 @@ public class Map {
 
         return selectedGlyphs;
     }
+
+    public ArrayList<AbstractNode> getInputNodes() {
+
+        ArrayList<AbstractNode> selectedGlyphs = new ArrayList<AbstractNode>();
+
+        for (Layer l : layers_)
+            for (AbstractGlyph g: l.getGlyphs())
+                if (g instanceof AbstractNode && ((AbstractNode) g).isInputNode())
+                    selectedGlyphs.add((AbstractNode)g);
+
+        return selectedGlyphs;
+    }
+
+    public ArrayList<AbstractNode> getAllNodes() {
+
+        ArrayList<AbstractNode> selectedGlyphs = new ArrayList<AbstractNode>();
+
+        for (Layer l : layers_)
+            for (AbstractGlyph g: l.getGlyphs())
+                if (g instanceof AbstractNode )
+                    selectedGlyphs.add((AbstractNode)g);
+
+        return selectedGlyphs;
+    }
+
 
     public void removeGlyphs(ArrayList<AbstractGlyph> glyphs) {
 

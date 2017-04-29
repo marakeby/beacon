@@ -48,7 +48,8 @@ public enum ActionType
 	SIMULATE_SIMULATE			("Simulate"),
 	SIMULATE_EXPORT			("Export to SBML"),
 	SIMULATE_LOAD_SBML			("Load SBML"),
-	SIMULATE_VISUALIZE			("Simulate");
+	SIMULATE_VISUALIZE			("Simulate"),
+	SIMULATE_SHOW_HIDE			("Show Simulation");
 
     private String text_;
     

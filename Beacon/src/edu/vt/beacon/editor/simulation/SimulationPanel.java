@@ -6,6 +6,7 @@ import edu.vt.beacon.editor.document.DocumentState;
 import edu.vt.beacon.editor.swing.laf.Skinnable;
 import edu.vt.beacon.graph.glyph.AbstractGlyph;
 import edu.vt.beacon.graph.glyph.node.AbstractNode;
+import edu.vt.beacon.io.FileManager;
 import edu.vt.beacon.layer.Layer;
 import edu.vt.beacon.map.Map;
 import edu.vt.beacon.simulation.SimulationThread;
@@ -13,7 +14,6 @@ import edu.vt.beacon.simulation.Simulator;
 import edu.vt.beacon.simulation.model.InitialValues;
 import edu.vt.beacon.simulation.model.SimpleConditions;
 import edu.vt.beacon.simulation.model.containers.NetworkContainer;
-import org.omg.PortableInterceptor.INACTIVE;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,7 +55,6 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
 
     // TODO document method
     private void buildHeaderPanel() {
-//        System.out.println("Simulation" );
         JLabel headerLabel = new JLabel("Simulation");
         headerLabel.setFont(FONT_MEDIUM.deriveFont(Font.BOLD));
         headerLabel.setForeground(COLOR_FOREGROUND);
@@ -318,6 +317,7 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
 
             String full_filename = document_.getFile().getPath() + '.' + ExportType.sbml.name();
             String filename = document_.getFile().getName() + '.' + ExportType.sbml.name();
+            FileManager.export_sbml(document_, document_.getFile().getPath(), ExportType.sbml);
             System.out.println(full_filename);
             File f = new File(full_filename);
             NetworkContainer net = Simulator.readNetworkFromSBML(f);
@@ -442,30 +442,6 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
 
         }
 
-//        IntermediateTableModel model2 = (IntermediateTableModel)intermediateTable_.getModel();
-//        Object[][] data2 = model2.getData();
-//        String id2;
-//        Object value2;
-//        for (int i =0; i < data2.length; i++)
-//        {
-//            id2 = data2[i][0].toString();
-//            value2 = data2[i][2];
-//
-//            if (value2.equals(true)|| value2.equals(false)) {
-//                System.out.println(value2);
-//                //get the key given the id
-//                int index = -1;
-//                for (java.util.Map.Entry<Integer, String> entry : geneNames.entrySet()) {
-//                    if (entry.getValue().equals(id2)) {
-//                        index = (int) entry.getKey();
-//                    }
-//                }
-//                System.out.println(index + value2.toString());
-//                cond.geneValues.put(index, (boolean)value2);
-//            }
-//
-//        }
-
         InitialValues initConditions = new InitialValues();
         initConditions.getConditions().add(cond);
         return initConditions;
@@ -476,7 +452,6 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
         ResultsTableModel resultsTableMode  = new ResultsTableModel(results, geneNames, colNames);
         resultsTable_.setModel(resultsTableMode);
         resultsTableMode.fireTableDataChanged();
-//        resultsTable_.updateUI();
     }
     public static void setBackColors(Document doc, HashMap<String, Boolean>  states){
         Map map = doc.getPathway().getMap();

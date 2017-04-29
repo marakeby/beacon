@@ -13,6 +13,7 @@ import edu.vt.beacon.simulation.Simulator;
 import edu.vt.beacon.simulation.model.InitialValues;
 import edu.vt.beacon.simulation.model.SimpleConditions;
 import edu.vt.beacon.simulation.model.containers.NetworkContainer;
+import org.omg.PortableInterceptor.INACTIVE;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,6 +33,7 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
     private Document document_;
 
     private InputsTable inputsTable_;
+    private IntermediateTable intermediateTable_;
     private ResultsTable resultsTable_;
 
     private Map selectedMap_;
@@ -76,12 +78,27 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
         inputsPanel.setBackground(Color.white);
         inputsPanel.setBorder(BorderFactory.createEtchedBorder());
         inputsPanel.setLayout(new BorderLayout());
+
+        JLabel headerLabel = new JLabel("Input Nodes");
+        inputsPanel.add(headerLabel, BorderLayout.NORTH);
         buildInputsTable(inputsPanel);
+
+        JPanel intermediatePanel = new JPanel();
+        intermediatePanel.setBackground(Color.white);
+        intermediatePanel.setBorder(BorderFactory.createEtchedBorder());
+        intermediatePanel.setLayout(new BorderLayout());
+        headerLabel = new JLabel("Intermediate Nodes");
+        intermediatePanel.add(headerLabel, BorderLayout.NORTH);
+
+        buildIntermediateTable(intermediatePanel);
+
 
         JPanel resultsPanel = new JPanel();
         resultsPanel.setBackground(Color.white);
 //        resultsPanel.setBorder(BorderFactory.createEtchedBorder());
         resultsPanel.setLayout(new BorderLayout());
+        headerLabel = new JLabel("Results");
+        resultsPanel.add(headerLabel, BorderLayout.NORTH);
         buildResultsTable(resultsPanel);
 
 
@@ -105,6 +122,17 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
         c.gridheight = 5;
         c.fill= GridBagConstraints.HORIZONTAL;
 
+        contentPanel.add(intermediatePanel, c);
+
+        c.gridx = 11;
+        c.gridy = 0;
+        c.anchor = GridBagConstraints.LINE_START;
+        c.gridwidth = 3;
+        c.weightx = 0.0;
+        c.gridwidth = 5;
+        c.gridheight = 5;
+        c.fill= GridBagConstraints.HORIZONTAL;
+
         contentPanel.add(resultsPanel, c);
 
 
@@ -118,7 +146,7 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
         buttonPanel.add(addButton_);
 
         c.gridx = 2;
-        c.gridy = 6;
+        c.gridy = 12;
 //        c.anchor = GridBagConstraints.LINE_END;
         c.anchor =  GridBagConstraints.PAGE_END; //bottom of space;
         c.insets = new Insets(10,0,0,0);  //top padding
@@ -152,6 +180,33 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
         InputsTableModel dm = new InputsTableModel(data, colNames);
         return dm;
     }
+
+    private IntermediateTableModel getIntermediateTableModel(){
+        ArrayList<AbstractNode> inputNodes = document_.getPathway().getMap().getInputNodes();
+        ArrayList<AbstractNode> allNodes = document_.getPathway().getMap().getAllNodes();
+
+        ArrayList<String> inputsID = new ArrayList<String>();
+        ArrayList<String> inputsText = new ArrayList<String>();
+        for (AbstractNode n : allNodes) {
+            if (inputNodes.indexOf(n)>=0)
+                continue;
+            inputsText.add(n.getLabel().getText());
+            inputsID.add(n.getId());
+            System.out.println(n.getLabel().getText());
+        }
+
+        int n = inputsText.size();
+        Object[][] data = new Object[n][3];
+        for (int i=0; i<n ;i++) {
+            data[i][0] = inputsID.get(i);
+            data[i][1] = inputsText.get(i);
+            data[i][2] = 'x';
+        }
+        String[] colNames =  { "Id", "Input", "Active" };
+        IntermediateTableModel dm = new IntermediateTableModel(data, colNames);
+        return dm;
+    }
+
     private void buildInputsTable(JPanel menuPanel) {
 
         InputsTableModel dm = getInputTableModel();
@@ -162,7 +217,25 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
         inputsTable_.getColumnModel().getColumn(0).setPreferredWidth(100);
         JScrollPane scroll = new JScrollPane(inputsTable_);
         menuPanel.add(scroll);
-        menuPanel.setMinimumSize(new Dimension(500,100));
+        menuPanel.setMinimumSize(new Dimension(300,100));
+//        setSize(400, 100);
+        setVisible(true);
+
+    }
+
+    private void buildIntermediateTable(JPanel menuPanel) {
+
+        IntermediateTableModel dm = getIntermediateTableModel();
+//        String[] colNames =  { "Id", "Input", "Active" };
+//        InputsTableModel dm = new InputsTableModel(null, colNames);
+        intermediateTable_ = new IntermediateTable(dm);
+        intermediateTable_.setRowSelectionAllowed(false);
+        intermediateTable_.setSelectionMode(0);
+        intermediateTable_.getColumnModel().getColumn(1).setPreferredWidth(50);
+        intermediateTable_.getColumnModel().getColumn(0).setPreferredWidth(100);
+        JScrollPane scroll = new JScrollPane(intermediateTable_);
+        menuPanel.add(scroll);
+        menuPanel.setMinimumSize(new Dimension(300,100));
 //        setSize(400, 100);
         setVisible(true);
 
@@ -196,7 +269,7 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
 
         JScrollPane scroll = new JScrollPane(resultsTable_);
         resultsPanel.add(scroll);
-        resultsPanel.setMinimumSize(new Dimension(500,100));
+        resultsPanel.setMinimumSize(new Dimension(300,100));
 
     }
 
@@ -207,10 +280,13 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
         String[] colNames =  { "Node", "State" };
         ResultsTableModel resultsTableMode = new ResultsTableModel(null, null, colNames);
         InputsTableModel inputsTableMode = getInputTableModel();
+        IntermediateTableModel intermediateTableMode = getIntermediateTableModel();
         inputsTable_.setModel(inputsTableMode);
         resultsTable_.setModel(resultsTableMode);
+        intermediateTable_.setModel(intermediateTableMode);
         resultsTableMode.fireTableDataChanged();
         inputsTableMode.fireTableDataChanged();
+        intermediateTableMode.fireTableDataChanged();
         repaint();
     }
 
@@ -315,6 +391,30 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
             fixedGenes.put(index, value);
 
         }
+
+        IntermediateTableModel model2 = (IntermediateTableModel)intermediateTable_.getModel();
+        data = model2.getData();
+
+        Object value2;
+        for (int i =0; i < data.length; i++)
+        {
+            id = data[i][0].toString();
+            value2 = data[i][2];
+            if (value2.equals(true)|| value2.equals(false)) {
+//            System.out.println(id);//id
+//            System.out.println(value);//value
+                //get the key given the id
+                int index = -1;
+                for (java.util.Map.Entry<Integer, String> entry : geneNames.entrySet()) {
+                    if (entry.getValue().equals(id)) {
+                        index = (int) entry.getKey();
+                    }
+                }
+                fixedGenes.put(index, (Boolean)value2);
+            }
+
+        }
+
         return fixedGenes;
     }
     private InitialValues getInitialCondition(HashMap<Integer, Integer> geneToColIndices, HashMap<Integer, String> geneNames){
@@ -331,8 +431,6 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
         {
             id = data[i][0].toString();
             value = (Boolean)data[i][2];
-//            System.out.println(id);//id
-//            System.out.println(value);//value
             //get the key given the id
             int index= -1;
             for (java.util.Map.Entry<Integer, String> entry : geneNames.entrySet()) {
@@ -343,6 +441,31 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
             cond.geneValues.put(index, value);
 
         }
+
+//        IntermediateTableModel model2 = (IntermediateTableModel)intermediateTable_.getModel();
+//        Object[][] data2 = model2.getData();
+//        String id2;
+//        Object value2;
+//        for (int i =0; i < data2.length; i++)
+//        {
+//            id2 = data2[i][0].toString();
+//            value2 = data2[i][2];
+//
+//            if (value2.equals(true)|| value2.equals(false)) {
+//                System.out.println(value2);
+//                //get the key given the id
+//                int index = -1;
+//                for (java.util.Map.Entry<Integer, String> entry : geneNames.entrySet()) {
+//                    if (entry.getValue().equals(id2)) {
+//                        index = (int) entry.getKey();
+//                    }
+//                }
+//                System.out.println(index + value2.toString());
+//                cond.geneValues.put(index, (boolean)value2);
+//            }
+//
+//        }
+
         InitialValues initConditions = new InitialValues();
         initConditions.getConditions().add(cond);
         return initConditions;

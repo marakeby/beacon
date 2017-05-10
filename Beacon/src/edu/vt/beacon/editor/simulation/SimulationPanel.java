@@ -34,8 +34,8 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
 
     private InputsTable inputsTable_;
     private IntermediateTable intermediateTable_;
-    private ResultsTable resultsTable_;
-
+//    private ResultsTable resultsTable_;
+    private ResultsPanel resultsPanel_;
     private Map selectedMap_;
 
     JButton addButton_;
@@ -91,16 +91,7 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
 
         buildIntermediateTable(intermediatePanel);
 
-
-        JPanel resultsPanel = new JPanel();
-        resultsPanel.setBackground(Color.white);
-//        resultsPanel.setBorder(BorderFactory.createEtchedBorder());
-        resultsPanel.setLayout(new BorderLayout());
-        headerLabel = new JLabel("Results");
-        resultsPanel.add(headerLabel, BorderLayout.NORTH);
-        buildResultsTable(resultsPanel);
-
-
+        c.ipady = 100;
         c.gridx = 0;
         c.gridy = 0;
         c.anchor = GridBagConstraints.LINE_START;
@@ -108,31 +99,34 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
         c.weightx = 0.0;
         c.gridwidth = 5;
         c.gridheight = 5;
-        c.fill= GridBagConstraints.HORIZONTAL;
+//        c.fill= GridBagConstraints.HORIZONTAL;
+        c.fill= GridBagConstraints.VERTICAL;
 
         contentPanel.add(inputsPanel, c);
 
         c.gridx = 6;
         c.gridy = 0;
-        c.anchor = GridBagConstraints.LINE_START;
+        c.anchor = GridBagConstraints.PAGE_START;
         c.gridwidth = 3;
         c.weightx = 0.0;
         c.gridwidth = 5;
         c.gridheight = 5;
         c.fill= GridBagConstraints.HORIZONTAL;
+        c.fill= GridBagConstraints.VERTICAL;
 
         contentPanel.add(intermediatePanel, c);
 
         c.gridx = 11;
         c.gridy = 0;
-        c.anchor = GridBagConstraints.LINE_START;
+        c.anchor = GridBagConstraints.PAGE_START;
         c.gridwidth = 3;
         c.weightx = 0.0;
         c.gridwidth = 5;
-        c.gridheight = 5;
-        c.fill= GridBagConstraints.HORIZONTAL;
+        c.gridheight = 10;
+        c.fill= GridBagConstraints.VERTICAL;
 
-        contentPanel.add(resultsPanel, c);
+        resultsPanel_ = new ResultsPanel(this);
+        contentPanel.add(resultsPanel_, c);
 
 
 
@@ -145,11 +139,11 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
         buttonPanel.add(addButton_);
 
         c.gridx = 2;
-        c.gridy = 12;
+        c.gridy = 5;
 //        c.anchor = GridBagConstraints.LINE_END;
         c.anchor =  GridBagConstraints.PAGE_END; //bottom of space;
-        c.insets = new Insets(10,0,0,0);  //top padding
-        c.gridwidth = 5;   //2 columns wide
+//        c.insets = new Insets(10,0,0,0);  //top padding
+//        c.gridwidth = 5;   //2 columns wide
         contentPanel.add(buttonPanel, c);
 
         add(contentPanel, BorderLayout.CENTER);
@@ -240,48 +234,48 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
 
     }
 
-    private void buildResultsTable(JPanel resultsPanel) {
-
-        ArrayList<AbstractNode> inputNodes = document_.getPathway().getMap().getAllNodes();
-        HashMap<Integer, String> nodeNames = new HashMap<Integer, String> ();
-
-        ArrayList<String> inputs = new ArrayList<String>();
-        int i =0;
-        int s = inputNodes.size();
-        boolean[] state= new boolean[s];
-        for (AbstractNode n : inputNodes) {
-            inputs.add(n.getLabel().getText());
-            nodeNames.put(i, n.getLabel().getText());
-            state[i] = true;
-            i++;
-        }
-
-        Vector<boolean[]> states = new Vector<boolean[]> ();
-        states.add(state);
-
-        String[] colNames =  { "Node", "State" };
-
-        ResultsTableModel dm = new ResultsTableModel(null, null, colNames);
-        resultsTable_ = new ResultsTable(dm);
-        resultsTable_.setRowSelectionAllowed(false);
-        resultsTable_.setSelectionMode(0);
-
-        JScrollPane scroll = new JScrollPane(resultsTable_);
-        resultsPanel.add(scroll);
-        resultsPanel.setMinimumSize(new Dimension(300,100));
-
-    }
+//    private void buildResultsTable(JPanel resultsPanel) {
+//
+//        ArrayList<AbstractNode> inputNodes = document_.getPathway().getMap().getAllNodes();
+//        HashMap<Integer, String> nodeNames = new HashMap<Integer, String> ();
+//
+//        ArrayList<String> inputs = new ArrayList<String>();
+//        int i =0;
+//        int s = inputNodes.size();
+//        boolean[] state= new boolean[s];
+//        for (AbstractNode n : inputNodes) {
+//            inputs.add(n.getLabel().getText());
+//            nodeNames.put(i, n.getLabel().getText());
+//            state[i] = true;
+//            i++;
+//        }
+//
+//        Vector<boolean[]> states = new Vector<boolean[]> ();
+//        states.add(state);
+//
+//        String[] colNames =  { "Node", "State" };
+//
+//        ResultsTableModel dm = new ResultsTableModel(null, null, null, colNames);
+//        resultsTable_ = new ResultsTable(dm, this);
+//        resultsTable_.setRowSelectionAllowed(false);
+//        resultsTable_.setSelectionMode(0);
+//
+//        JScrollPane scroll = new JScrollPane(resultsTable_);
+//        resultsPanel.add(scroll);
+//        resultsPanel.setMinimumSize(new Dimension(300,100));
+//
+//    }
 
     public void refresh() {
         System.out.println("refresh..........");
         selectedMap_ = document_.getBrowserMenu().getSelectedMap();
 
         String[] colNames =  { "Node", "State" };
-        ResultsTableModel resultsTableMode = new ResultsTableModel(null, null, colNames);
+        ResultsTableModel resultsTableMode = new ResultsTableModel(null, null,null,  colNames);
         InputsTableModel inputsTableMode = getInputTableModel();
         IntermediateTableModel intermediateTableMode = getIntermediateTableModel();
         inputsTable_.setModel(inputsTableMode);
-        resultsTable_.setModel(resultsTableMode);
+//        resultsTable_.setModel(resultsTableMode);
         intermediateTable_.setModel(intermediateTableMode);
         resultsTableMode.fireTableDataChanged();
         inputsTableMode.fireTableDataChanged();
@@ -295,6 +289,10 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
             selectedMap_ = document_.getPathway().getMap();
             refresh();
         }
+    }
+
+    public Document getDocument(){
+        return document_;
     }
 
 
@@ -325,20 +323,20 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
 
             HashMap<Integer, Integer> geneToColIndices = new HashMap<Integer, Integer>();
             HashMap<Integer, Integer> colToGeneIndices = new HashMap<Integer, Integer>();
-            HashMap<Integer, String> geneNames = net.varNames;
+            HashMap<Integer, String> geneIDs = net.varNames;
             HashMap<Integer, String> geneText = net.varText;
 
             HashMap<String, Boolean> results = new HashMap<String, Boolean>();
 
-            Vector<Integer> indices = new Vector<Integer>(geneNames.keySet());
+            Vector<Integer> indices = new Vector<Integer>(geneIDs.keySet());
             for(int i = 0; i < indices.size(); i++) {
                 geneToColIndices.put(indices.elementAt(i), i);
                 colToGeneIndices.put(i, indices.elementAt(i));
             }
 
-            InitialValues initConditions = getInitialCondition(geneToColIndices, geneNames);
+            InitialValues initConditions = getInitialCondition(geneToColIndices, geneIDs);
 
-            HashMap<Integer,Boolean> fixedGenes = getFixedGenes(geneNames);
+            HashMap<Integer,Boolean> fixedGenes = getFixedGenes(geneIDs);
             SimulationThread simThread = new SimulationThread(net, initConditions,
                     maxStarts,
                     maxTransitions,
@@ -352,13 +350,15 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
                 for (boolean[] rr :rrr ) {
                     System.out.println("*");
                     for (int i =0; i< rr.length; i++) {
-                        System.out.print("" + geneNames.get(i) + " " + rr[i] + "\n");
-                        results.put(geneNames.get(i), rr[i]);
+                        System.out.print("" + geneIDs.get(i) + " " + rr[i] + "\n");
+                        results.put(geneIDs.get(i), rr[i]);
                     }
                 }
             }
-            setBackColors(document_, results);
-            populateResultsTable(results_vector.get(0),geneText );
+            Coloring.setBackColors(document_, results);
+//            populateResultsTable(results_vector.get(0),geneIDs, geneText );
+//            resultsPanel_.setResults(results_vector.get(0),geneIDs, geneText );
+            resultsPanel_.setResults(results_vector,geneIDs, geneText );
         }catch (Exception e) {
             JOptionPane.showMessageDialog(null,  " cannot load the SBML file ", "InfoBox: " , JOptionPane.ERROR_MESSAGE);
 
@@ -446,31 +446,33 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
         initConditions.getConditions().add(cond);
         return initConditions;
     }
-    private void populateResultsTable(Vector<boolean[]> results, HashMap<Integer, String> geneNames ){
-
-        String[] colNames =  { "Node", "State" };
-        ResultsTableModel resultsTableMode  = new ResultsTableModel(results, geneNames, colNames);
-        resultsTable_.setModel(resultsTableMode);
-        resultsTableMode.fireTableDataChanged();
-    }
-    public static void setBackColors(Document doc, HashMap<String, Boolean>  states){
-        Map map = doc.getPathway().getMap();
-
-
-        for (Layer l : map.getLayers())
-            for (AbstractGlyph g : l.getGlyphs()) {
-                if (g instanceof AbstractNode && states.get(g.getId()) !=null ) {
-                    if (states.get(g.getId()) )
-                        g.setBackgroundColor(new Color(209, 255, 215));
-                    else
-                        g.setBackgroundColor(new Color(255, 209, 209));
-                }
-
-            }
-        doc.refresh();
-        new DocumentState(doc, "Simulation Coloring", false);
-
-
-    }
+//    private void populateResultsTable(Vector<boolean[]> results, HashMap<Integer, String> geneIDs, HashMap<Integer, String> geneNames ){
+//
+//        String[] colNames =  { "Node", "State" };
+//        ResultsTableModel resultsTableMode  = new ResultsTableModel(results, geneIDs, geneNames, colNames);
+//        resultsTable_.setModel(resultsTableMode);
+//        resultsTableMode.fireTableDataChanged();
+//    }
+//    public static void setBackColors(Document doc, HashMap<String, Boolean>  states){
+//        if (states ==null)
+//            return;
+//        Map map = doc.getPathway().getMap();
+//
+//
+//        for (Layer l : map.getLayers())
+//            for (AbstractGlyph g : l.getGlyphs()) {
+//                if (g instanceof AbstractNode && states.get(g.getId()) !=null ) {
+//                    if (states.get(g.getId()) )
+//                        g.setBackgroundColor(new Color(209, 255, 215));
+//                    else
+//                        g.setBackgroundColor(new Color(255, 209, 209));
+//                }
+//
+//            }
+//        doc.refresh();
+//        new DocumentState(doc, "Simulation Coloring", false);
+//
+//
+//    }
 
 }

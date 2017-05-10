@@ -11,12 +11,14 @@ public class ResultsTableModel extends AbstractTableModel {
 
     private String[] columnNames;
     private HashMap<Integer, String> nodeNames;
+    private HashMap<Integer, String> nodeIDs;
     private Vector<boolean[]> states;
 
-    public ResultsTableModel(Vector<boolean[]> states,HashMap<Integer, String> nodeNames , String[] columnNames) {
+    public ResultsTableModel(Vector<boolean[]> states, HashMap<Integer, String> nodeIDs, HashMap<Integer, String> nodeNames ,  String[] columnNames) {
         this.states = states;
         this.nodeNames = nodeNames;
         this.columnNames = columnNames;
+        this.nodeIDs= nodeIDs;
     }
 
     public int getColumnCount() {
@@ -32,7 +34,8 @@ public class ResultsTableModel extends AbstractTableModel {
     }
 
     public String getColumnName(int col) {
-        return columnNames[1];
+        if (col==0) return "Node";
+        return columnNames[1] + " " + col;
     }
 
     public Object getValueAt(int row, int col) {
@@ -42,6 +45,9 @@ public class ResultsTableModel extends AbstractTableModel {
         return states.get(col-1)[row];
     }
 
+    public HashMap<Integer, String> getNodeIds(){
+        return nodeIDs;
+    }
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false;

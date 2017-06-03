@@ -137,7 +137,10 @@ public class FileHandler
 
     private void processOpenFile(Action action) {
         FileDialog fileDialog = new FileDialog(new Frame(), "Open", FileDialog.LOAD);
+        // Because of Sun's implementation of Java for windows, this won't do anything for windows users
+        // Consider changing FileDialog class to JFileChooser
         fileDialog.setFilenameFilter(new FilenameFilter() {
+            @Override
             public boolean accept(File dir, String name) {
                 return name.endsWith(".sbgn");
             }

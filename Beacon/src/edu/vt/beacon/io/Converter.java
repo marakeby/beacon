@@ -1,5 +1,6 @@
 package edu.vt.beacon.io;
 
+import edu.vt.beacon.editor.gene.Gene;
 import edu.vt.beacon.graph.AbstractEntity;
 import edu.vt.beacon.graph.OrientationType;
 import edu.vt.beacon.graph.glyph.AbstractGlyph;
@@ -25,6 +26,7 @@ import edu.vt.beacon.map.Map;
 import edu.vt.beacon.pathway.Pathway;
 import org.sbgn.bindings.*;
 import org.sbgn.bindings.Point;
+import org.sbml.jsbml.util.NotImplementedException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -95,6 +97,12 @@ public class Converter {
     private static final String PORT_LINE_INDEX = "lineIndex";
     private static final String PORT_FRACTION = "fraction";
     private static final String PORT_TERMINAL_ID = "terminalId";
+
+    private static final String GENE_ID = "id";
+    private static final String GENE_NAME = "name";
+    private static final String GENE_PUBMED_ID = "pubMed_Id";
+    private static final String GENE_DESCRIPTION = "description";
+    private static final String GENE_NODE_NAME = "gene";
 
     private static final String ARC_SOURCE_PORT_ELEMENT = "sourcePort";
     private static final String ARC_TARGET_PORT_ELEMENT = "targetPort";
@@ -270,6 +278,8 @@ public class Converter {
         if (node instanceof AbstractNode && node.getOrientation() != null)
             glyph.setOrientation(node.getOrientation().toString());
 
+
+
         setAuxiliaryUnit(node, glyph);
         glyph.getPort().addAll(getPorts(node.getPorts(), node));
 
@@ -287,6 +297,9 @@ public class Converter {
         if (node instanceof Compartment)
             glyph.setCompartmentOrder(((float) ((Compartment) node).getRenderingOrder()));
 
+        if(node instanceof  AbstractActivity)
+            setGenes(glyph,(AbstractActivity) node);
+
         glyph.setLabel(getLabel(node.getLabel(), node));
 
         glyph.setExtension(getExtension(node));
@@ -294,6 +307,7 @@ public class Converter {
 
         return glyph;
     }
+
 
     private static void setTerminals(Submap submap, Glyph glyph) {
 
@@ -938,7 +952,10 @@ public class Converter {
 
         setBoundingBox(glyph.getBbox(), node);
         setAnnotation(glyph, node);
-
+        if (glyph.getClazz().equalsIgnoreCase(GlyphType.BIOLOGICAL_ACTIVITY.toString()))// any other types of sbgn nodes
+        {
+            setGenes(glyph,(AbstractActivity) node);
+        }
         setFont(glyph, node);
         setShapeStyle(glyph, node);
         node.setOrientation(getOrientation(glyph.getOrientation()));
@@ -995,6 +1012,28 @@ public class Converter {
         }
 
         return node;
+    }
+
+    /* Gets the genes from the Glyph object and assigns it to the abstract node if the glyph is an activity */
+    //I know its dirty but without refactoring a bunch of logic, doing it nicely is gonna be tough
+    private static void setGenes(Glyph glyph, AbstractActivity node) {
+        SBGNBase.Extension ext = glyph.getExtension();
+
+        if  (ext == null)
+            return;
+
+        node.getGenes().clear();
+
+        for( Element g : ext.getAny())
+            {
+                if(g.getLocalName().equalsIgnoreCase(GENE_NODE_NAME) == false)
+                    continue;
+                Gene realGene = new Gene(g.getAttribute(GENE_ID),g.getAttribute(GENE_NAME),g.getAttribute(GENE_PUBMED_ID),g.getAttribute(GENE_DESCRIPTION));
+
+                node.addGene(realGene);
+            }
+
+        return;
     }
 
     private static void processSubmap(Glyph sbgnSubmap, Submap submap) {
@@ -1071,7 +1110,7 @@ public class Converter {
 
         if (!glyph.getClazz().equalsIgnoreCase(GlyphType.BIOLOGICAL_ACTIVITY.toString()) &&
                 !glyph.getClazz().equalsIgnoreCase(GlyphType.COMPARTMENT.toString()))
-            return true;
+            return true; // probably should throw type mismatch exception and then later re-orient arguements
 
         Glyph sbgnAux = null;
 

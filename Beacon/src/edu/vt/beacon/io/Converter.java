@@ -637,6 +637,7 @@ public class Converter {
         Element fontInfo = null;
         Element TargetInfo = null;
         Element CalloutPoint= null;
+        Element geneInfo = null;
 
         try {
 
@@ -687,6 +688,17 @@ public class Converter {
                 }
             }
 
+            if(glyph instanceof  BiologicalActivity)
+            {
+                for(int i = 0; i < ((BiologicalActivity) glyph).getGenesCount(); i++) {
+                    geneInfo = createElement(GENE_NODE_NAME);
+                    geneInfo.setAttribute(GENE_ID, ((BiologicalActivity) glyph).getGeneIdAt(i));
+                    geneInfo.setAttribute(GENE_NAME,((BiologicalActivity) glyph).getGeneNameAt(i));
+                    geneInfo.setAttribute(GENE_PUBMED_ID,((BiologicalActivity) glyph).getGenePubMedIdNameAt(i));
+                    geneInfo.setAttribute(GENE_DESCRIPTION,((BiologicalActivity) glyph).getGeneDescriptionAt(i));
+                }
+            }
+
             if (layerInfo != null)
                 extension.getAny().add(layerInfo);
 
@@ -701,6 +713,9 @@ public class Converter {
 
             if (CalloutPoint != null)
                 extension.getAny().add(CalloutPoint);
+
+            if(geneInfo != null)
+                extension.getAny().add(geneInfo);
 
             return extension;
 

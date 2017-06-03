@@ -101,6 +101,11 @@ public abstract class AbstractActivity extends AbstractNode {
         return genes.get(a).getName();
     }
 
+    public String getGenePubMedIdNameAt(int a) {
+        return genes.get(a).getPubMed();
+    }
+
+
     public String getGeneDescriptionAt(int a) {
         return genes.get(a).getDescription();
     }

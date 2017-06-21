@@ -49,7 +49,7 @@ public class SbgnToSbmlConverterDebug {
             id = nomalizeName(id);
 
         }
-        System.out.println(id);
+        System.out.println("obtained name:" +id);
 
 //        Integer count = unique_ids.get(id);
 //        if (count ==null)
@@ -314,13 +314,14 @@ public class SbgnToSbmlConverterDebug {
             String id = g.getId();
 
             String name = get_id((AbstractNode)g);
-            System.out.println(name);
+            System.out.println("about to add qualitative Species:" + name);
             QualitativeSpecies specisA = qualModel.createQualitativeSpecies(name, compartment);
             name = ((AbstractNode)g).getLabel().getText();
             name= nomalizeName(name);
             specisA.setName(name);
             specisA.setMaxLevel(1);
 
+            System.out.println("added a new species: " + specisA.getId());
             //if this node is input, set it as constant in SBML
             if(isInputNode((AbstractNode)g))
                 specisA.setConstant(true);
@@ -329,8 +330,10 @@ public class SbgnToSbmlConverterDebug {
         }
 
         for (AbstractGlyph g : allActivites)
-            if (g instanceof AbstractOperator)
+            if (g instanceof AbstractOperator) {
+                System.out.println("about to add logic Gate :"+g.getId());
                 logicalGateToTransition((AbstractOperator) g, qualModel);
+            }
     }
 
     private String nomalizeName(String name){

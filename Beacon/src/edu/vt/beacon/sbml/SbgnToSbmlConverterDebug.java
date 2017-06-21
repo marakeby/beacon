@@ -247,7 +247,7 @@ public class SbgnToSbmlConverterDebug {
                 System.out.println("no source found" + source_name);
                 continue;
             }
-            Input in= new Input("tr_" + source_name +"_input"  , source, InputTransitionEffect.none );
+            Input in= new Input("tr_" + source_name + "_to_" + node.getId()  +"_input"  , source, InputTransitionEffect.none );
             in.setThresholdLevel(1);
             in.setSign(Sign.positive);
             tr.addInput(in);
@@ -311,16 +311,15 @@ public class SbgnToSbmlConverterDebug {
 
             if (g == null)
                 continue;
-            String id = g.getId();
+          //  String id = g.getId();
 
             String name = get_id((AbstractNode)g);
             System.out.println("about to add qualitative Species:" + name);
             QualitativeSpecies specisA = qualModel.createQualitativeSpecies(name, compartment);
             name = ((AbstractNode)g).getLabel().getText();
             name= nomalizeName(name);
-            specisA.setName(name);
+            specisA.setName(name); // update the name so it looks nicer to the user
             specisA.setMaxLevel(1);
-
             System.out.println("added a new species: " + specisA.getId());
             //if this node is input, set it as constant in SBML
             if(isInputNode((AbstractNode)g))

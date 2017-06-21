@@ -1,0 +1,5 @@
+Release Notes
+
+6/21/2017
+
+** Fixed export and import functionality with simulator with  multiple nodes

@@ -8,7 +8,7 @@
       <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
     </src_description>
   </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="false">
+  <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/bin" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
@@ -16,7 +16,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="AppleJavaExtensions.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/AppleJavaExtensions.jar!/" />
@@ -25,7 +25,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="org.sbgn.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/org.sbgn.jar!/" />
@@ -34,7 +34,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library name="jsch-0.1.50.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/jsch-0.1.50.jar!/" />
@@ -43,8 +43,8 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="freehep-export-2.1.1" level="project" />
-    <orderEntry type="library" name="jsbml-tidy-1.2" level="project" />
-    <orderEntry type="library" name="jsbml-1.2-with-dependencies" level="project" />
+    <orderEntry type="library" exported="" name="freehep-export-2.1.1" level="project" />
+    <orderEntry type="library" exported="" name="jsbml-tidy-1.2" level="project" />
+    <orderEntry type="library" exported="" name="jsbml-1.2-with-dependencies" level="project" />
   </component>
 </module>

@@ -26,6 +26,8 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/openide-lookup-1.9-patched-1.0.jar" path-in-jar="/" />
       <element id="library" level="project" name="lib" />
       <element id="library" level="project" name="freeheplib" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/jsbml-tidy-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/jsbml-1.2-with-dependencies.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

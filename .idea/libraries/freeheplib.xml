@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="freeheplib">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/Beacon/lib/freeheplib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/Beacon/lib/freeheplib" recursive="false" />
+  </library>
+</component>

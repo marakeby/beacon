@@ -6,7 +6,6 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/org.sbgn.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/AppleJavaExtensions.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/jsch-0.1.50.jar" path-in-jar="/" />
-      <element id="library" level="project" name="freehep-export-2.1.1" />
       <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-export-2.1.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphics2d-2.1.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-2.1.1.jar" path-in-jar="/" />
@@ -25,6 +24,8 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/jdom-1.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/junit-3.8.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/Beacon/lib/freeheplib/openide-lookup-1.9-patched-1.0.jar" path-in-jar="/" />
+      <element id="library" level="project" name="lib" />
+      <element id="library" level="project" name="freeheplib" />
     </root>
   </artifact>
 </component>

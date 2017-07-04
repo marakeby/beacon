@@ -1,5 +1,9 @@
 Release Notes
 
+7/14/2017
+
+** Updated settings to include dependent libraries
+
 6/21/2017
 
 ** Fixed export and import functionality with simulator with  multiple nodes

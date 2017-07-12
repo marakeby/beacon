@@ -1,11 +1,13 @@
 package edu.vt.beacon.map;
 
 import edu.vt.beacon.graph.glyph.AbstractGlyph;
+import edu.vt.beacon.graph.glyph.GlyphType;
 import edu.vt.beacon.graph.glyph.node.AbstractNode;
 import edu.vt.beacon.graph.glyph.node.submap.Submap;
 import edu.vt.beacon.graph.legend.Legend;
 import edu.vt.beacon.layer.Layer;
 import edu.vt.beacon.util.IdGenerator;
+import org.sbml.jsbml.ext.fbc.LogicalOperator;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -224,7 +226,8 @@ public class Map {
 
         for (Layer l : layers_)
             for (AbstractGlyph g: l.getGlyphs())
-                if (g instanceof AbstractNode )
+                if (g instanceof AbstractNode && !(g.getType() ==  GlyphType.AND || g.getType() == GlyphType.OR ||
+                        g.getType() == GlyphType.NOT))
                     selectedGlyphs.add((AbstractNode)g);
 
         return selectedGlyphs;

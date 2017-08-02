@@ -13,12 +13,19 @@ public class ResultsTableModel extends AbstractTableModel {
     private HashMap<Integer, String> nodeNames;
     private HashMap<Integer, String> nodeIDs;
     private Vector<boolean[]> states;
+    private HashMap<Integer,Integer> indexToKeyMapping;
 
     public ResultsTableModel(Vector<boolean[]> states, HashMap<Integer, String> nodeIDs, HashMap<Integer, String> nodeNames ,  String[] columnNames) {
         this.states = states;
         this.nodeNames = nodeNames;
         this.columnNames = columnNames;
         this.nodeIDs= nodeIDs;
+        this.indexToKeyMapping = new HashMap<Integer,Integer>();
+        if(nodeIDs != null){
+        for(Integer i :nodeIDs.keySet()){
+            indexToKeyMapping.put(indexToKeyMapping.size(),i);
+            }
+        }
     }
 
     public int getColumnCount() {
@@ -40,7 +47,8 @@ public class ResultsTableModel extends AbstractTableModel {
 
     public Object getValueAt(int row, int col) {
         if (col==0)
-            return nodeNames.get(row);
+            return nodeNames.get(indexToKeyMapping.get(row)); // don't use get anymore since the table renderer doesn't always map to a key
+        // so instead the table needs to request the element at row/ column since it has no idea about key mapping
 
         return states.get(col-1)[row];
     }

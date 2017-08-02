@@ -14,15 +14,15 @@ import edu.vt.beacon.simulation.Simulator;
 import edu.vt.beacon.simulation.model.InitialValues;
 import edu.vt.beacon.simulation.model.SimpleConditions;
 import edu.vt.beacon.simulation.model.containers.NetworkContainer;
+import org.sbml.jsbml.ListOf;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Vector;
+import java.util.*;
+import java.util.List;
 
 
 public class SimulationPanel extends JPanel implements Skinnable, ActionListener {
@@ -326,6 +326,19 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
             HashMap<Integer, String> geneIDs = net.varNames;
             HashMap<Integer, String> geneText = net.varText;
 
+            //geneIDs.values().removeIf(val -> "not".equalsIgnoreCase(val) || "or".equalsIgnoreCase(val) || "and".equalsIgnoreCase(val)); // dont allow logical operators in the set
+           // geneText.values().removeIf(val -> "not".equalsIgnoreCase(val) || "or".equalsIgnoreCase(val) || "and".equalsIgnoreCase(val)); // dont allow logical operators in the set
+
+            //I'm assuming the gene id and gene text have the same indexes mappings
+            HashSet<Integer> invalidIndexes = new HashSet<Integer>();
+            for(int i  = 0; i < geneText.size();i++){
+                if(geneText.get(i).equalsIgnoreCase("not") || geneText.get(i).equalsIgnoreCase("or") || geneText.get(i).equalsIgnoreCase("and")){
+                    invalidIndexes.add(i);
+                }
+
+            }
+
+
             HashMap<String, Boolean> results = new HashMap<String, Boolean>();
 
             Vector<Integer> indices = new Vector<Integer>(geneIDs.keySet());
@@ -349,13 +362,41 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
                 System.out.println("-----");
                 for (boolean[] rr :rrr ) {
                     System.out.println("*");
-                    for (int i =0; i< rr.length; i++) {
-                        System.out.print("" + geneIDs.get(i) + " " + rr[i] + "\n");
+                    for (int i =0; i< rr.length; i++) { // this inner for loop makes me think there is only one set of booleans
+                        System.out.print("" + geneText.get(i) + " " + rr[i] + "\n");
                         results.put(geneIDs.get(i), rr[i]);
                     }
                 }
             }
-            Coloring.setBackColors(document_, results);
+
+            for(Integer i : invalidIndexes){
+                geneIDs.remove(i);
+                geneText.remove(i);
+            }
+
+            ArrayList<Boolean> booleans = new ArrayList<Boolean>();
+
+            int totalIndex = 0;
+            for (Vector<boolean[]> rrr: results_vector){
+                for (boolean[] rr :rrr ) {
+
+                    for (int i =0; i< rr.length; i++) { // this inner for loop makes me think there is only one set of booleans
+                        if(invalidIndexes.contains(totalIndex) == false)
+                            booleans.add(rr[i]);
+                        totalIndex++;
+                    }
+                }
+            }
+
+            boolean[] actualBooleans = new boolean[booleans.size()];
+            for(int i = 0; i < booleans.size();i++){
+                actualBooleans[i] = booleans.get(i);
+            }
+
+            results_vector.firstElement().remove(0);
+            results_vector.firstElement().add(actualBooleans);
+
+            Coloring.setBackColors(document_, results); // set graph node colors
 //            populateResultsTable(results_vector.get(0),geneIDs, geneText );
 //            resultsPanel_.setResults(results_vector.get(0),geneIDs, geneText );
             resultsPanel_.setResults(results_vector,geneIDs, geneText );

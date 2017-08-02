@@ -36,6 +36,11 @@ public class Annotation extends AbstractNode {
         update();
     }
 
+    @Override
+    public Boolean isInputNode(){
+        return false;
+
+    }
     public AbstractGlyph getTarget() {
         return target_;
     }

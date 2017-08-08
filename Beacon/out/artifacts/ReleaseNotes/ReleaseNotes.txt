@@ -1,5 +1,12 @@
 Release Notes
 
+
+8/8/2017
+
+** Logical Operators no longer appear as intermediate results nor final results
+
+** Annotations no longer appear as inputs
+
 7/14/2017
 
 ** Updated settings to include dependent libraries

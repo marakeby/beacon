@@ -182,6 +182,8 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
         ArrayList<String> inputsID = new ArrayList<String>();
         ArrayList<String> inputsText = new ArrayList<String>();
         for (AbstractNode n : allNodes) {
+            if(n instanceof Annotation) // annotations shouldn't be loaded as an intermediate state
+                continue;
             if (inputNodes.indexOf(n)>=0)
                 continue;
             inputsText.add(n.getLabel().getText());

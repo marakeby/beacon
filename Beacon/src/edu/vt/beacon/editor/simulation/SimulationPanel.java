@@ -6,6 +6,7 @@ import edu.vt.beacon.editor.document.DocumentState;
 import edu.vt.beacon.editor.swing.laf.Skinnable;
 import edu.vt.beacon.graph.glyph.AbstractGlyph;
 import edu.vt.beacon.graph.glyph.node.AbstractNode;
+import edu.vt.beacon.graph.glyph.node.annotation.Annotation;
 import edu.vt.beacon.io.FileManager;
 import edu.vt.beacon.layer.Layer;
 import edu.vt.beacon.map.Map;

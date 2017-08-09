@@ -3,6 +3,8 @@ Release Notes
 
 8/8/2017
 
+** Annotations no longer appear as intermediate nodes
+
 ** Logical Operators no longer appear as intermediate results nor final results
 
 ** Annotations no longer appear as inputs

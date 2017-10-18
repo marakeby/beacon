@@ -101,7 +101,7 @@ public class SimulateHandler implements ActionHandler {
                 }
                 catch (Exception e) {
                     JOptionPane.showMessageDialog(null,  " cannot load the SBML file ", "InfoBox: " , JOptionPane.ERROR_MESSAGE);
-
+                    System.out.println(e);
                     for(StackTraceElement el:e.getStackTrace())
                         System.out.println(el);
                 }

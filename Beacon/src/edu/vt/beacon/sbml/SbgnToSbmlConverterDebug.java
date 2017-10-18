@@ -185,17 +185,17 @@ public class SbgnToSbmlConverterDebug {
         Input in= new Input("tr_" + source_name + target_id , source , InputTransitionEffect.none );
         in.setThresholdLevel(1);
 
-        if (arc instanceof NegativeInfluence) {
-            System.out.println("negative arc");
-            in.setSign(Sign.negative);
-            fterm.setResultLevel(1);
-            math.addChild(new ASTNode(source_name));
-            math.addChild(new ASTNode(0));
+            if (arc instanceof NegativeInfluence) {
+                System.out.println("negative arc");
+                in.setSign(Sign.negative);
+                fterm.setResultLevel(1);
+                math.addChild(new ASTNode(source_name));
+                math.addChild(new ASTNode(0));
 
-        }
+            }
 
-        else if (arc instanceof PositiveInfluence) {
-            System.out.println("positive arc");
+            else if (arc instanceof PositiveInfluence) {
+                System.out.println("positive arc");
             in.setSign(Sign.positive);
             fterm.setResultLevel(1);
             math.addChild(new ASTNode(source_name));

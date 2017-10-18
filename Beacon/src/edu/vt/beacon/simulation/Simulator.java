@@ -162,8 +162,25 @@ public class Simulator {
                 //Extract function term
                 Element function = ((Element)trans.getElementsByTagName("apply").item(0));
 
-                trees.put(name,new BooleanTree(parseMLTree(function, null, false, geneNames),0));
+                if(trees.containsKey(name)) {
+                    System.out.println("Duplicate transition target, or Input transitions together");
 
+                    BooleanTree existingFormula = trees.get(name);
+                    //construct a new boolean tree based on the previous tree and oring it with the additional tree
+
+                    BooleanOperator orThisArc = new BooleanOperator(OperatorType.OP_OR,null,false);
+                    orThisArc.addNewOperand(parseMLTree(function,orThisArc,false,geneNames)); // new tree is here
+                    orThisArc.addNewOperand(existingFormula.getRoot());
+
+                    trees.remove(name);
+                    trees.put(name, new BooleanTree(orThisArc,0));
+
+                    //trees.get(name).addToPosition(trees.get(name).getNumberOfElements(), orThisArc);
+
+                }
+                else {
+                    trees.put(name, new BooleanTree(parseMLTree(function, null, false, geneNames), 0));
+                }
 
             }
 

@@ -85,7 +85,15 @@ public class SimulateHandler implements ActionHandler {
 
                 break;
             case SIMULATE_EXPORT:
-                FileManager.export_sbml(action.getDocument(), action.getDocument().getFile().getPath(), ExportType.sbml);
+                try{
+                FileManager.export_sbml(action.getDocument(), action.getDocument().getFile().getPath(), ExportType.sbml);}
+                catch (Exception e){
+                    JOptionPane.showMessageDialog(null,  " cannot load the SBML file ", "InfoBox: " , JOptionPane.ERROR_MESSAGE);
+
+                    System.out.println(e);
+                    for(StackTraceElement el:e.getStackTrace())
+                        System.out.println(el);
+                }
                 break;
             case SIMULATE_LOAD_SBML:
 

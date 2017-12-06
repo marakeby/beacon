@@ -1,5 +1,12 @@
 Release Notes
 
+12/6/2017
+
+** Failing to Export or Import SBML files creates a Dialog
+
+** Logic Nodes such as AND, OR, and NOT can no longer be renamed
+
+** Updated build version on dialog to 1.2.0 build 3
 
 8/8/2017
 

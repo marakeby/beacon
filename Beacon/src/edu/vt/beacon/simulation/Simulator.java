@@ -1,7 +1,9 @@
 package edu.vt.beacon.simulation;
 
+import com.sun.javafx.application.PlatformImpl;
 import edu.vt.beacon.simulation.model.containers.NetworkContainer;
 import edu.vt.beacon.simulation.model.tree.*;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -186,6 +188,9 @@ public class Simulator {
 
             if(trees.size() != geneNames.size())
             {
+
+                PlatformImpl.startup(()->{}); // JavaFx and Swing do not like to play with each other especially  on Mac
+                //We probably should remove all refs to JavaFx or as much as possible
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ViSiBooL");
                 alert.setHeaderText("SBML read error");
@@ -209,6 +214,8 @@ public class Simulator {
             return new NetworkContainer(treeSet, geneSet, TextSet);
 
         } catch (ParserConfigurationException | SAXException | IOException e) {
+            PlatformImpl.startup(()->{}); // JavaFx and Swing do not like to play with each other especially  on Mac
+            //We probably should remove all refs to JavaFx or as much as possible
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("ViSiBooL");
             alert.setHeaderText("Could not read sbml-file");

@@ -88,7 +88,7 @@ public class SimulateHandler implements ActionHandler {
                 try{
                 FileManager.export_sbml(action.getDocument(), action.getDocument().getFile().getPath(), ExportType.sbml);}
                 catch (Exception e){
-                    JOptionPane.showMessageDialog(null,  " cannot load the SBML file ", "InfoBox: " , JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null,  " failed to export the SBGN file as a SBML file ", "InfoBox: " , JOptionPane.ERROR_MESSAGE);
 
                     System.out.println(e);
                     for(StackTraceElement el:e.getStackTrace())

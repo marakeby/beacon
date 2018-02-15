@@ -34,6 +34,7 @@ public enum ActionType
 	VIEW_ZOOM_150  		("150%"),
 	VIEW_ZOOM_175  		("175%"),
 	VIEW_ZOOM_200  		("200%"),
+    VIEW_FIND           ("Find..."),
 
 	FORMAT_LEGEND  		("Legend..."),
 	FORMAT_CANVAS		("Canvas..."),

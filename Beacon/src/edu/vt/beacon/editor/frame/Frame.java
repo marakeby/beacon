@@ -1,16 +1,20 @@
 package edu.vt.beacon.editor.frame;
 
 import edu.vt.beacon.editor.document.Document;
-import edu.vt.beacon.editor.resources.icons.IconType;
+import edu.vt.beacon.editor.gene.Gene;
 import edu.vt.beacon.editor.swing.ClearSplitPane;
+import edu.vt.beacon.graph.glyph.AbstractGlyph;
+import edu.vt.beacon.graph.glyph.node.AbstractNode;
+import edu.vt.beacon.graph.glyph.node.activity.AbstractActivity;
+import edu.vt.beacon.layer.Layer;
+import edu.vt.beacon.map.Map;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Frame extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -123,5 +127,60 @@ public class Frame extends JFrame {
         hSplitPane_.setOneTouchExpandable(true);
         add(hSplitPane_);
         add(document_.getPalette(), BorderLayout.WEST);
+    }
+
+    public void find() {
+        String searchQuery = JOptionPane.showInputDialog(this.document_.getCanvas(), "Find:");
+        boolean foundOne = false;
+        if (searchQuery != null) {
+            ArrayList<AbstractNode> nodeList = getActiveNodes();
+            for (AbstractNode node : nodeList) {
+                if (searchQuery.equals(node.getText())) {
+                    foundOne = true;
+                    node.setSelected(true);
+                }
+                else if (node.isSelected()) {
+                    node.setSelected(false);
+               }
+//                else {
+//                    List<Gene> geneList = ((AbstractActivity) node).getGenes();
+//                    for (Gene gene : geneList) {
+//                        if (gene.getId().equals(searchQuery) || gene.getName().equals(searchQuery)) {
+//                            foundOne = true;
+//                            node.setSelected(true);
+//                        }
+//                    }
+//                }
+            }
+        }
+        if (foundOne) {
+            foundOne = false;
+            document_.getCanvas().repaint();
+        }
+    }
+
+    public ArrayList<AbstractNode> getActiveNodes(){
+
+        ArrayList<AbstractNode> allGlyphs = new ArrayList<AbstractNode>();
+        Layer layer;
+        Map map = document_.getBrowserMenu().getSelectedMap();
+
+        for (int i = map.getLayerCount() - 1; i >= 0; i--) {
+
+            layer = map.getLayerAt(i);
+
+            if (layer.isActive()) {
+
+                for (int j = layer.getGlyphCount() - 1; j >= 0; j--) {
+                    AbstractGlyph glyph = layer.getGlyphAt(j);
+                    if (glyph instanceof AbstractNode){
+                        allGlyphs.add((AbstractNode)glyph);
+                    }
+
+                }
+            }
+        }
+        return allGlyphs;
+
     }
 }

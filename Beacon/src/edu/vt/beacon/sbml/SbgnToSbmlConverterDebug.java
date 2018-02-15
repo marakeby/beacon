@@ -351,7 +351,7 @@ public class SbgnToSbmlConverterDebug {
         for(Port p: node.getPorts())
         {
             for(AbstractArc arc : p.getArcs())
-                if (arc.getTarget().equals(node))
+                if (arc.getTarget() == null || arc.getTarget().equals(node))
                     output=false;
         }
         return output;

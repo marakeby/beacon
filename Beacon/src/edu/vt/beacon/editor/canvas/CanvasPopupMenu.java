@@ -48,6 +48,38 @@ public class CanvasPopupMenu extends JPopupMenu {
         populateDeletingMenuItem();
         populateAnnotationMenuItem();
         populateTerminalMenuItem();
+        populateRotate();
+    }
+
+    /**
+     * Change the orientation of the glyph.
+     */
+    private void populateRotate() {
+        ArrayList<AbstractGlyph> selectedGlyphs = document.getBrowserMenu().getSelectedMap().getSelectedGlyphs();
+        if (selectedGlyphs == null || selectedGlyphs.isEmpty() || selectedGlyphs.size() > 1) {
+            return;
+        }
+        AbstractGlyph selectedGlyph = selectedGlyphs.get(0);
+        if (selectedGlyph.getType() != GlyphType.AND && selectedGlyph.getType() != GlyphType.NOT &&
+                selectedGlyph.getType() != GlyphType.OR && selectedGlyph.getType() != GlyphType.DELAY) {
+            return;
+        }
+        JMenuItem rotateMenuItem = new JMenuItem("Rotate");
+        add(rotateMenuItem);
+        rotateMenuItem.addActionListener(new AbstractAction() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AbstractNode node = (AbstractNode) selectedGlyph;
+                if (node.getOrientation().isHorizontal()) {
+                    node.setOrientation(OrientationType.VERTICAL);
+                }
+                else {
+                    node.setOrientation(OrientationType.HORIZONTAL);
+                }
+                document.getCanvas().repaint();
+            }
+        });
     }
 
     private void populateTransparentMenuItem() {

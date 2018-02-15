@@ -11,6 +11,7 @@ import org.sbgn.SbgnUtil;
 import org.sbgn.bindings.Sbgn;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import javax.xml.stream.XMLStreamException;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -145,6 +146,13 @@ public class FileManager {
     }
 
     public static boolean export_sbml(Document document, String filename, ExportType exportType){
+        int result = JOptionPane.showConfirmDialog(
+                document.getCanvas(), "Are you sure you want to export as SBML?",
+                "Confirm Export",
+                0, 2);
+        if (result != 0) {
+            return false;
+        }
 
         if(exportType == ExportType.sbml)
         {
@@ -158,10 +166,12 @@ public class FileManager {
                 w.writeSBMLToFile(doc,filename + "." + exportType.name() );
             } catch (FileNotFoundException | XMLStreamException e) {
                 e.printStackTrace();
+                JOptionPane.showMessageDialog(document.getCanvas(), "Export Fail");
                 return false;
             }
 
         }
+        JOptionPane.showMessageDialog(document.getCanvas(), "Export Successful");
         return true;
     }
 

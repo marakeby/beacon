@@ -5,6 +5,7 @@ import java.awt.geom.Point2D;
 
 import edu.vt.beacon.graph.glyph.GlyphType;
 import edu.vt.beacon.graph.glyph.node.auxiliary.Port;
+import edu.vt.beacon.graph.glyph.node.auxiliary.PortType;
 import edu.vt.beacon.util.ArcManager;
 
 public class PositiveInfluence extends AbstractArc {
@@ -53,6 +54,10 @@ public class PositiveInfluence extends AbstractArc {
                         port.getParent().getPortAt(portIndex).getArcAt(arcIndex) != this &&
                         port.getParent().getPortAt(portIndex).getArcAt(arcIndex) instanceof PositiveInfluence)
                     return false;
+
+        if ((type == GlyphType.NOT || type == GlyphType.DELAY || type == GlyphType.AND || type == GlyphType.OR) && port.getType() != PortType.RIGHT) {
+            return false;
+        }
 
         return true;
 

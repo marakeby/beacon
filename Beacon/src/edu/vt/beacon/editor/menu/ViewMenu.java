@@ -14,6 +14,7 @@ public class ViewMenu extends AbstractMenu {
     private JCheckBoxMenuItem gridLinesItem;
     private PlatformMenuItem zoomInItem;
     private PlatformMenuItem zoomOutItem;
+    private PlatformMenuItem findItem;
     private JMenu zoomItem;
 
     // FIXME complete constructor
@@ -33,12 +34,14 @@ public class ViewMenu extends AbstractMenu {
          zoomInItem = new PlatformMenuItem();
          zoomOutItem = new PlatformMenuItem();
          zoomItem = new JMenu("Zoom...");
+         findItem = new PlatformMenuItem();
 
         populateZoomMenuItem(zoomItem);
         add(gridLinesItem);
         add(zoomInItem);
         add(zoomOutItem);
         add(zoomItem);
+        add(findItem);
     }
 
     private void populateZoomMenuItem(JMenu zoomMenuItem) {
@@ -62,6 +65,7 @@ public class ViewMenu extends AbstractMenu {
         gridLinesItem.setAction(document_.getAction(ActionType.VIEW_GRID_LINES));
         zoomInItem.setAction(document_.getAction(ActionType.VIEW_ZOOM_IN));
         zoomOutItem.setAction(document_.getAction(ActionType.VIEW_ZOOM_OUT));
+        findItem.setAction(document_.getAction(ActionType.VIEW_FIND));
         remove(zoomItem);
         zoomItem = new JMenu("Zoom...");
         populateZoomMenuItem(zoomItem);

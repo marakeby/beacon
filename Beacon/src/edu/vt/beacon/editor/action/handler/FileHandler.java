@@ -99,7 +99,15 @@ public class FileHandler
             }
         });
 
-        fileDialog.setFile("Untitled.sbgn");
+        String fn = doc.getFile().getName();
+        String[] token = fn.split("[.]");
+        for (String a:token) {
+            System.out.println(a);
+        }
+        fn = token[0];
+        fn = fn + ".sbgn";
+
+        fileDialog.setFile(fn);
         fileDialog.setVisible(true);
 
         if (fileDialog.getFile() != null && !fileDialog.getFile().isEmpty() && fileDialog.getDirectory() != null
@@ -169,7 +177,7 @@ public class FileHandler
             doc.setSavedAtLeastOnce(true);
             doc.getViewer();
             doc.refresh();
-
+            doc.getCanvas().setZoomFactor((float) 0.25);
         }
     }
 

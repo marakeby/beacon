@@ -2,6 +2,7 @@ package edu.vt.beacon.graph.glyph.arc;
 
 import edu.vt.beacon.graph.glyph.GlyphType;
 import edu.vt.beacon.graph.glyph.node.auxiliary.Port;
+import edu.vt.beacon.graph.glyph.node.auxiliary.PortType;
 
 public class LogicArc extends AbstractArc {
     /*
@@ -31,16 +32,16 @@ public class LogicArc extends AbstractArc {
 //        Ther eis a contradiction in SBGN AF standard regarding the connection of logical arc (http://biecoll.ub.uni-bielefeld.de/volltexte/2015/5369/pdf/jib_265.pdf)
 //        section 3.3.1 includes an incidence matrix that shoes that logical arc can connect only biological activites to logical operators.
 //        section 2.8.5 says the logical arc can start from biological activity or any logical operator.
-        if (type == GlyphType.NOT || type == GlyphType.DELAY || type == GlyphType.AND || type == GlyphType.OR) {
-            for (int portIndex = 0; portIndex < port.getParent().getPortCount(); portIndex++)
-                for (int arcIndex = 0; arcIndex < port.getParent().getPortAt(portIndex).getArcCount(); arcIndex++)
-                    if (port.getParent().getPortAt(portIndex).getArcAt(arcIndex).getSourcePort() == port.getParent().getPortAt(portIndex) &&
-                            port.getParent().getPortAt(portIndex).getArcAt(arcIndex) != this &&
-                            port.getParent().getPortAt(portIndex).getArcAt(arcIndex) instanceof LogicArc)
-                        return false;
-
-            return true;
-        }
+//        if (type == GlyphType.NOT || type == GlyphType.DELAY || type == GlyphType.AND || type == GlyphType.OR) {
+//            for (int portIndex = 0; portIndex < port.getParent().getPortCount(); portIndex++)
+//                for (int arcIndex = 0; arcIndex < port.getParent().getPortAt(portIndex).getArcCount(); arcIndex++)
+//                    if (port.getParent().getPortAt(portIndex).getArcAt(arcIndex).getSourcePort() == port.getParent().getPortAt(portIndex) &&
+//                            port.getParent().getPortAt(portIndex).getArcAt(arcIndex) != this &&
+//                            port.getParent().getPortAt(portIndex).getArcAt(arcIndex) instanceof LogicArc)
+//                        return false;
+//
+//            return true;
+//        }
         return false;
     }
 
@@ -52,7 +53,7 @@ public class LogicArc extends AbstractArc {
 
         GlyphType type = port.getParent().getType();
 
-        if (type == GlyphType.AND || type == GlyphType.OR)
+        if ((type == GlyphType.AND || type == GlyphType.OR) && port.getType() == PortType.LEFT)
             return true;
 
         if (type == GlyphType.NOT || type == GlyphType.DELAY) {
@@ -64,7 +65,9 @@ public class LogicArc extends AbstractArc {
                             port.getParent().getPortAt(portIndex).getArcAt(arcIndex) instanceof LogicArc)
                         return false;
 
-            return true;
+            if (port.getType() == PortType.LEFT) {
+                return true;
+            }
         }
 
         return false;

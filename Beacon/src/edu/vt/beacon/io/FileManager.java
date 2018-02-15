@@ -183,8 +183,9 @@ public class FileManager {
         if (exportType == ExportType.pdf || exportType == ExportType.eps)
             return export_vector(document, filename, exportType);
 
-        if (exportType == ExportType.sbml)
+        if (exportType == ExportType.sbml) {
             return export_sbml(document, filename, exportType);
+        }
 
         File file = new File(filename + "." + exportType.name());
         float zoomFactor = document.getCanvas().getZoomFactor();

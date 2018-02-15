@@ -661,12 +661,21 @@ public class CanvasMouseListener extends MouseAdapter {
             arc.setSourcePort(null);
             document_.getCanvas().setState(CanvasStateType.SOURCE_CHANGING);
         } else if (pointIndex == arc.getPointCount() - 1) {
+            if (arc.getSourcePort() != null) {
+                if (arc.getTargetPort() != null)
+                    port_ = arc.getTargetPort();
 
-            if (arc.getTargetPort() != null)
-                port_ = arc.getTargetPort();
-
-            arc.setTargetPort(null);
-            document_.getCanvas().setState(CanvasStateType.TARGET_CHANGING);
+                arc.setTargetPort(null);
+                document_.getCanvas().setState(CanvasStateType.TARGET_CHANGING);
+            }
+            else {
+                if (arc.getTargetPort() != null) {
+                    port_ = arc.getTargetPort();
+                }
+                arc.setSourcePort(null);
+                arc.setTargetPort(null);
+                document_.getCanvas().setState(CanvasStateType.SOURCE_CHANGING);
+            }
         } else {
 
             document_.getCanvas().setState(CanvasStateType.POINT_MOVING);

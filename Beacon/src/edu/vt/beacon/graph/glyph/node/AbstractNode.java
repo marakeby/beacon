@@ -267,7 +267,6 @@ public abstract class AbstractNode extends AbstractGlyph implements Orientable {
     @Override
     public void setOrientation(OrientationType orientation) {
         orientation_ = orientation;
-
         if (!(this instanceof AbstractOperator) && orientation != null && getOrientation() != orientation) {
 
             int rotationAngle = (orientation.ordinal() - getOrientation().ordinal()) * 90;

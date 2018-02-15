@@ -14,6 +14,16 @@ public class LogicArc extends AbstractArc {
         update();
     }
 
+    public boolean isConnected;
+
+    public boolean isConnected() {
+        return isConnected;
+    }
+
+    public void setConnected(boolean connected) {
+        isConnected = connected;
+    }
+
     @Override
     public boolean isValidSource(Port port) {
 

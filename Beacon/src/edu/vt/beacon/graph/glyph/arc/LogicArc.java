@@ -42,16 +42,18 @@ public class LogicArc extends AbstractArc {
 //        Ther eis a contradiction in SBGN AF standard regarding the connection of logical arc (http://biecoll.ub.uni-bielefeld.de/volltexte/2015/5369/pdf/jib_265.pdf)
 //        section 3.3.1 includes an incidence matrix that shoes that logical arc can connect only biological activites to logical operators.
 //        section 2.8.5 says the logical arc can start from biological activity or any logical operator.
-//        if (type == GlyphType.NOT || type == GlyphType.DELAY || type == GlyphType.AND || type == GlyphType.OR) {
-//            for (int portIndex = 0; portIndex < port.getParent().getPortCount(); portIndex++)
-//                for (int arcIndex = 0; arcIndex < port.getParent().getPortAt(portIndex).getArcCount(); arcIndex++)
-//                    if (port.getParent().getPortAt(portIndex).getArcAt(arcIndex).getSourcePort() == port.getParent().getPortAt(portIndex) &&
-//                            port.getParent().getPortAt(portIndex).getArcAt(arcIndex) != this &&
-//                            port.getParent().getPortAt(portIndex).getArcAt(arcIndex) instanceof LogicArc)
-//                        return false;
-//
-//            return true;
-//        }
+        if (type == GlyphType.NOT || type == GlyphType.DELAY || type == GlyphType.AND || type == GlyphType.OR) {
+            for (int portIndex = 0; portIndex < port.getParent().getPortCount(); portIndex++)
+                for (int arcIndex = 0; arcIndex < port.getParent().getPortAt(portIndex).getArcCount(); arcIndex++)
+                    if (port.getParent().getPortAt(portIndex).getArcAt(arcIndex).getSourcePort() == port.getParent().getPortAt(portIndex) &&
+                            port.getParent().getPortAt(portIndex).getArcAt(arcIndex) != this &&
+                            port.getParent().getPortAt(portIndex).getArcAt(arcIndex) instanceof LogicArc)
+                        return false;
+
+            if (port.getType() == PortType.RIGHT) {
+                return true;
+            }
+        }
         return false;
     }
 

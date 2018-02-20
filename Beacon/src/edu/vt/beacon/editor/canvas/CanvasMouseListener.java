@@ -12,7 +12,6 @@ import edu.vt.beacon.graph.Orientable;
 import edu.vt.beacon.graph.OrientationType;
 import edu.vt.beacon.graph.glyph.AbstractGlyph;
 import edu.vt.beacon.graph.glyph.arc.AbstractArc;
-import edu.vt.beacon.graph.glyph.arc.LogicArc;
 import edu.vt.beacon.graph.glyph.auxiliary.Bound;
 import edu.vt.beacon.graph.glyph.auxiliary.BoundType;
 import edu.vt.beacon.graph.glyph.node.AbstractNode;
@@ -22,7 +21,6 @@ import edu.vt.beacon.graph.glyph.node.auxiliary.Label;
 import edu.vt.beacon.graph.glyph.node.auxiliary.Port;
 import edu.vt.beacon.graph.glyph.node.container.Compartment;
 import edu.vt.beacon.graph.glyph.node.operator.AbstractOperator;
-import edu.vt.beacon.graph.glyph.node.operator.And;
 import edu.vt.beacon.graph.glyph.node.submap.Submap;
 import edu.vt.beacon.graph.glyph.node.submap.Tag;
 import edu.vt.beacon.graph.glyph.node.submap.Terminal;
@@ -430,7 +428,7 @@ public class CanvasMouseListener extends MouseAdapter {
 
             ArrayList<AbstractGlyph> selectedGlyphs = document_.getBrowserMenu().getSelectedMap().getSelectedGlyphs();
 
-            if (selectedGlyphs != null && selectedGlyphs.size() == 1 && selectedGlyphs.get(0) instanceof AbstractNode && !(selectedGlyphs.get(0) instanceof AbstractOperator)) {
+            if (selectedGlyphs != null && selectedGlyphs.size() == 1 && selectedGlyphs.get(0) instanceof AbstractNode) {
                 event.consume();
                 LabelDialog.createDialog(document_);
                 return;
@@ -661,21 +659,12 @@ public class CanvasMouseListener extends MouseAdapter {
             arc.setSourcePort(null);
             document_.getCanvas().setState(CanvasStateType.SOURCE_CHANGING);
         } else if (pointIndex == arc.getPointCount() - 1) {
-            if (arc.getSourcePort() != null) {
-                if (arc.getTargetPort() != null)
-                    port_ = arc.getTargetPort();
 
-                arc.setTargetPort(null);
-                document_.getCanvas().setState(CanvasStateType.TARGET_CHANGING);
-            }
-            else {
-                if (arc.getTargetPort() != null) {
-                    port_ = arc.getTargetPort();
-                }
-                arc.setSourcePort(null);
-                arc.setTargetPort(null);
-                document_.getCanvas().setState(CanvasStateType.SOURCE_CHANGING);
-            }
+            if (arc.getTargetPort() != null)
+                port_ = arc.getTargetPort();
+
+            arc.setTargetPort(null);
+            document_.getCanvas().setState(CanvasStateType.TARGET_CHANGING);
         } else {
 
             document_.getCanvas().setState(CanvasStateType.POINT_MOVING);

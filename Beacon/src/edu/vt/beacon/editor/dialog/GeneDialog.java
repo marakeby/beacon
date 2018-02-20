@@ -203,7 +203,8 @@ public class GeneDialog extends AbstractDialog {
         Gene resultValue = new Gene();
         new GeneDialogInput(document_, resultValue);
         if (resultValue.getId() != null && !resultValue.getId().trim().isEmpty()) {
-            geneListModel_.getData().add(resultValue);
+            //geneListModel_.getData().add(resultValue);
+            selectedActivity.addGene(resultValue);
             geneList_.repaint();
             geneList_.updateUI();
         }
@@ -230,7 +231,8 @@ public class GeneDialog extends AbstractDialog {
 
         int selectedRow = geneList_.getSelectedRow();
         if (selectedRow >= 0) {
-            geneListModel_.getData().remove(selectedRow);
+            //geneListModel_.getData().remove(selectedRow);
+            selectedActivity.removeGene(selectedRow);
             geneList_.repaint();
             geneList_.updateUI();
         }

@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/Beacon/lib" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/org.sbgn.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/jsch-0.1.50.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/AppleJavaExtensions.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/jsbml-1.2-with-dependencies.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/jsbml-tidy-1.2.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="file://$PROJECT_DIR$/Beacon/lib" />
-    </SOURCES>
-    <jarDirectory url="file://$PROJECT_DIR$/Beacon/lib" recursive="false" />
-    <jarDirectory url="file://$PROJECT_DIR$/Beacon/lib" recursive="false" type="SOURCES" />
+    <SOURCES />
   </library>
 </component>

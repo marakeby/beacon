@@ -1,10 +1,26 @@
 <component name="libraryTable">
   <library name="freeheplib">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/Beacon/lib/freeheplib" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/junit-3.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-swing-2.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-swf-2.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/jdom-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphics2d-2.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/jas-plotter-2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-io-2.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-ps-2.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-pdf-2.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-util-2.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-svg-2.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-xml-2.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-emf-2.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-2.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-export-2.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/openide-lookup-1.9-patched-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-tests-2.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Beacon/lib/freeheplib/freehep-graphicsio-java-2.1.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
-    <jarDirectory url="file://$PROJECT_DIR$/Beacon/lib/freeheplib" recursive="false" />
   </library>
 </component>

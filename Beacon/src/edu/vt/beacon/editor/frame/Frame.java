@@ -130,7 +130,7 @@ public class Frame extends JFrame {
     }
 
     public void find() {
-        String searchQuery = JOptionPane.showInputDialog(this.document_.getCanvas(), "Find:");
+        String searchQuery = JOptionPane.showInputDialog(null, "Find:");
         boolean foundOne = false;
         if (searchQuery != null) {
             ArrayList<AbstractNode> nodeList = getActiveNodes();
@@ -140,21 +140,21 @@ public class Frame extends JFrame {
                     node.setSelected(true);
                 }
                 else if (node.isSelected()) {
+                    foundOne = true;
                     node.setSelected(false);
-               }
-//                else {
-//                    List<Gene> geneList = ((AbstractActivity) node).getGenes();
-//                    for (Gene gene : geneList) {
-//                        if (gene.getId().equals(searchQuery) || gene.getName().equals(searchQuery)) {
-//                            foundOne = true;
-//                            node.setSelected(true);
-//                        }
-//                    }
-//                }
+                }
+                else {
+                    List<Gene> geneList = ((AbstractActivity) node).getGenes();
+                    for (Gene gene : geneList) {
+                        if (gene.getId().equals(searchQuery) || gene.getName().equals(searchQuery)) {
+                            foundOne = true;
+                            node.setSelected(true);
+                        }
+                    }
+                }
             }
         }
         if (foundOne) {
-            foundOne = false;
             document_.getCanvas().repaint();
         }
     }

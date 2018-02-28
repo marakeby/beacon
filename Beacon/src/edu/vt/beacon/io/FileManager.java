@@ -156,7 +156,7 @@ public class FileManager {
 
         if(exportType == ExportType.sbml)
         {
-            SbgnToSbmlConverterDebug conveter = new SbgnToSbmlConverterDebug(document.getPathway(), IDOption.Id);
+            SbgnToSbmlConverterDebug conveter = new SbgnToSbmlConverterDebug(document, IDOption.Id);
 
             SBMLDocument doc = conveter.getSbml();
 

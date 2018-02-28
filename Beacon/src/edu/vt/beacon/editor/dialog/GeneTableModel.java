@@ -78,7 +78,8 @@ public class GeneTableModel extends DefaultTableModel {
                     return null;
 
                 String id = data.get(rowIndex).getId();
-                if (id != null && !id.isEmpty()) {
+                String name = data.get(rowIndex).getName();
+                if ((id != null && !id.isEmpty()) || (name != null && !name.isEmpty())) {
                     ImageIcon link = (ImageIcon) IconType.SEARCH.getIcon();
                     return link;
                 }

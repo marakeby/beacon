@@ -1,5 +1,6 @@
 package edu.vt.beacon.sbml;
 
+import edu.vt.beacon.editor.document.Document;
 import edu.vt.beacon.graph.glyph.AbstractGlyph;
 import edu.vt.beacon.graph.glyph.GlyphType;
 import edu.vt.beacon.graph.glyph.arc.*;
@@ -19,6 +20,7 @@ import org.sbml.jsbml.Model;
 import org.sbml.jsbml.SBMLDocument;
 import org.sbml.jsbml.ext.qual.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,22 +30,25 @@ import java.util.HashMap;
 
 public class SbgnToSbmlConverterDebug {
     private Pathway pathway;
+    private Document document;
     private SBMLDocument sbmlDoc;
     private static HashMap<String, Object> allSpecies = new HashMap<String, Object>();
     IDOption id;
     private HashMap<String, Integer> unique_ids =new HashMap<String, Integer>();
 
 
-    public SbgnToSbmlConverterDebug(Pathway pathway, IDOption option){
-        this.pathway = pathway;
+    public SbgnToSbmlConverterDebug(Document document, IDOption option){
+        this.document = document;
+        this.pathway = document.getPathway();
         sbmlDoc = getInitialSbmlDoc( pathway.getName());
         this.id = option;
     }
 
     private String get_id(AbstractNode node){
         String id="";
-        if (this.id == IDOption.Id)
-            id= node.getId();
+        if (this.id == IDOption.Id) {
+            id = node.getId();
+        }
         else {
             id = node.getLabel().getText();
             id = nomalizeName(id);
@@ -240,7 +245,12 @@ public class SbgnToSbmlConverterDebug {
     private void set_transition_inputs(Transition tr, QualModelPlugin qualModel, AbstractOperator node){
         ArrayList<AbstractArc> arcs = node.getInputArcs();
         for (AbstractArc a: arcs) {
-
+            if (a.getSource() == null) {
+                JOptionPane.showMessageDialog(null,  " An arc is misaligned ", "InfoBox: " , JOptionPane.ERROR_MESSAGE);
+                a.setSelected(true);
+                document.getCanvas().repaint();
+                break;
+            }
             String source_name = get_id(a.getSource());
             QualitativeSpecies source = qualModel.getQualitativeSpecies(source_name);
             if (source==null) {

@@ -5,10 +5,15 @@ package edu.vt.beacon.editor.document;
  */
 
 
+import edu.vt.beacon.editor.EditorApplication;
+import edu.vt.beacon.layer.Layer;
+import edu.vt.beacon.map.Map;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 
 public class DocumentViewer
@@ -167,6 +172,25 @@ public class DocumentViewer
                         doc.refresh();
                     }
                 }
+            }
+            else {
+                String fileName = "untitled 1";
+
+                fileName += " ";
+
+                Document newDocument = new Document(new File(fileName));
+
+                Map map = newDocument.getPathway().getMap();
+                Layer layer = new Layer("New Layer", map);
+                layer.setSelected(true);
+                map.add(layer);
+                map.setSelected(true);
+
+                new DocumentState(newDocument);
+                newDocument.getFrame();
+                EditorApplication.viewer = newDocument.getViewer();
+                newDocument.setSavedAtLeastOnce(false);
+                newDocument.refresh();
             }
 
 

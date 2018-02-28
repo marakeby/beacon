@@ -130,6 +130,9 @@ public class GeneDialog extends AbstractDialog {
 
                     URI link;
                     String searchTerm = (String) geneListModel_.getValueAt(row, col - 1);
+                    if (searchTerm.equals("")) {
+                        searchTerm = (String) geneListModel_.getValueAt(row, col + 1);
+                    }
 
                     try {
                         String organism = document_.getPathway().getOrganism();
@@ -202,7 +205,8 @@ public class GeneDialog extends AbstractDialog {
 
         Gene resultValue = new Gene();
         new GeneDialogInput(document_, resultValue);
-        if (resultValue.getId() != null && !resultValue.getId().trim().isEmpty()) {
+        if ((resultValue.getId() != null && !resultValue.getId().trim().isEmpty())
+                || (resultValue.getName() != null && !resultValue.getName().trim().isEmpty())) {
             //geneListModel_.getData().add(resultValue);
             selectedActivity.addGene(resultValue);
             geneList_.repaint();

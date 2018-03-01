@@ -162,13 +162,29 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
             inputsID.add(n.getId());
             System.out.println(n.getLabel().getText());
         }
+        HashMap<String,Boolean> preExistingSettings = new HashMap<>();
+
+        if(inputsTable_ != null && inputsTable_.getModel() != null && inputsTable_.getModel() instanceof InputsTableModel)
+        {
+            Object[][] oldData = ((InputsTableModel) inputsTable_.getModel()).getData();
+            // create a hash map of pre existing ids to boolean values
+
+            int n = oldData.length;
+            for(int i = 0; i < n; i++)
+            {
+                preExistingSettings.put((String)oldData[i][0],(Boolean) oldData[i][2]); //this is super hacky
+            }
+        }
 
         int n = inputsText.size();
         Object[][] data = new Object[n][3];
         for (int i=0; i<n ;i++) {
             data[i][0] = inputsID.get(i);
             data[i][1] = inputsText.get(i);
-            data[i][2] = true;
+            if(preExistingSettings.containsKey(data[i][0]))
+                data[i][2] = preExistingSettings.get(data[i][0]);
+            else
+                data[i][2] = true; // this initializes
         }
         String[] colNames =  { "Id", "Input", "Active" };
         InputsTableModel dm = new InputsTableModel(data, colNames);
@@ -321,6 +337,7 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
             FileManager.export_sbml(document_, document_.getFile().getPath(), ExportType.sbml);
             System.out.println(full_filename);
             File f = new File(full_filename);
+            refresh();
             NetworkContainer net = Simulator.readNetworkFromSBML(f);
 
 

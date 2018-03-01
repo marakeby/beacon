@@ -1,8 +1,11 @@
 package edu.vt.beacon.graph.glyph.node.activity;
 
 import edu.vt.beacon.graph.glyph.GlyphType;
+import edu.vt.beacon.graph.glyph.arc.AbstractArc;
+import edu.vt.beacon.graph.glyph.arc.LogicArc;
 import edu.vt.beacon.graph.glyph.node.auxiliary.AuxiliaryUnit;
 import edu.vt.beacon.graph.glyph.node.auxiliary.Label;
+import edu.vt.beacon.graph.glyph.node.auxiliary.Port;
 
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
@@ -94,6 +97,26 @@ public class BiologicalActivity extends AbstractActivity {
 
         setWidth(width);
 
+    }
+
+    @Override
+    public Boolean isInputNode() {
+        Boolean output = true;
+        for (Port p : this.getPorts()) {
+            for (AbstractArc arc : p.getArcs()) {
+                // logical arcs cannot be an input source to biological activities directly
+                // as themselves only take input from other sources and output them into
+                // a logical node (AND or OR) which can be ussed a a potential input
+                if (arc instanceof LogicArc) {
+                    continue;
+                }
+
+                if (arc.getTarget().equals(this)) {
+                }
+                output = false;
+            }
+        }
+        return output;
     }
 
     @Override

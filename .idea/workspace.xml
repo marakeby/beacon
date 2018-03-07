@@ -22,8 +22,8 @@
       <file leaf-file-name="Frame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/frame/Frame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1581">
-              <caret line="109" column="57" lean-forward="false" selection-start-line="109" selection-start-column="50" selection-end-line="109" selection-end-column="68" />
+            <state relative-caret-position="306">
+              <caret line="141" column="57" lean-forward="false" selection-start-line="141" selection-start-column="57" selection-end-line="141" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -42,67 +42,29 @@
       <file leaf-file-name="DocumentViewer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/document/DocumentViewer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
+            <state relative-caret-position="2414">
               <caret line="157" column="35" lean-forward="false" selection-start-line="157" selection-start-column="35" selection-end-line="157" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditorApplication.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EditorApplication.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/EditorApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="94" column="12" lean-forward="true" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
+            <state relative-caret-position="455">
+              <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditorApplication.class" pinned="false" current-in-tab="false">
-        <entry file="file://C:/TeamCity/buildAgent/work/ac2c8474b8a9c13c/out/production/Beacon/edu/vt/beacon/editor/EditorApplication.class">
+      <file leaf-file-name="BiologicalActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/node/activity/BiologicalActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1520404774189" expanded="true" signature="0:104" ph="/.../" />
-                <marker date="1520404774189" expanded="false" signature="144:669" ph="..." />
-                <marker date="1520404774189" expanded="true" signature="850:857" ph="{}" />
-                <marker date="1520404774189" expanded="false" signature="895:906" ph=" { " />
-                <marker date="1520404774189" expanded="false" signature="965:971" ph=" }" />
-                <marker date="1520404774189" expanded="false" signature="1010:1021" ph=" { " />
-                <marker date="1520404774189" expanded="false" signature="1036:1042" ph=" }" />
-                <marker date="1520404774189" expanded="true" signature="1088:1653" ph="{...}" />
-                <marker date="1520404774189" expanded="true" signature="1704:1998" ph="{...}" />
-                <marker date="1520404774189" expanded="true" signature="2048:2824" ph="{...}" />
-                <marker date="1520404774189" expanded="false" signature="2868:2879" ph=" { " />
-                <marker date="1520404774189" expanded="false" signature="2927:2933" ph=" }" />
-                <marker date="1520404774189" expanded="true" signature="2957:3260" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SbgnVersionFinder.class" pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/Beacon/out/artifacts/Beacon_v1_1_0_jar/Beacon_v1.1.0_build1.jar!/org/sbgn/SbgnVersionFinder.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="18" />
-              <folding>
-                <marker date="1519826152223" expanded="false" signature="0:104" ph="/.../" />
-                <marker date="1519826152223" expanded="false" signature="132:457" ph="..." />
-                <marker date="1519826152223" expanded="true" signature="523:530" ph="{}" />
-                <marker date="1519826152223" expanded="true" signature="657:1045" ph="{...}" />
-                <marker date="1519826152223" expanded="true" signature="1147:1269" ph="{...}" />
-                <marker date="1519826152223" expanded="true" signature="1377:1500" ph="{...}" />
-                <marker date="1519826152223" expanded="true" signature="1557:2532" ph="{...}" />
-                <marker date="1519826152223" expanded="true" signature="1657:1668" ph="{}" />
-                <marker date="1519826152223" expanded="true" signature="1790:2367" ph="{...}" />
-                <marker date="1519826152223" expanded="false" signature="2400:2415" ph=" { " />
-                <marker date="1519826152223" expanded="false" signature="2435:2445" ph=" }" />
-                <marker date="1519826152223" expanded="false" signature="2484:2499" ph=" { " />
-                <marker date="1519826152223" expanded="false" signature="2516:2526" ph=" }" />
-              </folding>
+            <state relative-caret-position="499">
+              <caret line="114" column="35" lean-forward="false" selection-start-line="114" selection-start-column="35" selection-end-line="114" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -180,7 +142,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/frame/Frame.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/node/auxiliary/Port.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/node/operator/AbstractOperator.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/arc/LogicArc.java" />
@@ -193,10 +154,12 @@
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/document/DocumentViewer.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/about/AboutDialog.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/EditorApplication.java" />
+        <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/frame/Frame.java" />
+        <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/node/activity/BiologicalActivity.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="676" />
     <option name="width" value="697" />
     <option name="height" value="735" />
@@ -217,7 +180,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -250,6 +213,40 @@
               <item name="beacon" type="462c0819:PsiDirectoryNode" />
               <item name="editor" type="462c0819:PsiDirectoryNode" />
               <item name="simulation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="beacon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Beacon" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="beacon" type="462c0819:PsiDirectoryNode" />
+              <item name="graph" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="beacon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Beacon" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="beacon" type="462c0819:PsiDirectoryNode" />
+              <item name="graph" type="462c0819:PsiDirectoryNode" />
+              <item name="glyph" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="beacon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Beacon" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="beacon" type="462c0819:PsiDirectoryNode" />
+              <item name="graph" type="462c0819:PsiDirectoryNode" />
+              <item name="glyph" type="462c0819:PsiDirectoryNode" />
+              <item name="node" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="beacon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Beacon" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="beacon" type="462c0819:PsiDirectoryNode" />
+              <item name="graph" type="462c0819:PsiDirectoryNode" />
+              <item name="glyph" type="462c0819:PsiDirectoryNode" />
+              <item name="node" type="462c0819:PsiDirectoryNode" />
+              <item name="activity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="beacon" type="b2602c69:ProjectViewProjectNode" />
@@ -295,8 +292,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -447,35 +444,35 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31185943" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31503198" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36767036" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20454545" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -510,31 +507,12 @@
           <properties />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/EditorApplication.java</url>
-          <line>115</line>
-          <properties />
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/EditorApplication.java</url>
-          <line>125</line>
-          <properties />
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="22" />
+      <option name="time" value="23" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/GlyphsHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/frame/Frame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1972">
@@ -820,15 +798,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/frame/Frame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1581">
-          <caret line="109" column="57" lean-forward="false" selection-start-line="109" selection-start-column="50" selection-end-line="109" selection-end-column="68" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -872,62 +841,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/Beacon/out/artifacts/Beacon_v1_1_0_jar/Beacon_v1.1.0_build1.jar!/org/sbgn/SbgnVersionFinder.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="18" />
-          <folding>
-            <marker date="1519826152223" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1519826152223" expanded="false" signature="132:457" ph="..." />
-            <marker date="1519826152223" expanded="true" signature="523:530" ph="{}" />
-            <marker date="1519826152223" expanded="true" signature="657:1045" ph="{...}" />
-            <marker date="1519826152223" expanded="true" signature="1147:1269" ph="{...}" />
-            <marker date="1519826152223" expanded="true" signature="1377:1500" ph="{...}" />
-            <marker date="1519826152223" expanded="true" signature="1557:2532" ph="{...}" />
-            <marker date="1519826152223" expanded="true" signature="1657:1668" ph="{}" />
-            <marker date="1519826152223" expanded="true" signature="1790:2367" ph="{...}" />
-            <marker date="1519826152223" expanded="false" signature="2400:2415" ph=" { " />
-            <marker date="1519826152223" expanded="false" signature="2435:2445" ph=" }" />
-            <marker date="1519826152223" expanded="false" signature="2484:2499" ph=" { " />
-            <marker date="1519826152223" expanded="false" signature="2516:2526" ph=" }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/document/DocumentViewer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
+        <state relative-caret-position="2414">
           <caret line="157" column="35" lean-forward="false" selection-start-line="157" selection-start-column="35" selection-end-line="157" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/TeamCity/buildAgent/work/ac2c8474b8a9c13c/out/production/Beacon/edu/vt/beacon/editor/EditorApplication.class">
+    <entry file="file://C:/TeamCity/buildAgent/work/ac2c8474b8a9c13c/out/production/Beacon/edu/vt/beacon/editor/EditorApplication.class" />
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/frame/Frame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1520404774189" expanded="true" signature="0:104" ph="/.../" />
-            <marker date="1520404774189" expanded="false" signature="144:669" ph="..." />
-            <marker date="1520404774189" expanded="true" signature="850:857" ph="{}" />
-            <marker date="1520404774189" expanded="false" signature="895:906" ph=" { " />
-            <marker date="1520404774189" expanded="false" signature="965:971" ph=" }" />
-            <marker date="1520404774189" expanded="false" signature="1010:1021" ph=" { " />
-            <marker date="1520404774189" expanded="false" signature="1036:1042" ph=" }" />
-            <marker date="1520404774189" expanded="true" signature="1088:1653" ph="{...}" />
-            <marker date="1520404774189" expanded="true" signature="1704:1998" ph="{...}" />
-            <marker date="1520404774189" expanded="true" signature="2048:2824" ph="{...}" />
-            <marker date="1520404774189" expanded="false" signature="2868:2879" ph=" { " />
-            <marker date="1520404774189" expanded="false" signature="2927:2933" ph=" }" />
-            <marker date="1520404774189" expanded="true" signature="2957:3260" ph="{...}" />
-          </folding>
+        <state relative-caret-position="306">
+          <caret line="141" column="57" lean-forward="false" selection-start-line="141" selection-start-column="57" selection-end-line="141" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/Beacon/out/artifacts/Beacon_v1_1_0_jar/Beacon_v1.1.0_build1.jar!/org/sbgn/SbgnVersionFinder.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="744">
+          <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/EditorApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="94" column="12" lean-forward="true" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
+        <state relative-caret-position="455">
+          <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/node/activity/BiologicalActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="114" column="35" lean-forward="false" selection-start-line="114" selection-start-column="35" selection-end-line="114" selection-end-column="35" />
           <folding />
         </state>
       </provider>

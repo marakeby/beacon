@@ -112,8 +112,8 @@ public class BiologicalActivity extends AbstractActivity {
                 }
 
                 if (arc.getTarget().equals(this)) {
+                    output = false;
                 }
-                output = false;
             }
         }
         return output;

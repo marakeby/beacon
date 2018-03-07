@@ -139,11 +139,7 @@ public class Frame extends JFrame {
                     foundOne = true;
                     node.setSelected(true);
                 }
-                else if (node.isSelected()) {
-                    foundOne = true;
-                    node.setSelected(false);
-                }
-                else {
+                else if (node instanceof AbstractActivity) {
                     List<Gene> geneList = ((AbstractActivity) node).getGenes();
                     for (Gene gene : geneList) {
                         if (gene.getId().equals(searchQuery) || gene.getName().equals(searchQuery)) {
@@ -151,6 +147,10 @@ public class Frame extends JFrame {
                             node.setSelected(true);
                         }
                     }
+                }
+                else if (node.isSelected()) {
+                    foundOne = true;
+                    node.setSelected(false);
                 }
             }
         }

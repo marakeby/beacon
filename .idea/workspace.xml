@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="devBuild:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="2371aea7-f1a4-4d96-aefc-5024c092b67c" name="Default" comment="" />
+    <list default="true" id="2371aea7-f1a4-4d96-aefc-5024c092b67c" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,17 +42,75 @@
       <file leaf-file-name="DocumentViewer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/document/DocumentViewer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="167" column="33" lean-forward="false" selection-start-line="167" selection-start-column="33" selection-end-line="167" selection-end-column="33" />
+            <state relative-caret-position="85">
+              <caret line="157" column="35" lean-forward="false" selection-start-line="157" selection-start-column="35" selection-end-line="157" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimulationPanel.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EditorApplication.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/EditorApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="148">
+              <caret line="94" column="12" lean-forward="true" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EditorApplication.class" pinned="false" current-in-tab="false">
+        <entry file="file://C:/TeamCity/buildAgent/work/ac2c8474b8a9c13c/out/production/Beacon/edu/vt/beacon/editor/EditorApplication.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1520404774189" expanded="true" signature="0:104" ph="/.../" />
+                <marker date="1520404774189" expanded="false" signature="144:669" ph="..." />
+                <marker date="1520404774189" expanded="true" signature="850:857" ph="{}" />
+                <marker date="1520404774189" expanded="false" signature="895:906" ph=" { " />
+                <marker date="1520404774189" expanded="false" signature="965:971" ph=" }" />
+                <marker date="1520404774189" expanded="false" signature="1010:1021" ph=" { " />
+                <marker date="1520404774189" expanded="false" signature="1036:1042" ph=" }" />
+                <marker date="1520404774189" expanded="true" signature="1088:1653" ph="{...}" />
+                <marker date="1520404774189" expanded="true" signature="1704:1998" ph="{...}" />
+                <marker date="1520404774189" expanded="true" signature="2048:2824" ph="{...}" />
+                <marker date="1520404774189" expanded="false" signature="2868:2879" ph=" { " />
+                <marker date="1520404774189" expanded="false" signature="2927:2933" ph=" }" />
+                <marker date="1520404774189" expanded="true" signature="2957:3260" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SbgnVersionFinder.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/Beacon/out/artifacts/Beacon_v1_1_0_jar/Beacon_v1.1.0_build1.jar!/org/sbgn/SbgnVersionFinder.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="18" />
+              <folding>
+                <marker date="1519826152223" expanded="false" signature="0:104" ph="/.../" />
+                <marker date="1519826152223" expanded="false" signature="132:457" ph="..." />
+                <marker date="1519826152223" expanded="true" signature="523:530" ph="{}" />
+                <marker date="1519826152223" expanded="true" signature="657:1045" ph="{...}" />
+                <marker date="1519826152223" expanded="true" signature="1147:1269" ph="{...}" />
+                <marker date="1519826152223" expanded="true" signature="1377:1500" ph="{...}" />
+                <marker date="1519826152223" expanded="true" signature="1557:2532" ph="{...}" />
+                <marker date="1519826152223" expanded="true" signature="1657:1668" ph="{}" />
+                <marker date="1519826152223" expanded="true" signature="1790:2367" ph="{...}" />
+                <marker date="1519826152223" expanded="false" signature="2400:2415" ph=" { " />
+                <marker date="1519826152223" expanded="false" signature="2435:2445" ph=" }" />
+                <marker date="1519826152223" expanded="false" signature="2484:2499" ph=" { " />
+                <marker date="1519826152223" expanded="false" signature="2516:2526" ph=" }" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimulationPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/SimulationPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2006">
+            <state relative-caret-position="85">
               <caret line="28" column="22" lean-forward="false" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
               <folding />
             </state>
@@ -62,16 +127,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AboutHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/AboutHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="AboutDialog.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/about/AboutDialog.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -82,31 +137,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractNode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/node/AbstractNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1462">
-              <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SbgnToSbmlConverterDebug.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/sbml/SbgnToSbmlConverterDebug.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3791">
               <caret line="245" column="45" lean-forward="false" selection-start-line="245" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/FileHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="27" column="30" lean-forward="false" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -131,7 +166,11 @@
       <find>refres</find>
       <find>processOpenFile</find>
       <find>fileNo_</find>
+      <find>main</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -153,14 +192,14 @@
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/dialog/GeneDialog.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/document/DocumentViewer.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/about/AboutDialog.java" />
+        <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/EditorApplication.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="474" />
-    <option name="y" value="36" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="676" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -178,6 +217,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -255,10 +295,16 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="SearchEverywhereHistoryKey" value="editorapplica&#9;PSI&#9;JAVA://edu.vt.beacon.editor.EditorApplication&#10;editorap&#9;FILE&#9;file://C:/Users/sdaan/Documents/beacon/Beacon/src/edu/vt/beacon/editor/EditorApplication.java&#10;versioh&#9;PSI&#9;JAVA://org.sbgn.SbgnVersionFinder.VersionHandler" />
+    <property name="last_opened_file_path" value="C:/TeamCity/buildAgent/work/ac2c8474b8a9c13c/Beacon/out/artifacts/devBuild" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -379,6 +425,11 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SbtLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
@@ -396,35 +447,35 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3296355" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31236672" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31185943" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36767036" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1612554" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20454545" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -441,14 +492,6 @@
           </properties>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/document/DocumentViewer.java</url>
-          <line>160</line>
-          <properties class="edu.vt.beacon.editor.document.DocumentViewer.TabListener" method="stateChanged">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/canvas/CanvasMouseListener.java</url>
           <line>653</line>
@@ -461,26 +504,30 @@
           <properties />
           <option name="timeStamp" value="9" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/EditorApplication.java</url>
+          <line>92</line>
+          <properties />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/EditorApplication.java</url>
+          <line>115</line>
+          <properties />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/EditorApplication.java</url>
+          <line>125</line>
+          <properties />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="17" />
+      <option name="time" value="22" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/dialog/GeneDialogInput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="57" column="46" lean-forward="false" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/gene/Gene.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="12" lean-forward="true" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/GlyphsHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -739,14 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/EditorApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="40" column="35" lean-forward="false" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/SimulateHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1717">
@@ -758,7 +797,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1989">
           <caret line="133" column="0" lean-forward="false" selection-start-line="132" selection-start-column="44" selection-end-line="133" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -826,18 +864,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/document/DocumentViewer.java">
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/SimulationPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="167" column="33" lean-forward="false" selection-start-line="167" selection-start-column="33" selection-end-line="167" selection-end-column="33" />
+        <state relative-caret-position="85">
+          <caret line="28" column="22" lean-forward="false" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/SimulationPanel.java">
+    <entry file="jar://$PROJECT_DIR$/Beacon/out/artifacts/Beacon_v1_1_0_jar/Beacon_v1.1.0_build1.jar!/org/sbgn/SbgnVersionFinder.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2006">
-          <caret line="28" column="22" lean-forward="false" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
+        <state relative-caret-position="96">
+          <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="18" />
+          <folding>
+            <marker date="1519826152223" expanded="false" signature="0:104" ph="/.../" />
+            <marker date="1519826152223" expanded="false" signature="132:457" ph="..." />
+            <marker date="1519826152223" expanded="true" signature="523:530" ph="{}" />
+            <marker date="1519826152223" expanded="true" signature="657:1045" ph="{...}" />
+            <marker date="1519826152223" expanded="true" signature="1147:1269" ph="{...}" />
+            <marker date="1519826152223" expanded="true" signature="1377:1500" ph="{...}" />
+            <marker date="1519826152223" expanded="true" signature="1557:2532" ph="{...}" />
+            <marker date="1519826152223" expanded="true" signature="1657:1668" ph="{}" />
+            <marker date="1519826152223" expanded="true" signature="1790:2367" ph="{...}" />
+            <marker date="1519826152223" expanded="false" signature="2400:2415" ph=" { " />
+            <marker date="1519826152223" expanded="false" signature="2435:2445" ph=" }" />
+            <marker date="1519826152223" expanded="false" signature="2484:2499" ph=" { " />
+            <marker date="1519826152223" expanded="false" signature="2516:2526" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/document/DocumentViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="157" column="35" lean-forward="false" selection-start-line="157" selection-start-column="35" selection-end-line="157" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/TeamCity/buildAgent/work/ac2c8474b8a9c13c/out/production/Beacon/edu/vt/beacon/editor/EditorApplication.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1520404774189" expanded="true" signature="0:104" ph="/.../" />
+            <marker date="1520404774189" expanded="false" signature="144:669" ph="..." />
+            <marker date="1520404774189" expanded="true" signature="850:857" ph="{}" />
+            <marker date="1520404774189" expanded="false" signature="895:906" ph=" { " />
+            <marker date="1520404774189" expanded="false" signature="965:971" ph=" }" />
+            <marker date="1520404774189" expanded="false" signature="1010:1021" ph=" { " />
+            <marker date="1520404774189" expanded="false" signature="1036:1042" ph=" }" />
+            <marker date="1520404774189" expanded="true" signature="1088:1653" ph="{...}" />
+            <marker date="1520404774189" expanded="true" signature="1704:1998" ph="{...}" />
+            <marker date="1520404774189" expanded="true" signature="2048:2824" ph="{...}" />
+            <marker date="1520404774189" expanded="false" signature="2868:2879" ph=" { " />
+            <marker date="1520404774189" expanded="false" signature="2927:2933" ph=" }" />
+            <marker date="1520404774189" expanded="true" signature="2957:3260" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/EditorApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="94" column="12" lean-forward="true" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -845,9 +935,88 @@
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor>
+            <show-content>
+              <type id="artifact" />
+              <type id="library" />
+            </show-content>
+          </artifact-editor>
+          <last-edited>devBuild:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Beacon</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>repositories.xml</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -46,24 +46,11 @@ public class ViewHandler
                 document.getStateManager().insert(new Command(CommandType.ZOOMING, document.getPathway().copy(),
                         document.getCanvas().getZoomFactor(), new Date().getTime()));
                 break;
-            case VIEW_FIND:
-                processFind(action);
-                break;
             default:
                 float zoom = Integer.parseInt(action.getType().toString().replace("VIEW_ZOOM_", "")) / 100f;
                 document.getCanvas().setZoomFactor(zoom);
                 document.getStateManager().insert(new Command(CommandType.ZOOMING, document.getPathway().copy(),
                         document.getCanvas().getZoomFactor(), new Date().getTime()));
-        }
-    }
-
-    private void processFind(Action action) {
-        Document doc = action.getDocument();
-        if (doc !=null)
-        {
-            if (doc.getFrame() != null) {
-                doc.getFrame().find();
-                }
         }
     }
 

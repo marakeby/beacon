@@ -171,7 +171,6 @@ public class CanvasPopupMenu extends JPopupMenu {
                     CompartmentUnit compartmentUnit = new CompartmentUnit();
                     compartmentUnit.setText(dialog.getTextValue());
                     compartment.setCompartmentUnit(compartmentUnit);
-
                 }
 
                 document.getCanvas().updateUI();

@@ -6,6 +6,10 @@ import edu.vt.beacon.editor.swing.ClearSplitPane;
 import edu.vt.beacon.graph.glyph.AbstractGlyph;
 import edu.vt.beacon.graph.glyph.node.AbstractNode;
 import edu.vt.beacon.graph.glyph.node.activity.AbstractActivity;
+import edu.vt.beacon.graph.glyph.node.activity.BiologicalActivity;
+import edu.vt.beacon.graph.glyph.node.auxiliary.AuxiliaryUnit;
+import edu.vt.beacon.graph.glyph.node.auxiliary.CompartmentUnit;
+import edu.vt.beacon.graph.glyph.node.container.Compartment;
 import edu.vt.beacon.layer.Layer;
 import edu.vt.beacon.map.Map;
 
@@ -129,12 +133,20 @@ public class Frame extends JFrame {
         add(document_.getPalette(), BorderLayout.WEST);
     }
 
+    /**
+     * Find function. Will look through the label name of each node first. Then search the gene list
+     * if eligible. Finally will check the unit of information for the search String.
+     */
     public void find() {
         String searchQuery = JOptionPane.showInputDialog(null, "Find:");
         boolean foundOne = false;
         if (searchQuery != null) {
             ArrayList<AbstractNode> nodeList = getActiveNodes();
             for (AbstractNode node : nodeList) {
+                if (node.isSelected()) {
+                    foundOne = true;
+                    node.setSelected(false);
+                }
                 if (searchQuery.equals(node.getText())) {
                     foundOne = true;
                     node.setSelected(true);
@@ -147,10 +159,26 @@ public class Frame extends JFrame {
                             node.setSelected(true);
                         }
                     }
+                    if (node instanceof BiologicalActivity) {
+                        AuxiliaryUnit aux = ((BiologicalActivity) node).getAuxiliaryUnit();
+                        if (aux != null) {
+                            String auxStr = aux.getText();
+                            if (auxStr.contains(searchQuery)) {
+                                foundOne = true;
+                                node.setSelected(true);
+                            }
+                        }
+                    }
                 }
-                else if (node.isSelected()) {
-                    foundOne = true;
-                    node.setSelected(false);
+                else if (node instanceof Compartment) {
+                    CompartmentUnit compUnit = ((Compartment) node).getCompartmentUnit();
+                    if (compUnit != null) {
+                        String compStr = compUnit.getText();
+                        if (compStr.contains(searchQuery)) {
+                            foundOne = true;
+                            node.setSelected(true);
+                        }
+                    }
                 }
             }
         }

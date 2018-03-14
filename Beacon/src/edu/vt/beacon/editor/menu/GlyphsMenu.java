@@ -12,6 +12,7 @@ public class GlyphsMenu extends AbstractMenu
 
 	private PlatformMenuItem annotationItem;
 	private PlatformMenuItem geneItem;
+	private PlatformMenuItem findItem;
 
 	// FIXME complete constructor
 	public GlyphsMenu(Document document)
@@ -27,15 +28,19 @@ public class GlyphsMenu extends AbstractMenu
 		 geneItem = new PlatformMenuItem();
 		annotationItem.setAction(document_.getAction( ActionType.GLYPHS_ANNOTATION));
 		geneItem.setAction(document_.getAction( ActionType.GLYPHS_GENE));
+
+		findItem = new PlatformMenuItem();
         
 //		add(annotationItem);
 		add(geneItem);
+		add(findItem);
 	}
 	public void registerActions(Document doc)
 	{
 
 		annotationItem.setAction(document_.getAction( ActionType.GLYPHS_ANNOTATION));
 		geneItem.setAction(document_.getAction( ActionType.GLYPHS_GENE));
+		findItem.setAction(document_.getAction(ActionType.GLYPHS_FIND));
 	}
 }
 

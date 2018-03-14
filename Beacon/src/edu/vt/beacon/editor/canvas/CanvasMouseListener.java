@@ -28,6 +28,7 @@ import edu.vt.beacon.graph.legend.Legend;
 import edu.vt.beacon.layer.Layer;
 import edu.vt.beacon.map.Map;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -61,6 +62,8 @@ public class CanvasMouseListener extends MouseAdapter {
     private Point2D.Float dragStartPoint_;
 
     private Point2D.Float dragStopPoint_;
+
+    private Point origin;
 
     private Port port_;
 
@@ -342,45 +345,60 @@ public class CanvasMouseListener extends MouseAdapter {
 
             return;
 
-        setPointCoordinates(event, dragStopPoint_);
-        document_.getCanvas().scrollRectToVisible(
-                new Rectangle(event.getPoint().x, event.getPoint().y, 1, 1));
+        if (event.isAltDown() && origin != null) {
+            JViewport viewPort = (JViewport) SwingUtilities.getAncestorOfClass(JViewport.class, document_.getCanvas());
+            if (viewPort != null) {
+                int deltaX = origin.x - event.getX();
+                int deltaY = origin.y - event.getY();
 
-        if (glyph_ == null || !glyph_.isSelected()) {
+                Rectangle view = viewPort.getViewRect();
+                view.x += deltaX;
+                view.y += deltaY;
 
-            setSelectionBoxCoordinates();
-
-            document_.getCanvas().setState(CanvasStateType.SELECTION_DRAWING);
-            document_.getCanvas().repaint();
-
-            return;
+                document_.getCanvas().scrollRectToVisible(view);
+            }
         }
+        else {
+            setPointCoordinates(event, dragStopPoint_);
+            document_.getCanvas().scrollRectToVisible(
+                    new Rectangle(event.getPoint().x, event.getPoint().y, 1, 1));
 
-        processShiftLock(event);
+            if (glyph_ == null || !glyph_.isSelected()) {
 
-        if (bound_ != null) {
+                setSelectionBoxCoordinates();
 
-            if (bound_.getType() == BoundType.POINT) {
-
-                processPointMovement();
-
+                document_.getCanvas().setState(CanvasStateType.SELECTION_DRAWING);
                 document_.getCanvas().repaint();
+
+                return;
+            }
+
+            processShiftLock(event);
+
+            if (bound_ != null) {
+
+                if (bound_.getType() == BoundType.POINT) {
+
+                    processPointMovement();
+
+                    document_.getCanvas().repaint();
+                } else {
+
+                    processResize();
+
+                    document_.getCanvas().setState(
+                            CanvasStateType.SELECTION_SIZING);
+                }
             } else {
 
-                processResize();
+                processMovement();
 
-                document_.getCanvas().setState(
-                        CanvasStateType.SELECTION_SIZING);
+                document_.getCanvas().setState(CanvasStateType.SELECTION_MOVING);
+                document_.getCanvas().repaint();
             }
-        } else {
 
-            processMovement();
-
-            document_.getCanvas().setState(CanvasStateType.SELECTION_MOVING);
-            document_.getCanvas().repaint();
+            currentPoint_.setLocation(dragStopPoint_);
         }
-
-        currentPoint_.setLocation(dragStopPoint_);
     }
 
     // FIXME complete method
@@ -402,12 +420,17 @@ public class CanvasMouseListener extends MouseAdapter {
         boolean isLeftClick = (event.getButton() == MouseEvent.BUTTON1);
 
         if (isLeftClick && !event.isPopupTrigger()) {
+            if (event.isAltDown()) {
+                isDragEnabled_ = true;
+                origin = new Point(event.getPoint());
+            }
+            else {
+                isDragEnabled_ = true;
+                dragStartPoint_.setLocation(currentPoint_);
 
-            isDragEnabled_ = true;
-            dragStartPoint_.setLocation(currentPoint_);
-
-            processSelection(event);
-            processCursor();
+                processSelection(event);
+                processCursor();
+            }
         } else if (event.isPopupTrigger()) {
 
             processPopupMenu(event);

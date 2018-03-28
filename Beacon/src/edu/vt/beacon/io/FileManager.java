@@ -163,6 +163,10 @@ public class FileManager {
             SBMLWriter w = new SBMLWriter();
 
             try {
+                String[] ogName = filename.split("[.]");
+                if (filename.contains(".")) {
+                    filename = ogName[0];
+                }
                 w.writeSBMLToFile(doc,filename + "." + exportType.name() );
             } catch (FileNotFoundException | XMLStreamException e) {
                 e.printStackTrace();
@@ -180,6 +184,10 @@ public class FileManager {
                 || exportType == null)
             return false;
 
+        String[] ogName = filename.split("[.]");
+        if (filename.contains(".")) {
+            filename = ogName[0];
+        }
         if (exportType == ExportType.pdf || exportType == ExportType.eps)
             return export_vector(document, filename, exportType);
 

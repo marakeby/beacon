@@ -332,8 +332,8 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
             int maxStarts = 1;
             int maxTransitions = 100;
 
-            String full_filename = document_.getFile().getPath() + '.' + ExportType.sbml.name();
-            String filename = document_.getFile().getName() + '.' + ExportType.sbml.name();
+            String[] ogName = document_.getFile().getPath().split("[.]");
+            String full_filename = ogName[0] + '.' + ExportType.sbml.name();
             FileManager.export_sbml(document_, document_.getFile().getPath(), ExportType.sbml);
             System.out.println(full_filename);
             File f = new File(full_filename);

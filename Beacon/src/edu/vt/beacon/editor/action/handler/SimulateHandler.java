@@ -124,8 +124,8 @@ public class SimulateHandler implements ActionHandler {
                     int maxTransitions = 10;
 
                     Document doc = action.getDocument();
-                    String full_filename = action.getDocument().getFile().getPath() + '.' + ExportType.sbml.name();
-                    String filename = action.getDocument().getFile().getName() + '.' + ExportType.sbml.name();
+                    String[] ogName = doc.getFile().getPath().split("[.]");
+                    String full_filename = ogName[0] + '.' + ExportType.sbml.name();
                     System.out.println(full_filename);
                     File f = new File(full_filename);
                     NetworkContainer net = Simulator.readNetworkFromSBML(f);

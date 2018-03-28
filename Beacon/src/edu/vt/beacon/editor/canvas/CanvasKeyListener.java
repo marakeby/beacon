@@ -155,7 +155,7 @@ public class CanvasKeyListener extends KeyAdapter {
         ArrayList<Boolean> isSource = new ArrayList<Boolean>();
 
         for (AbstractGlyph glyph : glyphs)
-            if (glyph instanceof AbstractNode)
+            if (glyph instanceof AbstractNode) {
                 for (Port port : ((AbstractNode) glyph).getPorts())
                     for (AbstractArc arc : port.getArcs())
                         if (arc.getSourcePort() == port) {
@@ -165,12 +165,19 @@ public class CanvasKeyListener extends KeyAdapter {
                             arcs.add(arc);
                             isSource.add(false);
                         }
+            }
+            else if (glyph instanceof AbstractArc) {
+                ((AbstractArc) glyph).setSourcePort(null);
+                ((AbstractArc) glyph).setTargetPort(null);
+            }
 
         for (int i = 0; i < arcs.size(); i++)
-            if (isSource.get(i))
+            if (isSource.get(i)) {
                 arcs.get(i).setSourcePort(null);
-            else
+            }
+            else {
                 arcs.get(i).setTargetPort(null);
+            }
 
     }
 

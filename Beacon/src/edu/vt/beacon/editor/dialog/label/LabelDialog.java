@@ -4,6 +4,10 @@ import edu.vt.beacon.editor.document.Document;
 import edu.vt.beacon.editor.document.DocumentState;
 import edu.vt.beacon.graph.glyph.AbstractGlyph;
 import edu.vt.beacon.graph.glyph.node.AbstractNode;
+import edu.vt.beacon.graph.glyph.node.operator.And;
+import edu.vt.beacon.graph.glyph.node.operator.Delay;
+import edu.vt.beacon.graph.glyph.node.operator.Not;
+import edu.vt.beacon.graph.glyph.node.operator.Or;
 import edu.vt.beacon.graph.glyph.node.submap.Submap;
 import edu.vt.beacon.graph.glyph.node.submap.Tag;
 import edu.vt.beacon.graph.glyph.node.submap.Terminal;
@@ -28,6 +32,9 @@ public class LabelDialog {
             return;
 
         AbstractNode selectedNode = (AbstractNode) selectedGlyphs.get(0);
+        //if Node is logical operator, then label cannot be changed
+        if (selectedNode instanceof And || selectedNode instanceof Or || selectedNode instanceof Not || selectedNode instanceof Delay)
+            return;
         String label = JOptionPane.showInputDialog(null, "Enter label:", selectedNode.getText());
 
         if (label != null) {

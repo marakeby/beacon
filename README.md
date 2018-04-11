@@ -12,7 +12,8 @@ powerful features for the benefit of creation and presentation.
 The Beacon Editor is a java application that depends on [Java Run Time Environment](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html). You need to download and install the [Java Runtime Environment](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) for your operating system . 
 
 ## Download
-Download the latest build from the builds directory [here](https://github.com/marakeby/beacon/raw/v1.2.0/Beacon/out/artifacts/devBuild/Beacon.jar). The windows and Mac executables are hosted on the [Beacon Editor website](https://bioinformatics.cs.vt.edu/beacon/download)
+[Download the latest build here](https://github.com/marakeby/beacon/raw/v1.2.0/Beacon/out/artifacts/devBuild/Beacon.jar). 
+The windows and Mac executables are hosted on the [Beacon Editor website](https://bioinformatics.cs.vt.edu/beacon/download)
 
 ## Documentation
 You can download the User Manual in a pdf format from [here](https://bioinformatics.cs.vt.edu/beacon/documentation). For more generic SBGN resource check the following list

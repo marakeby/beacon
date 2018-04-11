@@ -32,6 +32,9 @@ public class GlyphsHandler
             case GLYPHS_FIND:
                 processFind(action);
                 break;
+            case GLYPHS_OPERATION:
+                processShowOperation(action);
+                break;
         	default :
         		throw new IllegalStateException("missing action type case");
     	}        
@@ -43,6 +46,15 @@ public class GlyphsHandler
         {
             if (doc.getFrame() != null) {
                 doc.getFrame().find();
+            }
+        }
+    }
+
+    private void processShowOperation(Action action) {
+        Document doc = action.getDocument();
+        if (doc != null) {
+            if (doc.getFrame() != null) {
+                doc.getFrame().showOperation();
             }
         }
     }

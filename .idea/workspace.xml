@@ -48,28 +48,8 @@
       <file leaf-file-name="AbstractNode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/node/AbstractNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1207">
-              <caret line="86" column="33" lean-forward="false" selection-start-line="86" selection-start-column="27" selection-end-line="86" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractOperator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/node/operator/AbstractOperator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Pathway.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/pathway/Pathway.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="85" column="16" lean-forward="false" selection-start-line="85" selection-start-column="16" selection-end-line="85" selection-end-column="16" />
+            <state relative-caret-position="17">
+              <caret line="96" column="33" lean-forward="false" selection-start-line="96" selection-start-column="11" selection-end-line="96" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -78,8 +58,8 @@
       <file leaf-file-name="SimulationPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/SimulationPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5270">
-              <caret line="335" column="76" lean-forward="false" selection-start-line="334" selection-start-column="12" selection-end-line="335" selection-end-column="76" />
+            <state relative-caret-position="311">
+              <caret line="423" column="91" lean-forward="true" selection-start-line="423" selection-start-column="80" selection-end-line="423" selection-end-column="91" />
               <folding />
             </state>
           </provider>
@@ -95,31 +75,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Simulator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/simulation/Simulator.java">
+      <file leaf-file-name="GlyphsHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/GlyphsHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3400">
-              <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
+            <state relative-caret-position="816">
+              <caret line="56" column="47" lean-forward="false" selection-start-line="56" selection-start-column="47" selection-end-line="56" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/io/FileManager.java">
+      <file leaf-file-name="Frame.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/frame/Frame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2482">
-              <caret line="168" column="17" lean-forward="false" selection-start-line="168" selection-start-column="17" selection-end-line="168" selection-end-column="17" />
-              <folding />
+            <state relative-caret-position="376">
+              <caret line="251" column="12" lean-forward="true" selection-start-line="251" selection-start-column="12" selection-end-line="251" selection-end-column="12" />
+              <folding>
+                <element signature="e#2516#2777#0" expanded="true" />
+                <element signature="e#2776#2777#0" expanded="true" />
+                <element signature="e#11713#11727#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimulateHandler.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/SimulateHandler.java">
+      <file leaf-file-name="AbstractArc.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/arc/AbstractArc.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="127" column="84" lean-forward="false" selection-start-line="127" selection-start-column="84" selection-end-line="127" selection-end-column="84" />
+              <caret line="23" column="14" lean-forward="false" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Port.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/node/auxiliary/Port.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -129,7 +123,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Node</find>
       <find>Gene</find>
       <find>gene_</find>
       <find>genes</find>
@@ -159,6 +152,7 @@
       <find>mouseDragged</find>
       <find>Source</find>
       <find>filename</find>
+      <find>JOptionPan</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -185,17 +179,17 @@
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/EditorApplication.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/node/activity/BiologicalActivity.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/canvas/CanvasPopupMenu.java" />
-        <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/frame/Frame.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/canvas/CanvasMouseListener.java" />
-        <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/ActionType.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/ViewHandler.java" />
-        <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/GlyphsHandler.java" />
-        <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/menu/GlyphsMenu.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/menu/ViewMenu.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/canvas/CanvasKeyListener.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/io/FileManager.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/SimulationPanel.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/SimulateHandler.java" />
+        <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/ActionType.java" />
+        <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/GlyphsHandler.java" />
+        <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/menu/GlyphsMenu.java" />
+        <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/frame/Frame.java" />
       </list>
     </option>
   </component>
@@ -205,7 +199,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="676" />
     <option name="width" value="697" />
     <option name="height" value="735" />
@@ -225,6 +219,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -292,6 +290,14 @@
               <item name="beacon" type="462c0819:PsiDirectoryNode" />
               <item name="editor" type="462c0819:PsiDirectoryNode" />
               <item name="command" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="beacon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Beacon" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="beacon" type="462c0819:PsiDirectoryNode" />
+              <item name="editor" type="462c0819:PsiDirectoryNode" />
+              <item name="frame" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="beacon" type="b2602c69:ProjectViewProjectNode" />
@@ -396,10 +402,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -550,8 +552,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -566,7 +567,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2585288" sideWeight="0.49473685" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26385927" sideWeight="0.49473685" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -578,7 +579,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3874459" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1482684" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -649,19 +650,18 @@
           <properties />
           <option name="timeStamp" value="33" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/frame/Frame.java</url>
+          <line>285</line>
+          <properties />
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="34" />
+      <option name="time" value="35" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/Beacon/lib/jsbml-1.2-with-dependencies.jar!/org/sbml/jsbml/SBMLDocument.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/layer/Layer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1369">
@@ -673,13 +673,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1547">
           <caret line="91" column="2" lean-forward="false" selection-start-line="91" selection-start-column="2" selection-end-line="91" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/AbstractEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -818,13 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/frame/Frame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="91" column="43" lean-forward="false" selection-start-line="91" selection-start-column="43" selection-end-line="91" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/command/CommandType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -839,24 +825,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/GlyphsHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="47" column="5" lean-forward="false" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/ViewHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
           <caret line="54" column="5" lean-forward="false" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/menu/GlyphsMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="41" column="73" lean-forward="false" selection-start-line="41" selection-start-column="73" selection-end-line="41" selection-end-column="73" />
         </state>
       </provider>
     </entry>
@@ -895,13 +867,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/ActionType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-79">
-          <caret line="35" column="33" lean-forward="false" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/dialog/canvas/CanvasDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3529">
@@ -916,18 +881,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/arc/AbstractArc.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="110" column="20" lean-forward="false" selection-start-line="110" selection-start-column="12" selection-end-line="110" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/pathway/Pathway.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1054">
           <caret line="85" column="16" lean-forward="false" selection-start-line="85" selection-start-column="16" selection-end-line="85" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -942,14 +899,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/node/AbstractNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="86" column="33" lean-forward="false" selection-start-line="86" selection-start-column="27" selection-end-line="86" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -984,7 +933,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2482">
           <caret line="168" column="17" lean-forward="false" selection-start-line="168" selection-start-column="17" selection-end-line="168" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -992,7 +940,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3400">
           <caret line="218" column="0" lean-forward="false" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1004,19 +951,89 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/SimulationPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5270">
-          <caret line="335" column="76" lean-forward="false" selection-start-line="334" selection-start-column="12" selection-end-line="335" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/SimulateHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="127" column="84" lean-forward="false" selection-start-line="127" selection-start-column="84" selection-end-line="127" selection-end-column="84" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/ActionType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="46" column="40" lean-forward="false" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/AbstractEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-55">
+          <caret line="146" column="26" lean-forward="false" selection-start-line="146" selection-start-column="19" selection-end-line="146" selection-end-column="29" />
+          <folding>
+            <element signature="e#3194#3195#0" expanded="false" />
+            <element signature="e#3232#3233#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/menu/GlyphsMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="41" column="31" lean-forward="false" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/node/auxiliary/Port.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/arc/AbstractArc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="23" column="14" lean-forward="false" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/node/AbstractNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="96" column="33" lean-forward="false" selection-start-line="96" selection-start-column="11" selection-end-line="96" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/SimulationPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="423" column="91" lean-forward="true" selection-start-line="423" selection-start-column="80" selection-end-line="423" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/GlyphsHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="56" column="47" lean-forward="false" selection-start-line="56" selection-start-column="47" selection-end-line="56" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/frame/Frame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="251" column="12" lean-forward="true" selection-start-line="251" selection-start-column="12" selection-end-line="251" selection-end-column="12" />
+          <folding>
+            <element signature="e#2516#2777#0" expanded="true" />
+            <element signature="e#2776#2777#0" expanded="true" />
+            <element signature="e#11713#11727#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -13,13 +13,14 @@ public class GlyphsMenu extends AbstractMenu
 	private PlatformMenuItem annotationItem;
 	private PlatformMenuItem geneItem;
 	private PlatformMenuItem findItem;
+	private PlatformMenuItem showOperationItem;
 
 	// FIXME complete constructor
 	public GlyphsMenu(Document document)
 	{
 		super (document, "Glyphs", KeyEvent.VK_G);
 	}
-	
+
 	// FIXME complete method
 	@Override
 	protected void buildMenu()
@@ -30,10 +31,15 @@ public class GlyphsMenu extends AbstractMenu
 		geneItem.setAction(document_.getAction( ActionType.GLYPHS_GENE));
 
 		findItem = new PlatformMenuItem();
+		showOperationItem = new PlatformMenuItem();
+
+		findItem.setAction(document_.getAction( ActionType.GLYPHS_FIND));
+		showOperationItem.setAction(document_.getAction( ActionType.GLYPHS_OPERATION));
         
 //		add(annotationItem);
 		add(geneItem);
 		add(findItem);
+		add(showOperationItem);
 	}
 	public void registerActions(Document doc)
 	{
@@ -41,6 +47,7 @@ public class GlyphsMenu extends AbstractMenu
 		annotationItem.setAction(document_.getAction( ActionType.GLYPHS_ANNOTATION));
 		geneItem.setAction(document_.getAction( ActionType.GLYPHS_GENE));
 		findItem.setAction(document_.getAction(ActionType.GLYPHS_FIND));
+		showOperationItem.setAction(document_.getAction( ActionType.GLYPHS_OPERATION));
 	}
 }
 

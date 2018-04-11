@@ -4,12 +4,19 @@ import edu.vt.beacon.editor.document.Document;
 import edu.vt.beacon.editor.gene.Gene;
 import edu.vt.beacon.editor.swing.ClearSplitPane;
 import edu.vt.beacon.graph.glyph.AbstractGlyph;
+import edu.vt.beacon.graph.glyph.arc.AbstractArc;
+import edu.vt.beacon.graph.glyph.arc.NegativeInfluence;
+import edu.vt.beacon.graph.glyph.arc.PositiveInfluence;
 import edu.vt.beacon.graph.glyph.node.AbstractNode;
 import edu.vt.beacon.graph.glyph.node.activity.AbstractActivity;
 import edu.vt.beacon.graph.glyph.node.activity.BiologicalActivity;
+import edu.vt.beacon.graph.glyph.node.activity.Phenotype;
 import edu.vt.beacon.graph.glyph.node.auxiliary.AuxiliaryUnit;
 import edu.vt.beacon.graph.glyph.node.auxiliary.CompartmentUnit;
+import edu.vt.beacon.graph.glyph.node.auxiliary.Port;
 import edu.vt.beacon.graph.glyph.node.container.Compartment;
+import edu.vt.beacon.graph.glyph.node.operator.AbstractOperator;
+import edu.vt.beacon.graph.glyph.node.operator.Or;
 import edu.vt.beacon.layer.Layer;
 import edu.vt.beacon.map.Map;
 
@@ -185,6 +192,105 @@ public class Frame extends JFrame {
         if (foundOne) {
             document_.getCanvas().repaint();
         }
+    }
+
+    /**
+     * Method to show the operations leading up to the glyphs
+     */
+    public void showOperation() {
+        ArrayList<AbstractNode> nodeList = getActiveNodes();
+        String result = "";
+        String resultAll = "";
+        if (nodeList != null) {
+            for (AbstractNode node : nodeList ) {
+                if ((node instanceof BiologicalActivity || node instanceof Phenotype)) {
+                    String tmpStr = "";
+                    ArrayList<AbstractArc> inputArcs = node.getInputArcs();
+                    if (inputArcs != null) {
+                        for (AbstractArc input : inputArcs) {
+                            AbstractNode parent = input.getSource();
+                            if (parent != null) {
+                                if (parent instanceof AbstractOperator) {
+                                    if (input instanceof NegativeInfluence) {
+                                        tmpStr = tmpStr + node.getText() + " = " + "NOT(" + getOpString(parent, "") + ")\n";
+                                    }
+                                    else {
+                                        tmpStr = tmpStr + node.getText() + " = " + getOpString(parent, "") + "\n";
+                                    }
+                                }
+                                else {
+                                    String arcString = "";
+                                    if (input instanceof NegativeInfluence) {
+                                        arcString = " NOT";
+                                    }
+                                    tmpStr = tmpStr + node.getText() + " =" + arcString + " " + parent.getText() + "\n";
+                                }
+                            }
+                        }
+                    }
+                    resultAll += tmpStr;
+                    if (node.isSelected()) {
+                        result = tmpStr;
+                    }
+                }
+            }
+        }
+        if (!result.isEmpty()) {
+            JTextArea textArea = new JTextArea(result);
+            JScrollPane scrollPane = new JScrollPane(textArea);
+            textArea.setLineWrap(true);
+            textArea.setWrapStyleWord(true);
+            scrollPane.setPreferredSize( new Dimension( 500, 500 ) );
+            textArea.setEnabled(false);
+            JOptionPane.showMessageDialog(null, scrollPane);
+        }
+        else if (!resultAll.isEmpty()) {
+            JTextArea textArea = new JTextArea(resultAll);
+            JScrollPane scrollPane = new JScrollPane(textArea);
+            textArea.setLineWrap(true);
+            textArea.setWrapStyleWord(true);
+            scrollPane.setPreferredSize( new Dimension( 500, 500 ) );
+            textArea.setEnabled(false);
+            JOptionPane.showMessageDialog(null, scrollPane);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Either there's no operation or something went wrong", "InfoBox: ", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private String getOpString(AbstractNode node, String str) {
+        ArrayList<AbstractArc> inputArcs = node.getInputArcs();
+        if (inputArcs != null) {
+            for (AbstractArc input : inputArcs) {
+                AbstractNode parent = input.getSource();
+                if (parent != null) {
+                    if (parent instanceof AbstractOperator) {
+                        if (input instanceof NegativeInfluence) {
+                            str = str +"NOT (" + getOpString(parent, str) + ") " + node.getText() + " ";
+                        }
+                        else {
+                            str = str + getOpString(parent, str) + node.getText() + " ";
+                        }
+                    }
+                    else {
+                        if (input instanceof NegativeInfluence) {
+                            str = str + "NOT " + parent.getText() + " " + node.getText() + " ";
+                        }
+                        else {
+                            str = str + parent.getText() + " " + node.getText() + " ";
+                        }
+                    }
+                }
+            }
+        }
+        if (!str.isEmpty()) {
+            int opLength = 5;
+            if (node instanceof Or) {
+                opLength = 4;
+            }
+            str = str.substring(0, str.length() - opLength);
+        }
+        return str;
     }
 
     public ArrayList<AbstractNode> getActiveNodes(){

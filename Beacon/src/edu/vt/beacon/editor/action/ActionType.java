@@ -44,6 +44,7 @@ public enum ActionType
 	GLYPHS_ANNOTATION 	("Annotation..."),
 	GLYPHS_GENE  		("Genes..."),
     GLYPHS_FIND         ("Find..."),
+    GLYPHS_OPERATION    ("Show Operation"),
 	
 	ABOUT_ABOUT			("About Beacon"),
 	SIMULATE_SIMULATE			("Simulate"),

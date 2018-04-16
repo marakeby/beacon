@@ -68,6 +68,7 @@ public class Converter {
     private static final String PATHWAY_ELEMENT = "pathway";
     private static final String PATHWAY_NAME = "name";
     private static final String PATHWAY_ORGANISM = "organism";
+    private static final String PATHWAY_CONTRIBUTOR = "contributor";
 
     private static final String MAP_ELEMENT = "map";
     private static final String MAP_NAME = "name";
@@ -129,6 +130,7 @@ public class Converter {
             Element pathwayElement = createElement(PATHWAY_ELEMENT);
             pathwayElement.setAttribute(PATHWAY_NAME, pathway.getName());
             pathwayElement.setAttribute(PATHWAY_ORGANISM, pathway.getOrganism());
+            pathwayElement.setAttribute(PATHWAY_CONTRIBUTOR, pathway.getContributorListText());
 
             extension.getAny().add(pathwayElement);
             sbgn.setExtension(extension);
@@ -868,6 +870,7 @@ public class Converter {
             if (element.getTagName().equalsIgnoreCase(getTagName(PATHWAY_ELEMENT))) {
                 pathway.setName(element.getAttribute(PATHWAY_NAME));
                 pathway.setOrganism_(element.getAttribute(PATHWAY_ORGANISM));
+                pathway.setContributorList(element.getAttribute(PATHWAY_CONTRIBUTOR));
                 return true;
             }
 

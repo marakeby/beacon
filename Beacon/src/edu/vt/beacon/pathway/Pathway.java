@@ -52,6 +52,44 @@ public class Pathway {
         return contributorList_;
     }
 
+
+    /*
+    we need this method between we store the contributors info in a String when we save the pathway in a file
+    so this method convert the info into a stirng, the syntax is
+    name1, institution1, email1 (corresponding contibutor);name2, institution2, email2 ..................
+     */
+    public String getContributorListText() {
+        String str = "";
+        if (contributorList_ !=  null){
+            for (Contributor ctb: contributorList_){
+                str = str + ctb.toString() + ";";
+            }
+            return str;
+        }
+        return "";
+    }
+
+    /*
+    we parse a specific string and get the contributors' infomation, and set the contributor list
+     */
+    public void setContributorList(String str) {
+        String ctbs[] = str.split(";");
+        if (contributorList_ == null){
+            contributorList_ = new ArrayList<Contributor>();
+        }
+        for (String ctb: ctbs){
+            String attribute[] = ctb.split(", ");
+            if (attribute != null && attribute.length == 3){
+                if (attribute[2].contains(" (corresponding contibutor)")){
+                    attribute[2] = attribute[2].replace(" (corresponding contibutor)", "");
+                    contributorList_.add(new Contributor(attribute[0],attribute[1],attribute[2],true));
+                }
+                else{
+                    contributorList_.add(new Contributor(attribute[0],attribute[1],attribute[2],false));
+                }
+            }
+        }
+    }
     public void setContributorList(List<Contributor> contributorList) {
         this.contributorList_ = contributorList;
     }

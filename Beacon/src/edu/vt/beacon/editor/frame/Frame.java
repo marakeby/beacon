@@ -24,6 +24,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -154,7 +158,7 @@ public class Frame extends JFrame {
                     foundOne = true;
                     node.setSelected(false);
                 }
-                if (searchQuery.equals(node.getText())) {
+                if (searchQuery.equals(node.getText().replace("\n", " "))) {
                     foundOne = true;
                     node.setSelected(true);
                 }
@@ -210,54 +214,50 @@ public class Frame extends JFrame {
                         for (AbstractArc input : inputArcs) {
                             AbstractNode parent = input.getSource();
                             if (parent != null) {
+                                String nodeText = node.getText().replace("\n", " ");
                                 if (parent instanceof AbstractOperator) {
                                     if (input instanceof NegativeInfluence) {
-                                        tmpStr = tmpStr + node.getText() + " = " + "NOT(" + getOpString(parent, "") + ")\n";
+                                        tmpStr = tmpStr + "\"" + nodeText + "\" = " + "NOT(" + getOpString(parent, "") + ")\r\n";
                                     }
                                     else {
-                                        tmpStr = tmpStr + node.getText() + " = " + getOpString(parent, "") + "\n";
+                                        tmpStr = tmpStr + "\"" + nodeText + "\" = " + getOpString(parent, "") + "\r\n";
                                     }
                                 }
                                 else {
                                     String arcString = "";
+                                    String parentText = parent.getText().replace("\n", " ");
                                     if (input instanceof NegativeInfluence) {
                                         arcString = " NOT";
                                     }
-                                    tmpStr = tmpStr + node.getText() + " =" + arcString + " " + parent.getText() + "\n";
+                                    tmpStr = tmpStr + "\"" + nodeText + "\" =" + arcString + " \"" + parentText + "\"\r\n";
                                 }
                             }
                         }
                     }
                     resultAll += tmpStr;
                     if (node.isSelected()) {
-                        result = tmpStr;
+                        result += tmpStr;
                     }
                 }
             }
         }
         if (!result.isEmpty()) {
-            JTextArea textArea = new JTextArea(result);
-            JScrollPane scrollPane = new JScrollPane(textArea);
-            textArea.setLineWrap(true);
-            textArea.setWrapStyleWord(true);
-            scrollPane.setPreferredSize( new Dimension( 500, 500 ) );
-            textArea.setEnabled(false);
-            JOptionPane.showMessageDialog(null, scrollPane);
+            operationDialog(result);
         }
         else if (!resultAll.isEmpty()) {
-            JTextArea textArea = new JTextArea(resultAll);
-            JScrollPane scrollPane = new JScrollPane(textArea);
-            textArea.setLineWrap(true);
-            textArea.setWrapStyleWord(true);
-            scrollPane.setPreferredSize( new Dimension( 500, 500 ) );
-            textArea.setEnabled(false);
-            JOptionPane.showMessageDialog(null, scrollPane);
+            operationDialog(resultAll);
         }
         else {
             JOptionPane.showMessageDialog(null, "Either there's no operation or something went wrong", "InfoBox: ", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+    /**
+     * Recursive function, used to get the string of the node if it's an abstractoperator
+     * @param node The node in question
+     * @param str The persistance string of the operation
+     * @return The complete string representing the operation.
+     */
     private String getOpString(AbstractNode node, String str) {
         ArrayList<AbstractArc> inputArcs = node.getInputArcs();
         if (inputArcs != null) {
@@ -266,18 +266,19 @@ public class Frame extends JFrame {
                 if (parent != null) {
                     if (parent instanceof AbstractOperator) {
                         if (input instanceof NegativeInfluence) {
-                            str = str +"NOT (" + getOpString(parent, str) + ") " + node.getText() + " ";
+                            str = str + "NOT (" + getOpString(parent, str) + ") " + node.getText() + " ";
                         }
                         else {
-                            str = str + getOpString(parent, str) + node.getText() + " ";
+                            str = str + "(" + getOpString(parent, str) + ") " + node.getText() + " ";
                         }
                     }
                     else {
+                        String parentText = parent.getText().replace("\n", " ");
                         if (input instanceof NegativeInfluence) {
-                            str = str + "NOT " + parent.getText() + " " + node.getText() + " ";
+                            str = str + "NOT " + "\"" + parentText + "\" " + node.getText() + " ";
                         }
                         else {
-                            str = str + parent.getText() + " " + node.getText() + " ";
+                            str = str + "\"" + parentText + "\" " + node.getText() + " ";
                         }
                     }
                 }
@@ -291,6 +292,48 @@ public class Frame extends JFrame {
             str = str.substring(0, str.length() - opLength);
         }
         return str;
+    }
+
+    private void operationDialog(String resultStr) {
+        JTextArea textArea = new JTextArea(resultStr);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        scrollPane.setPreferredSize( new Dimension( 500, 500 ) );
+        Object[] choice = {"Export as Text", "Exit"};
+        int exportResult = JOptionPane.showOptionDialog(null, scrollPane, null, JOptionPane.YES_NO_OPTION,
+                JOptionPane.PLAIN_MESSAGE,null, choice, null);
+        if (exportResult == 0) {
+            String[] defaultName = document_.getFile().getName().split("[.]");
+            String n = JOptionPane.showInputDialog(null, "Enter file name", defaultName[0] + "_Operation");
+            if (n == null) {
+                return;
+            }
+            n = n + ".txt";
+            File fileObject = new File(document_.getFile().getParent(), n);
+            while (fileObject.exists())
+            {
+                JOptionPane.showMessageDialog(null,"the file "+fileObject+ "already exists ","Error dialog",JOptionPane.ERROR_MESSAGE);
+                String g = JOptionPane.showInputDialog("Enter file name again please");
+                if (g == null) {
+                    return;
+                }
+                g = g + ".txt";
+                fileObject = new File(g);
+            }
+            PrintWriter outFile = null;
+            try
+            {
+                outFile = new PrintWriter(new FileOutputStream(fileObject));
+            }
+            catch(FileNotFoundException e)
+            {
+                System.out.println("This file could not be opened");
+                System.exit(0);
+            }
+            outFile.printf(resultStr);
+            outFile.close();
+        }
     }
 
     public ArrayList<AbstractNode> getActiveNodes(){

@@ -207,12 +207,31 @@ public class SimulationPanel extends JPanel implements Skinnable, ActionListener
             System.out.println(n.getLabel().getText());
         }
 
+        HashMap<String,Boolean> preExistingSettings = new HashMap<>();
+
+        if(intermediateTable_ != null && intermediateTable_.getModel() != null && intermediateTable_.getModel() instanceof IntermediateTableModel)
+        {
+            Object[][] oldData = ((IntermediateTableModel) intermediateTable_.getModel()).getData();
+            // create a hash map of pre existing ids to boolean values
+
+            int n = oldData.length;
+            for(int i = 0; i < n; i++)
+            {
+                if (!oldData[i][2].equals('x')) {
+                    preExistingSettings.put((String)oldData[i][0],(Boolean) oldData[i][2]); //this is super hacky
+                }
+            }
+        }
+
         int n = inputsText.size();
         Object[][] data = new Object[n][3];
         for (int i=0; i<n ;i++) {
             data[i][0] = inputsID.get(i);
             data[i][1] = inputsText.get(i);
-            data[i][2] = 'x';
+            if(preExistingSettings.containsKey(data[i][0]))
+                data[i][2] = preExistingSettings.get(data[i][0]);
+            else
+                data[i][2] = 'x'; // this initializes
         }
         String[] colNames =  { "Id", "Input", "Active" };
         IntermediateTableModel dm = new IntermediateTableModel(data, colNames);

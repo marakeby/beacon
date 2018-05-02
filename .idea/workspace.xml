@@ -25,7 +25,7 @@
       <file leaf-file-name="CanvasMouseListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/canvas/CanvasMouseListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
+            <state relative-caret-position="7480">
               <caret line="478" column="28" lean-forward="false" selection-start-line="478" selection-start-column="16" selection-end-line="478" selection-end-column="28" />
               <folding>
                 <element signature="e#2595#2596#0" expanded="true" />
@@ -38,7 +38,7 @@
       <file leaf-file-name="AbstractNode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/node/AbstractNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
+            <state relative-caret-position="4811">
               <caret line="338" column="22" lean-forward="false" selection-start-line="338" selection-start-column="16" selection-end-line="338" selection-end-column="22" />
               <folding>
                 <element signature="e#4496#4497#0" expanded="true" />
@@ -48,41 +48,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimulationPanel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SimulationPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/SimulationPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6766">
-              <caret line="423" column="91" lean-forward="false" selection-start-line="423" selection-start-column="80" selection-end-line="423" selection-end-column="91" />
+            <state relative-caret-position="448">
+              <caret line="240" column="33" lean-forward="true" selection-start-line="240" selection-start-column="33" selection-end-line="240" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimulateMenu.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/menu/SimulateMenu.java">
+      <file leaf-file-name="InputsTable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/InputsTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state relative-caret-position="119">
+              <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Frame.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/frame/Frame.java">
+      <file leaf-file-name="IntermediateTable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/IntermediateTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="158" column="44" lean-forward="true" selection-start-line="158" selection-start-column="44" selection-end-line="158" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/io/FileManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2431">
-              <caret line="165" column="56" lean-forward="false" selection-start-line="165" selection-start-column="16" selection-end-line="165" selection-end-column="56" />
+            <state relative-caret-position="119">
+              <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -92,10 +82,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getSimulationPanel</find>
-      <find>refresh</find>
-      <find>refres</find>
-      <find>processOpenFile</find>
       <find>fileNo_</find>
       <find>main</find>
       <find>process</find>
@@ -122,6 +108,10 @@
       <find>contributorList_</find>
       <find>selectGlyphs</find>
       <find>setTex</find>
+      <find>intermediateTable_</find>
+      <find>inputsTable_</find>
+      <find>getInputTableModel</find>
+      <find>getInitialCondition</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -152,7 +142,6 @@
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/ViewHandler.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/menu/ViewMenu.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/canvas/CanvasKeyListener.java" />
-        <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/SimulationPanel.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/SimulateHandler.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/ActionType.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/GlyphsHandler.java" />
@@ -161,6 +150,7 @@
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/io/Converter.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/pathway/Pathway.java" />
         <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/frame/Frame.java" />
+        <option value="$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/SimulationPanel.java" />
       </list>
     </option>
   </component>
@@ -176,7 +166,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="676" />
     <option name="width" value="697" />
     <option name="height" value="735" />
@@ -197,7 +187,6 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -303,6 +292,24 @@
               <item name="Beacon" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="beacon" type="462c0819:PsiDirectoryNode" />
+              <item name="editor" type="462c0819:PsiDirectoryNode" />
+              <item name="simulation" type="462c0819:PsiDirectoryNode" />
+              <item name="InputsTable.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="beacon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Beacon" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="beacon" type="462c0819:PsiDirectoryNode" />
+              <item name="editor" type="462c0819:PsiDirectoryNode" />
+              <item name="simulation" type="462c0819:PsiDirectoryNode" />
+              <item name="IntermediateTable.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="beacon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Beacon" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="beacon" type="462c0819:PsiDirectoryNode" />
               <item name="graph" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -385,6 +392,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
@@ -544,7 +552,7 @@
     <option name="totallyTimeSpent" value="6624000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -555,19 +563,18 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2792208" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2792208" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.271855" sideWeight="0.49473685" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1482684" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28411514" sideWeight="0.49473685" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36683738" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25586355" sideWeight="0.50526315" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36580086" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -576,6 +583,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26298702" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -636,12 +644,6 @@
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/SimulationPanel.java</url>
-          <line>340</line>
-          <properties />
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/dialog/properties/PropertiesDialog.java</url>
           <line>381</line>
           <properties />
@@ -665,14 +667,8 @@
           <properties />
           <option name="timeStamp" value="42" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/io/FileManager.java</url>
-          <line>51</line>
-          <properties />
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="48" />
+      <option name="time" value="57" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -681,35 +677,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/AboutHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="19" column="29" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/document/Document.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9792">
-          <caret line="652" column="26" lean-forward="false" selection-start-line="652" selection-start-column="8" selection-end-line="652" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/sbml/SbgnToSbmlConverterDebug.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3791">
-          <caret line="245" column="45" lean-forward="false" selection-start-line="245" selection-start-column="0" selection-end-line="246" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/about/AboutDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="31" column="77" lean-forward="false" selection-start-line="31" selection-start-column="77" selection-end-line="31" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/document/DocumentTab.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
@@ -870,14 +837,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/SimulateHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="127" column="84" lean-forward="false" selection-start-line="127" selection-start-column="84" selection-end-line="127" selection-end-column="84" />
         </state>
       </provider>
     </entry>
@@ -916,14 +875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/SimulationPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6766">
-          <caret line="423" column="91" lean-forward="false" selection-start-line="423" selection-start-column="80" selection-end-line="423" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/GlyphsHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1728">
@@ -949,14 +900,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
           <caret line="160" column="0" lean-forward="false" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/io/FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2431">
-          <caret line="165" column="56" lean-forward="false" selection-start-line="165" selection-start-column="16" selection-end-line="165" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1017,7 +960,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/canvas/CanvasMouseListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
+        <state relative-caret-position="7480">
           <caret line="478" column="28" lean-forward="false" selection-start-line="478" selection-start-column="16" selection-end-line="478" selection-end-column="28" />
           <folding>
             <element signature="e#2595#2596#0" expanded="true" />
@@ -1028,7 +971,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/graph/glyph/node/AbstractNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
+        <state relative-caret-position="4811">
           <caret line="338" column="22" lean-forward="false" selection-start-line="338" selection-start-column="16" selection-end-line="338" selection-end-column="22" />
           <folding>
             <element signature="e#4496#4497#0" expanded="true" />
@@ -1039,8 +982,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/frame/Frame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="158" column="44" lean-forward="true" selection-start-line="158" selection-start-column="44" selection-end-line="158" selection-end-column="44" />
+        <state relative-caret-position="431">
+          <caret line="219" column="86" lean-forward="false" selection-start-line="219" selection-start-column="86" selection-end-line="219" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/IntermediateTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/io/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/action/handler/SimulateHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="127" column="84" lean-forward="false" selection-start-line="127" selection-start-column="84" selection-end-line="127" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/javax/swing/table/AbstractTableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="196" column="16" lean-forward="false" selection-start-line="196" selection-start-column="16" selection-end-line="196" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/IntermediateTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/InputsTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Beacon/src/edu/vt/beacon/editor/simulation/SimulationPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="240" column="33" lean-forward="true" selection-start-line="240" selection-start-column="33" selection-end-line="240" selection-end-column="33" />
           <folding />
         </state>
       </provider>

@@ -16,6 +16,8 @@ import edu.vt.beacon.graph.glyph.node.auxiliary.CompartmentUnit;
 import edu.vt.beacon.graph.glyph.node.auxiliary.Port;
 import edu.vt.beacon.graph.glyph.node.container.Compartment;
 import edu.vt.beacon.graph.glyph.node.operator.AbstractOperator;
+import edu.vt.beacon.graph.glyph.node.operator.Delay;
+import edu.vt.beacon.graph.glyph.node.operator.Not;
 import edu.vt.beacon.graph.glyph.node.operator.Or;
 import edu.vt.beacon.layer.Layer;
 import edu.vt.beacon.map.Map;
@@ -260,31 +262,48 @@ public class Frame extends JFrame {
      */
     private String getOpString(AbstractNode node, String str) {
         ArrayList<AbstractArc> inputArcs = node.getInputArcs();
+        Boolean notDelay = false;
         if (inputArcs != null) {
             for (AbstractArc input : inputArcs) {
                 AbstractNode parent = input.getSource();
                 if (parent != null) {
                     if (parent instanceof AbstractOperator) {
                         if (input instanceof NegativeInfluence) {
-                            str = str + "NOT (" + getOpString(parent, str) + ") " + node.getText() + " ";
-                        }
-                        else {
-                            str = str + "(" + getOpString(parent, str) + ") " + node.getText() + " ";
+                            str = str + "NOT (" + getOpString(parent, "") + ") " + node.getText() + " ";
+                        } else {
+                            str = str + "(" + getOpString(parent, "") + ") " + node.getText() + " ";
                         }
                     }
                     else {
                         String parentText = parent.getText().replace("\n", " ");
-                        if (input instanceof NegativeInfluence) {
-                            str = str + "NOT " + "\"" + parentText + "\" " + node.getText() + " ";
+                        String nodeText = node.getText();
+                        notDelay = false;
+                        if (node instanceof Delay) {
+                            nodeText = "DELAYED";
+                            notDelay = true;
+                        }
+                        if (node instanceof Not) {
+                            notDelay = true;
+                        }
+                        if (notDelay) {
+                            if (input instanceof NegativeInfluence) {
+                                str = str + nodeText + " (NOT " + "\"" + parentText + "\") ";
+                            } else {
+                                str = str + nodeText + " \"" + parentText + "\" ";
+                            }
                         }
                         else {
-                            str = str + "\"" + parentText + "\" " + node.getText() + " ";
+                            if (input instanceof NegativeInfluence) {
+                                str = str + "NOT " + "\"" + parentText + "\" " + node.getText() + " ";
+                            } else {
+                                str = str + "\"" + parentText + "\" " + node.getText() + " ";
+                            }
                         }
                     }
                 }
             }
         }
-        if (!str.isEmpty()) {
+        if (!str.isEmpty() && !notDelay) {
             int opLength = 5;
             if (node instanceof Or) {
                 opLength = 4;
@@ -313,13 +332,17 @@ public class Frame extends JFrame {
             File fileObject = new File(document_.getFile().getParent(), n);
             while (fileObject.exists())
             {
-                JOptionPane.showMessageDialog(null,"the file "+fileObject+ "already exists ","Error dialog",JOptionPane.ERROR_MESSAGE);
+                int res = JOptionPane.showConfirmDialog(null,"The file "+fileObject+ "already exists, Overwrite? ",
+                        null,JOptionPane.INFORMATION_MESSAGE);
+                if (res == JOptionPane.OK_OPTION) {
+                    break;
+                }
                 String g = JOptionPane.showInputDialog("Enter file name again please");
                 if (g == null) {
                     return;
                 }
                 g = g + ".txt";
-                fileObject = new File(g);
+                fileObject = new File(document_.getFile().getParent(), g);
             }
             PrintWriter outFile = null;
             try
